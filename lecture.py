@@ -375,7 +375,7 @@ c = 30
 #print(a,b,c, sep='xx')
 
 # -------------------------------- Format Metoduyla Formatli Yazim ----------------------------------------------
-
+"""
 s = 'a = {0}, b = {1}, c = {2}'.format(a, b, c) # a = 10, b = 20, c = 30
 
 sd = 'a = {2}, b = {1}, c = {0}'.format(a, b, c) # a = 30, b = 20, c = 10
@@ -390,25 +390,24 @@ date= '{0:02d}/{1:02d}/{2:05d}'.format(day, month, year) # 08/05/02007
 
 
 
-# ------------------------------ Str Enterpolasyon Metoduyla Formatli Yazim -----------------------------------------
+# ------------------------------ String Enterpolasyonu ----------------------------------------------------
 
 sas = f'a = {a}, b = {b*b}, c = {c}' # a = 10, b = 400, c = 30
 
 sql = f'{a:<12}{b:>14}'# sola dayali , saga dayali
 
+# Farklı turlerin esittir karsilastirilmasi (==) her zaman FALSE, Farklı turlerin esit degildir karsilastirilmasi (!=) her zaman True
+
+
+# indent (girinti) -> indentasyon Python'da kodun düzenini ve bloklarını belirlemek için kullanılan bir yapıdır. 
+# Girintili bir şekilde yapılandırılmış kod, okunabilirlik ve kodun doğru çalışması açısından önemlidir.    
+"""
 
 
 
+# ------------------------------------- DEYİM (Statament) ----------------------------------------------------
 
-
-
-    
-
-
-
-
-
-
+# Programlar deyimlerin calismasi ile calisir
 
 
 
