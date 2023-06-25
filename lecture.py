@@ -408,9 +408,8 @@ sql = f'{a:<12}{b:>14}'# sola dayali , saga dayali
 # ------------------------------------- DEYİM (Statament) ----------------------------------------------------
 
 # Programlar deyimlerin calismasi ile calisir
-
-
-
+# Suit -> Python'da bileşik deyimin anahtar sözcüğü ile aynı satıra yazılan birden fazla basit deyime ya da 
+#    -> farklı satırlara aynı girinti düzeyiyle yazılan birden fazla deyime "suit" denilmektedir. 
 
 
 
