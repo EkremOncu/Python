@@ -1,13 +1,32 @@
-"""s = ' abcd'
+"""
+s = ' abcd'
 a = list(s)
 c = [1, 2, 3,]
 c.sort(reverse= True)
 print(a)
 print(c)
 c.reverse()
-print(c) """
+print(c) 
+"""
+# sorted(iterable, key=None, reverse=False)
+"""
+numbers = [5, 2, 8, 1, 9]
 
-"""a = [10, 20, 30, 40, 50, 60, 70]
+sorted_numbers = sorted(numbers) # reverse = False
+print(sorted_numbers)
+
+fruits = ['apple', 'banana', 'orange', 'kiwi']
+
+sorted_fruits = sorted(fruits, key=len)
+print(sorted_fruits)
+
+liste = [('a', 2), ('b', 1), ('d', 23), ('c', 13)]
+
+sorted(liste, key= lambda x:x[1])
+"""
+
+"""
+a = [10, 20, 30, 40, 50, 60, 70]
 print(id(a))
 b = a[::-1] # shallow copy
 print(b)
@@ -18,25 +37,29 @@ print (id(b[0]))
 print (id(a[-1])) 
 """
 
-"""aa = [10, 20, 30, 40, 50, 60, 70]
+"""
+aa = [10, 20, 30, 40, 50, 60, 70]
 del aa[2::-1]
-print (aa)"""
+print (aa)
 
-"""d = [1, 2, 3, [4,5]]
+d = [1, 2, 3, [4,5]]
 sd = 4  in d
-print(sd)"""
+print(sd)
 
-"""a = [10, 20, 30, 40.5, 50, 60, 70, 80, 90, 100]
+a = [10, 20, 30, 40.5, 50, 60, 70, 80, 90, 100]
 a[0:5:2] = [1, 2, 3]
-print(a)"""
+print(a)
 
-"""liste = [1, 2, 3, 4, 5]
+liste = [1, 2, 3, 4, 5]
 
-liste.insert(100, "yeni")
-print(liste)"""
+liste.insert(1, "yeni")
+print(liste)
+
+"""
 
 
-"""a = [10, 20, 30, 40.5]
+"""
+a = [10, 20, 30, 40.5]
 b = 3 * a  # b = a + a + a, anlamına geliyor
 print(b)
 print ("----")
@@ -45,15 +68,19 @@ print (id(b))
 print ("----")
 print(id(b[0]))
 print(id(b[4]))
-print(id(b[8]))"""
+print(id(b[8]))
+"""
 
-"""a = [10, 20, 30, 40.5]
+"""
+a = [10, 20, 30, 40.5]
 print (id(a))
 a *= 3    # a *= n ile a.extend(n) eşdeğerdir,  a += n ile a.extend(n) eşdeğerdir
 print (a)
-print (id(a))"""
+print (id(a))
+"""
 
-"""a = [[]] * 3
+"""
+a = [[]] * 3
 print(a)
 a[0].append(200)
 print (a)
@@ -62,41 +89,47 @@ b = [c,c,c]
 print(b)
 c.append(200)
 c[0] = 100
-print(b)"""
+print(b)
+"""
 
-"""a = (30,)  # geçerli
+"""
+a = (30,)  # geçerli
 print(len(a))
 print(a)
 b = 1, 2, 3, 5.2
 print(b)
-print(type(b))"""
+print(type(b))
+"""
 
-"""t = (1, 2, 3, 'ali')
+"""
+t = (1, 2, 3, 'ali')
 print(t)
-print(hash(t)) # hash degeri elde edilir """
+print(hash(t)) # hash degeri elde edilir 
 
-"""a = [10, 20, 30]
+a = [10, 20, 30]
 x, y, z = a    # Unpacking islemi
 print(x,y,z)
-print(type(x))"""
-
-
-
-"""t = [1, 2, 3, 'ali']
+print(type(x))
+"""
+"""
+t = [1, 2, 3, 'ali']
 t.extend(["56", 646, True]) # extend metodu sadece iterable elemanlar ekler
 # t.extend(646) TypeError: 'int' object is not iterable
-print(t)"""
-
+print(t)
+"""
 
 # -----------------------  KUMELER ----------------------------------------
-"""a = {1, 5, (2,4), 'ali'}
+"""
+a = {1, 5, (2,4), 'ali'}
 print(a)  
 a = {1, 5, (2,4), 'ali', [22,46]} # TypeError: unhashable type: 'list'
 # Kümelerde unhushable degildir, yani kümenin elemanı küme olamaz.
-print(a)"""
+print(a)
+"""
 
 
-"""s = {'ali', 10, 'veli', 'istanbul'}
+"""
+s = {'ali', 10, 'veli', 'istanbul'}
 s.update([30, 'izmir', 'selami'])
 print(s)
 print("")
@@ -107,9 +140,11 @@ print("")
 # s.update(30) TypeError: 'int' object is not iterable
 s.add(5646515)
 s.add("SAGEGWRRWGWRGWE")
-print(s) """
+print(s) 
+"""
 
-""" Kümenin elemanı:
+""" 
+Kümenin elemanı:
 küme olamaz   Çünkü hashable değil
 list olamaz   Çünkü hashable değil
 tuple olabilir
@@ -118,10 +153,13 @@ list ve tuple ın elemanı küme olabilir
 #t = {1, (45, 68, [59,57,49] )}
 #print(t) TypeError: unhashable type: 'list'
 """
-"""s = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+"""
+s = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 k = s.copy()
 print(k) # küme elemanları shallow copy şeklinde kopyalanır
-print(s)"""
+print(s)
+"""
 
 """
 s = {'ali', 10, 'veli', 'eskişehir'}
@@ -141,30 +179,33 @@ s = set(word1)
 
 result = s.intersection(word2)
 print(result) # type(result) -> set
-
+"""
+"""
 s = {'ali', 'veli', 'selami', 'ayşe', 'fatma','hüseyin'}
 k = ['ali', 'fatma', 'hüseyin', 'ayşe']
 m = ['ayşe', 'ali', 'fatma', 'can']
 
 obb = s.intersection(k, m) # 3'nün kesisimini buluyor.
+"""
 
+"""
 r = s.intersection(b)         # '&' -> kesisim (s n b)
 r = s.union(b)                # '|' -> birlesme (s u b)
 r = s.difference(b)           # '-' -> iki kumenin farki (s/b) gibi
 r = s.symmetric_difference(b) # '^' -> ortak olmayan elemanlar (exor islemi)
 r = s.isdisjoint(b)           #      -> ayrik kume  (operator karsiligi yok)
      
-# Yukarıda görmüş olduğumuz temel küme işlemlerinin update'li versyonları da vardır. 
-# Bunlar aşağıda listelenmiştir:
+ Yukarıda görmüş olduğumuz temel küme işlemlerinin update'li versyonları da vardır. 
+ Bunlar aşağıda listelenmiştir:
 
-a &= b ya da a.intersection_update(b)
-a |= b ya da a.update(b)
-a -= b ya da a.diffrence_update(b)
-a ^= b ya da a.symmetric_difference_update(b)
+ a &= b  ya da a.intersection_update(b)
+ a |= b  ya da a.update(b)
+ a -= b  ya da a.diffrence_update(b)
+ a ^= b  ya da a.symmetric_difference_update(b)
 
-# Yukarıdaki işlemlerde sonuç başka bir nesne olarak elde edilmemektedir.
-# Sonuç soldaki nesne değiştirilerek elde edilmektedir. 
-# Yani bu işlemler sonucunda yeni bir nesne yaratılmamaktadır
+ Yukarıdaki işlemlerde sonuç başka bir nesne olarak elde edilmemektedir.
+ Sonuç soldaki nesne değiştirilerek elde edilmektedir. 
+ Yani bu işlemler sonucunda yeni bir nesne yaratılmamaktadır
 
 a <= b  # superset (ust kume)         -> result = a.issubset(b)
 a >= b  # subset (alt kume)           -> result = a.issuperset(b)
@@ -238,7 +279,7 @@ vals = d.values() # dict_values([20, 30, 40, 50, 100, 200, 300])
 type(d.values()) #  dict_values
 a = list(vals) # [20, 30, 40, 50, 100, 200, 300]
 """
-#  View Nesnesi !!!!! onemli
+#  View Nesnesi !!!!! onemli dropboxdan bak
 """
 d = {10: 'ali', 20: 'veli', 30: 'selami', 40: 'ayşe', 50: 'fatma'}
 
@@ -254,7 +295,7 @@ print("")
 
 aal = d.setdefault(40, 'sacit')
 print(aal)   
-"""  
+"""
 # Deyimler bir deger vermezler (del d[10]), operatorler verirler val = (d.pop(10))
 
 # Python'da "padding", bir veri dizisinin veya dizesinin başına veya sonuna eklenen belirli bir karakter veya karakterlerin işlemidir.
