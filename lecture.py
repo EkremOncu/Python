@@ -327,7 +327,7 @@ val = r.find("k")  # 2
 val1 = r.find("ar")# 3
 val2 = r.find("gew2hgrwg")# -1
 
-r.find("k",3,20) # aramanın start old index, stop old index, 3 dahil 20 değil
+r.find("k",3,20) # aramanın start oldugu index, stop old index, 3 dahil 20 değil
 r.index("k") # find'dan tek farki bulamaz ise ValueError olur.
 
 r.rfind("a",3,20) # reverse find, aramayı sondan basa dogru yapar
@@ -352,8 +352,8 @@ s.isalnum() # alfabetik ve numeric
 s.isalpha() # butun karakterler str mi
 s.isidentifier() #  bu string'in, değişken olarak kullanilip kullanilamayacagini gosteriyor.
 """
-
 """
+
 s = ","
 result= s.join(['ali', 'v103li', 'selami']) # argümanı iterable nesne olmali, str olmali 
 # 'ali, v103li, selami'
@@ -453,25 +453,45 @@ sql = f'{a:<12}{b:>14}'# sola dayali , saga dayali
 #    -> farklı satırlara aynı girinti düzeyiyle yazılan birden fazla deyime "suit" denilmektedir. 
 
 
+# ------------------------ For --------------------------------
 
+# for <degisken ismi> in <iterable nesne> : <suite>  
+"""
+d = {'ali': 58, 'veli': 87, 'selami': 59, 'ayşe': 98, 'fatma': 81}
 
+for x in d.values():
+    print(x)
 
+print("---------")
 
+a = [(1, "thy"), (3, 4), (5, 6), (7, "Gundo"), (9, 10)]
 
+for t in a:
+    x, y = t  # Unpacking
+    print(x,y)
 
+print("---------")
 
+d = {'ali': 10, 'veli': 20, 'selami': 30, 'ayşe': 40, 'fatma': 50}
 
+for key in d:
+    print(f"{key} -> {d[key]}")
 
+print("")
 
+for key, value in d.items():
+        print(key, value)
 
+print("---------")        
+        
+a = [10, 20, 30, 40, 50]
+        
+for x in reversed(a):   # for i in range(len(a) - 1, -1, -1):
+    print(x)
+"""
 
-
-
-
-
-
-
-
+# ------------------------ Break --------------------------------
+# Break basit deyimi mutlaka döngünün içinde olmalıdır
 
 
 
