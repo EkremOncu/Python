@@ -22,7 +22,7 @@ for i in range(n):
 """
 
 # Solution 4   WWRRONG
-"""      
+"""     
 y = input("Bir yazi gir: ")
 
 p = y.split()
@@ -65,7 +65,7 @@ for i in range(len(b)):
 
 d = dict(a)
 print(d)
-"""    
+"""   
 # Solution 8
 """
 a = [12, 56, 89, 32, 19, 99, 43]
@@ -87,6 +87,7 @@ for i in range(height):
     print("|" + i*" " + '*' + (height - i) *" " + '|')
 """
 # Solution 10
+"""
 n = int(input("n sayisi gir: "))
 t = 1
 for _ in range(n):
@@ -100,14 +101,87 @@ for _ in range(n):
     k = m.center(n*2 -1)
     print(k)
     t -=2
+"""
+# Solution 11
 
+while True:
+    cmd = input("CSD> ")
+    
+    if 'length' in cmd:
+        index = cmd.find('"')
+        r_index = cmd.rfind('"')
+        a = cmd[index+1 : r_index]
+        print(len(a))
+    
+    if 'upper ' in cmd:
+        index = cmd.find('"')
+        r_index = cmd.rfind('"')
+        a = cmd[index+1 : r_index]
+        print(a.upper())
+    
+    if 'lower ' in cmd:
+        index = cmd.find('"')
+        r_index = cmd.rfind('"')
+        a = cmd[index+1 : r_index]
+        print(a.lower())    
+    
+    if 'reverse' in cmd:
+        index = cmd.find('"')
+        r_index = cmd.rfind('"')
+        a = cmd[index+1 : r_index]
+        print(a[::-1])
+    
+    if 'repitition ' in cmd:
+        index = cmd.find('"')
+        r_index = cmd.rfind('"')
+        a = cmd[index+1 : r_index]
+        sayi = int(cmd[r_index+1:])
+        print(a*sayi)
+        
+    if 'count ' in cmd:
+        index = cmd.find('"')
+        r_index = cmd.rfind('"')
+        a = cmd[index+1 : r_index]        
+        l = []  
+        for i in range(len(a)):
+            c = a.count(a[i])
+            l.append([a[i],c])
+        d = dict(l)
+        for char, c in d.items():
+            print(char, "=>", c)            
+        
+    if 'concat' in cmd:
+          index = cmd.find('"')
+          r_index = cmd.rfind('"')
+          a = cmd[index+1 : r_index]
+          an = a.replace('"', '')
+          an = an.replace(' ', '')
+          print(an)
+         
+    if 'quit' in cmd:
+        break
+    
 
-
-
-
-
-
-
-
- 
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
