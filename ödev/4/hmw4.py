@@ -1,14 +1,27 @@
-# Solution 1  WWRRONG
+# Solution 1 
 """
 while True:
     print("")
     w = input("Bir sayi giriniz:")
     word = w.strip()
+    n = len(word)-1 
+    s = 0
     for i in word:
-        s = ord (f"{i}") - ord("0")
-        print(s, end="")
-"""       
- 
+        s += (ord (f"{i}") - ord("0")) * (10**n)
+        n -=1
+    print(s*2)
+"""
+# Solution 2
+"""
+a = int(input('int bir değer giriniz:'))
+
+while a:
+    val = a % 10
+    s = chr (val + ord('0')) 
+    print(s, end="")
+    a //= 10
+"""
+    
 # Solution 3 ?
 """
 n = int (input("Bir sayi gir: "))
@@ -21,15 +34,16 @@ for i in range(n):
     print(l[i])
 """
 
-# Solution 4   WWRRONG
-"""     
-y = input("Bir yazi gir: ")
+# Solution 4  ?????????????????  WRONG
+     
+y = "Bugün hava çok güzel. Ali (bizim Ali) – Veli - ve Selami parka gittiler."
+#input("Bir yazi gir: ")
+for i in y:
+    if i.isalpha() == True:
+        print(i, end=" ")
 
-p = y.split()
-p.remove("–")
-p.remove("-")
-print(p)
-"""
+
+
 
 # Solution 5 
 """
@@ -103,7 +117,7 @@ for _ in range(n):
     t -=2
 """
 # Solution 11
-
+"""
 while True:
     cmd = input("CSD> ")
     
@@ -160,7 +174,7 @@ while True:
          
     if 'quit' in cmd:
         break
-    
+"""    
 
     
     
