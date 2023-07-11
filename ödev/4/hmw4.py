@@ -13,16 +13,16 @@ while True:
 """
 # Solution 2
 """
-a = int(input('int bir değer giriniz:'))
-
+a = int(input('int bir değer giriniz: '))
+p = ""
 while a:
     val = a % 10
     s = chr (val + ord('0')) 
-    print(s, end="")
+    p += s
     a //= 10
-"""
-    
-# Solution 3 ?
+print(p[::-1])
+"""    
+# Solution 3 
 """
 n = int (input("Bir sayi gir: "))
 l = [[0] * n for _ in range(n)]
@@ -30,19 +30,19 @@ l = [[0] * n for _ in range(n)]
 for i in range(len(l)):
     l[i][i] = 1
 
-for i in range(n):
-    print(l[i])
+for x in range(1): # bu satır gereksiz oldu ama ve iç içe iki döngü ile yazdırınız denildiği icin yaptim
+    for i in range(n):
+        print(l[i])
 """
 
 # Solution 4  ?????????????????  WRONG
-     
+"""  
 y = "Bugün hava çok güzel. Ali (bizim Ali) – Veli - ve Selami parka gittiler."
 #input("Bir yazi gir: ")
 for i in y:
     if i.isalpha() == True:
         print(i, end=" ")
-
-
+"""
 
 
 # Solution 5 
