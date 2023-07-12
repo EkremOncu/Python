@@ -494,6 +494,22 @@ for x in reversed(a):   # for i in range(len(a) - 1, -1, -1):
 # Break basit deyimi mutlaka döngünün içinde olmalıdır
 
 
+# ----------------------- Match --------------------------------
+a = int(input('Bir değer giriniz:'))
+
+match a:
+    case 1:
+        print('bir')
+    case 2:
+        print('iki')
+    case 3:
+        print('üç')
+    case 4:
+        print('dört')
+    case 5:
+        print('beş')
+    case _:  # under score ozel bir anlam tasır (else anlamı) ve sonda bulunmalidir
+        print('Hicbiri')
 
 
 
@@ -508,7 +524,7 @@ for x in reversed(a):   # for i in range(len(a) - 1, -1, -1):
 
 
 
-
+""
 
 
 
