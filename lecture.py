@@ -495,6 +495,7 @@ for x in reversed(a):   # for i in range(len(a) - 1, -1, -1):
 
 
 # ----------------------- Match --------------------------------
+"""
 a = int(input('Bir değer giriniz:'))
 
 match a:
@@ -511,6 +512,61 @@ match a:
     case _:  # under score ozel bir anlam tasır (else anlamı) ve sonda bulunmalidir
         print('Hicbiri')
 
+s = input('Bir şehir giriniz:')
+
+match s:
+    case 'ankara':
+        print('06')
+    case 'eskişehir':
+        print('26')
+    case 'kocaeli':
+        print('41')
+    case 'adana':
+        print('01')
+    case 'izmir':
+        print('35')
+    case _:
+        print('hiçbiri')
+
+# Bir case bölümünde "veya" biçiminde birden fazla kalıp "|" atomu ile oluşturulabilmektedir.
+# Bu kalıba "veya kalıbı (or pattern)" denilmektedir
+
+while True:
+    cmd = input('CSD>').strip()
+    if cmd =='':
+        continue
+    match cmd:
+        case 'copy':
+            print('copy executes')
+        case 'rename':
+            print('rename executes')
+        case 'del' | 'erase' | 'remove' as aas_cmd:  # hangisi, kullanici tarafindan girildi anlamak icin
+            print(f'{aas_cmd} executes...')
+        case 'quit' | 'exit':
+            break
+        case _:
+            print(f'invalid command: {cmd}')
+
+"""
+"""
+while True:
+    cmd = input('CSD>').split() # split() komutu list veriyor
+    if cmd =='':
+        continue
+    match cmd:
+        case ['copy']:
+            print('copy executes')
+        case ['rename']:
+            print('rename executes')
+        case ['del',file]:
+            print(f'delete executes, {file}')
+        case ['quit']:
+            break
+        case _:
+            print(f'invalid command: {cmd}')
+
+print(file)
+"""
 
 
 
@@ -518,13 +574,6 @@ match a:
 
 
 
-
-
-
-
-
-
-""
 
 
 
