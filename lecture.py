@@ -554,20 +554,36 @@ while True:
     if cmd =='':
         continue
     match cmd:
-        case ['copy']:
-            print('copy executes')
-        case ['rename']:
+        case['rename']:
             print('rename executes')
-        case ['del',file]:
-            print(f'delete executes, {file}')
+
+        case 'copy', source_path, dest_path:
+            print(f"copy executes, {source_path} {dest_path}")
+
+        case (['del',file] | ['erase', file] | ["remove", file]) as hop_name:
+            print(f'{hop_name[0]} executes, {file}')
+
+        case 'king', *path: # [king, *args] * olunca sinirsiz oluyor, * sonda olmak zorunda değil
+            print(f"rename executes, {path}") # çikti her zaman list olur
+
         case ['quit']:
             break
         case _:
             print(f'invalid command: {cmd}')
-
 print(file)
 """
 
+a = [10, 20, 30, 40, 50]
+match a:
+    case 10, _, _, 40, 50:
+        print('matched')
+
+print("")
+
+d = {'ali': 10, 'veli': 20, 'selami': 30, 'ayşe': 40, 'fatma': 50}
+match d:
+    case {'selami': 30, 'fatma': 50, **kwargs}: # ** sadece dict ler icin kullanilir, ** sonda bulunmak zorunda
+        print(kwargs)           # {'ali': 10, 'veli': 20, 'ayşe': 40}
 
 
 
