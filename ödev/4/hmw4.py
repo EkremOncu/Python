@@ -4,7 +4,7 @@ while True:
     print("")
     w = input("Bir sayi giriniz:")
     word = w.strip()
-    n = len(word)-1 
+    n = len(word)-1
     s = 0
     for i in word:
         s += (ord (f"{i}") - ord("0")) * (10**n)
@@ -21,7 +21,7 @@ while a:
     p += s
     a //= 10
 print(p[::-1])
-"""    
+"""
 # Solution 3 
 """
 n = int (input("Bir sayi gir: "))
