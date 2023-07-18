@@ -563,7 +563,8 @@ while True:
         case (['del',file] | ['erase', file] | ["remove", file]) as hop_name:
             print(f'{hop_name[0]} executes, {file}')
 
-        case 'king', *path: # [king, *args] * olunca sinirsiz oluyor, * sonda olmak zorunda değil
+        case 'king', *path: # [king, *args] ,  0 ya da daha fazla elemanla uyusum saglar
+            # * olunca sinirsiz oluyor,  * sonda olmak zorunda değil
             print(f"rename executes, {path}") # çikti her zaman list olur
 
         case ['quit']:
@@ -572,7 +573,7 @@ while True:
             print(f'invalid command: {cmd}')
 print(file)
 """
-
+"""
 a = [10, 20, 30, 40, 50]
 match a:
     case 10, _, _, 40, 50:
@@ -580,20 +581,36 @@ match a:
 
 print("")
 
+# mapping pattern
 d = {'ali': 10, 'veli': 20, 'selami': 30, 'ayşe': 40, 'fatma': 50}
 match d:
     case {'selami': 30, 'fatma': 50, **kwargs}: # ** sadece dict ler icin kullanilir, ** sonda bulunmak zorunda
         print(kwargs)           # {'ali': 10, 'veli': 20, 'ayşe': 40}
+"""
 
+# capture pattern
+"""
+while True:
+    a = int(input('Bir değer giriniz:'))
+    match a:
+        case 10:
+            print('on')
+        case 20:
+            print('yirmi')
+        case x:     # capture pattern
+            print(f' x = {x}')
+"""
 
+# koruma (guard)
 
+a = int(input('Bir sayı giriniz:'))
+x = -2
 
-
-
-
-
-
-
+match a:
+    case 10 if x > 0:
+        print('Ok')
+    case _:
+        print('cannot match...')
 
 
 
