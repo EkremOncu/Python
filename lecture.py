@@ -581,7 +581,7 @@ match a:
 
 print("")
 
-# mapping pattern
+#------------- mapping pattern -------------------
 d = {'ali': 10, 'veli': 20, 'selami': 30, 'ayşe': 40, 'fatma': 50}
 match d:
     case {'selami': 30, 'fatma': 50, **kwargs}: # ** sadece dict ler icin kullanilir, ** sonda bulunmak zorunda
@@ -602,7 +602,7 @@ while True:
 """
 
 # koruma (guard)
-
+"""
 a = int(input('Bir sayı giriniz:'))
 x = -2
 
@@ -611,6 +611,10 @@ match a:
         print('Ok')
     case _:
         print('cannot match...')
+"""
 
+# -------------- Kosul Operatoru (If deyiminden farklı) ------------------
 
+# -> Adından da anlasildigi gibi bir operatordur, degim degil
+# <ifade1> if <ifade2> else <ifade3>  ->  b = 100 if a % 2 == 0 else 200
 
