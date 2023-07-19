@@ -614,7 +614,49 @@ match a:
 """
 
 # -------------- Kosul Operatoru (If deyiminden farklı) ------------------
-
+"""
 # -> Adından da anlasildigi gibi bir operatordur, degim degil
 # <ifade1> if <ifade2> else <ifade3>  ->  b = 100 if a % 2 == 0 else 200
+# -> <a % 2 == 0> True ise b'ye 100 atanacak, degilse b'ye 200 atanacak (b=200 olacak)
+
+a = int(input("deger gir: "))
+b = 100 if a % 2 == 0 else 200
+print(b)
+
+# Koşul operatörü özellikle üç durumda tercih edilmelidir:
+#1- Bir karşılaştıma sonucunda elde edilen değerin bir değişkene atandığı durumlarda. Örneğin:
+result = 100 if a % 2 == 0 else 200
+
+#2- Fonksiyon ya da metot çağrımlarında argüman olarak koşul operatörü bazen yazımı kısaltmak için kullanılabilmektedir. Örneğin:
+# val = int(input('Bir sayı giriniz:'))
+# print('çift' if val % 2 == 0 else 'tek')
+
+#3- return ifadelerinde de koşul operatörü bazı durumlarda tercih edilmektedir. Örneğin:
+# return 100 if a % 2 == 0 else 200
+
+
+for i in range(100):
+        print(i, end='\n' if i % 5 == 4 else ' ')
+
+"""
+# -------------------------------- Fonksiyonlar -------------------------------------
+
+def bar():
+    print("bar")
+def tar():
+    print("tar")
+def foo():
+    print("foo")
+
+a = [bar, tar, foo]
+a[0]()
+a[1]()
+a[2]()
+print("")
+
+for f in a:
+    f()
+
+
+
 
