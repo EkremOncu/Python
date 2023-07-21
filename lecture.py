@@ -637,10 +637,10 @@ result = 100 if a % 2 == 0 else 200
 
 for i in range(100):
         print(i, end='\n' if i % 5 == 4 else ' ')
-
 """
-# -------------------------------- Fonksiyonlar -------------------------------------
 
+# -------------------------------- Fonksiyonlar -------------------------------------
+"""
 def bar():
     print("bar")
 def tar():
@@ -656,6 +656,38 @@ print("")
 
 for f in a:
     f()
+print("")
+
+
+import math
+def getroots(a,b,c):
+
+    delta = b ** 2 - 4 * a * c
+    if delta < 0:
+        return None
+
+    x1 = (-b + math.sqrt(delta)) / (2 * a)
+    x2 = (-b - math.sqrt(delta)) / (2 * a)
+    return x1, x2
+
+result = getroots(3, 5, -7)
+
+if result:
+    x1, x2 = result
+    print(f'x1 = {x1}, x2 = {x2}')
+else:
+    print('no real root!')
+"""
+
+
+
+
+
+
+
+
+
+
 
 
 
