@@ -123,7 +123,7 @@ print(t)
 a = {1, 5, (2,4), 'ali'}
 print(a)  
 a = {1, 5, (2,4), 'ali', [22,46]} # TypeError: unhashable type: 'list'
-# Kümelerde unhushable degildir, yani kümenin elemanı küme olamaz.
+# Kümelerde hushable degildir, yani kümenin elemanı küme olamaz.
 print(a)
 """
 
@@ -640,6 +640,7 @@ for i in range(100):
 """
 
 # -------------------------------- Fonksiyonlar -------------------------------------
+# Foksiyonlar hashable degildir -> Bu nedenle list'lerin elemanı olamaz ve dict'lerin anahtari olamazlar.(dict'lerin degeri olabilirler)
 """
 def bar():
     print("bar")
@@ -678,6 +679,60 @@ if result:
 else:
     print('no real root!')
 """
+
+# Neden Fonksiyon Kullanilir?
+"""
+Peki biz neden fonksiyon yazmak isteriz? iste fonksiyonlar olusturmanin gerekceleri şunlardir:
+1) Fonksiyonlar "yeniden kullanilabilirligi (reusability)" saglarlar.
+2) Fonksiyonlar kod tekrarini engellemektedir.
+3) Karmasik bir problem parcalarina ayrilarak daha kolay cozulebilir.
+4) Fonksiyonlarin isimleri vardir. Bu nedenle yapilmak istenen sey fonksiyon cagrilariyla daha iyi ifade edilebilmektedir.
+
+Iste programlamada bir islemin fonksiyonlara ayrilarak fonksiyonlarin birbirlerine çagirmasi biciminde gerceklestirilmesine 
+    "prosedurel programlama modeli (procedural paradigm)" denilmektedir.
+
+def bar():
+    return "bar"
+def tar():
+    print("tar")
+def foo():
+    print("foo")
+
+d = {1: bar, 2: tar, 3:foo}
+print(d[1]())
+print(d[2]())
+print("")
+"""
+
+# Asal Kontrol
+"""
+def isprime(val):
+    for i in range(2, val - 1):
+        if val % i == 0:
+            return False
+
+    return True
+
+
+val = int(input('Bir sayı giriniz:'))
+
+print('Asal' if isprime(val) else 'Asal değil')
+print("")
+
+# 2' den val'a kadar (val dahil) ki tum asal sayilar
+for i in range(2, val+1):
+    if isprime(i):
+        print(i, end=' ')
+"""
+# Asal Kontrol algortimasinin daha efektif ve hizli hali
+
+
+
+
+
+
+
+
 
 
 
