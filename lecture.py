@@ -640,7 +640,7 @@ for i in range(100):
 """
 
 # -------------------------------- Fonksiyonlar -------------------------------------
-# Foksiyonlar hashable degildir -> Bu nedenle list'lerin elemanı olamaz ve dict'lerin anahtari olamazlar.(dict'lerin degeri olabilirler)
+# Foksiyonlar hashable degildir -> Bu nedenle set'lerin elemanı olamaz ve dict'lerin anahtari olamazlar.(dict'lerin degeri olabilirler)
 """
 def bar():
     print("bar")
