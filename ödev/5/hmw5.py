@@ -110,22 +110,85 @@ result = digitate(vals)
 print(result) # [(2, 3),(4, ), (7, 6, 5), (3, 4, 5, 8, 9), (4, 2)]
 """
 
+# Solution 6
+"""   
+n = input("Bir yazı giriniz: ").strip()
+a = n.split()
+print(a)
+"""
+    
+# Solution 7
+"""
+def print_shape(n):
+    k = 0
+    n_ = n
+    for i in range(n):
+        a = n_ * "*"
+        b = k * ' '
+        c = n_* "*"
+        print(a + b + c, end="")
+        k +=2
+        n_-=1
+        print("")
 
+    k = n*2-2
+    for i in range(n):
+        a = (i+1) * "*"
+        b = k * ' '
+        c = (i+1) * "*"
+        print(a + b + c, end="")
+        k -= 2
+        print("")
+    
+print_shape(int(input("bir deger giriniz: ")))
+"""
+    
+# Solution 8
+"""
+def disp_char_pattern(ch):
 
+    di = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+    k = 0
+    index = di.index(ch)
+    n_ = di[:index+1]
+
+    n = (index * 2 + 1) // 2
+    k = 0
+    for i in range(len(n_)):
+        a = n * ' '
+        b = di[i]
+        c = k * '  '
+        if di[i] == 'A':
+            d = ''
+        else:
+            d = di[i]
+        e = n * ' '
+
+        print(a + b + c + d + e, end="")
+        k += 1
+        n -= 1
+        print("")
+
+    n = (index * 2 + 1) // 2
+    k = 0
+    for i in range(len(n_)):
+        a = k * ' '
+        b = di[index]
+        c = n * '  '
+        if di[index] == 'A':
+            d = ''
+        else:
+            d = di[index]
+        e = k * ' '
+        print(a + b + c + d + e, end="")
+        k += 1
+        n -= 1
+        index -= 1
+        print("")
+disp_char_pattern('F')
+"""
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+# Solution 9
     
     
     
