@@ -189,10 +189,60 @@ disp_char_pattern('F')
 """
     
 # Solution 9
+"""
+import math
+def newton_pi(k):
+    pi = 0
+    for n in range(k):
+        pi += (2**(n+1) * math.factorial(n) ** 2) / math.factorial(2*n+1)
+    return pi
+
+result = newton_pi(500)
+print(result)
+"""
     
+# Solution 9-b ????????????????
+"""
+def somayaji_pi(n):
+    pi = 0
+    r = 3
+    t = 3
+    p = 5
+    s = 5
+    for _ in range(n):
+        pi += (4 / (t**3 -r)) - (4 / (p**3 -s))
+        t += 2
+        r += 2
+        p += 2
+        s += 2
+    pi = pi + 3
+    return pi
+
+result = somayaji_pi(1)
+print(result)
+"""
     
-    
-    
-    
-    
-    
+# Solution 9-c
+"""
+def bailey_borwein_plouffe_pi(k):
+    pi = 0
+    for n in range(k):
+        pi += (1/16)**n * ( (4/(8*n+1)) - (2/(8*n+4)) - (1/(8*n+5)) - (1/(8*n+6)) )
+    return pi
+
+result = bailey_borwein_plouffe_pi(5)
+print(result)
+"""
+
+# Solution 10
+
+def sort_tuple_list(a):
+
+
+
+
+
+
+
+
+
