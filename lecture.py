@@ -724,10 +724,33 @@ for i in range(2, val+1):
     if isprime(i):
         print(i, end=' ')
 """
+
+
 # Asal Kontrol algortimasinin daha efektif ve hizli hali
+"""
+import math
 
+def isprime(a):
+    if a % 2 == 0: #Önce, "a" sayısının 2'ye bölümünden kalan kontrol edilir.
+# Eğer "a" çift bir sayıysa (2'ye tam bölünüyorsa), fonksiyon yalnızca "a == 2" ifadesini kontrol eder.
+# Eğer "a" 2'ye eşitse, yani "2" ise, fonksiyon "True" döndürür, aksi takdirde "False" döndürür.
+        return a == 2
 
+    for i in range(3, int(math.sqrt(a)) + 1, 2):
+        if a % i == 0:
+            return False
 
+    return True
+
+a = int(input('Bir sayı giriniz:'))
+
+print('Asal' if isprime(a) else 'Asal değil')
+print("")
+
+for i in range(2, a+1):
+    if isprime(i):
+        print(i, end=' ')
+"""
 
 
 
