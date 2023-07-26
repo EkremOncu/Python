@@ -731,7 +731,7 @@ for i in range(2, val+1):
 import math
 
 def isprime(a):
-    if a % 2 == 0: #Önce, "a" sayısının 2'ye bölümünden kalan kontrol edilir.
+    if a % 2 == 0: # Önce, "a" sayısının 2'ye bölümünden kalan kontrol edilir.
 # Eğer "a" çift bir sayıysa (2'ye tam bölünüyorsa), fonksiyon yalnızca "a == 2" ifadesini kontrol eder.
 # Eğer "a" 2'ye eşitse, yani "2" ise, fonksiyon "True" döndürür, aksi takdirde "False" döndürür.
         return a == 2
@@ -751,9 +751,33 @@ for i in range(2, a+1):
     if isprime(i):
         print(i, end=' ')
 """
+"""
+def disp_range(start, stop=None, step=1):
+    if stop == None:
+        stop = start
+        start = 0
 
+    for i in range(start, stop, step):
+        print(i, end=' ')
+    print()
+disp_range(10)
+disp_range(10, 20)
+disp_range(10, 20, 2)
+"""
 
+# Raise
+"""
+def banner(s, ch='-'): # isinstance(s, str) -> s nesnesi str ise True, degilse False dondurur
+    if not isinstance(s, str):
+        raise TypeError('first argument must be string')
+    if not isinstance(ch, str) or len(ch) != 1:
+        raise TypeError('second argument must be one charater string')
+    print(ch * len(s))
+    print(s)
+    print(ch * len(s))
 
+banner('ankara', 'ali')
+"""
 
 
 
