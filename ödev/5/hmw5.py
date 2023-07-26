@@ -202,7 +202,7 @@ print(result)
 """
     
 # Solution 9-b ????????????????
-"""
+""" 
 def somayaji_pi(n):
     pi = 0
     r = 3
@@ -218,10 +218,10 @@ def somayaji_pi(n):
     pi = pi + 3
     return pi
 
-result = somayaji_pi(1)
+result = somayaji_pi(10)
 print(result)
 """
-    
+
 # Solution 9-c
 """
 def bailey_borwein_plouffe_pi(k):
@@ -235,12 +235,14 @@ print(result)
 """
 
 # Solution 10
-
+"""
 def sort_tuple_list(a):
+    return a.sort()
 
-
-
-
+a = [('Tom', 19, 80), ('Json', 22, 90), ('Jony', 17, 91), ('Jony', 17, 93), ('Json', 21, 85)]
+sort_tuple_list(a)
+print(a)
+"""
 
 
 
