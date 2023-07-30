@@ -11,6 +11,7 @@ while True:
         n -=1
     print(s*2)
 """
+
 # Solution 2
 """
 a = int(input('int bir değer giriniz: '))
@@ -22,38 +23,75 @@ while a:
     a //= 10
 print(p[::-1])
 """
+
 # Solution 3 
 """
 n = int (input("Bir sayi gir: "))
-l = [[0] * n for _ in range(n)]
 
-for i in range(len(l)):
-    l[i][i] = 1
+um = []
 
-for x in range(1): # bu satır gereksiz oldu ama ve iç içe iki döngü ile yazdırınız denildiği icin yaptim
-    for i in range(n):
-        print(l[i])
+for i in range(n):
+    row = [0] * n
+    row[i] = 1
+    um.append(row)
+print(um)
+print("")
+for i in range(n):
+    for k in range(n):
+      print(um[i][k], end=" ")
+    print("")
 """
 
 # Solution 4  ?????????????????  WRONG
-"""  
-y = "Bugün hava çok güzel. Ali (bizim Ali) – Veli - ve Selami parka gittiler."
+"""
+text = "Bugün hava çok güzel. Ali (bizim Ali) – Veli - ve Selami parka gittiler."
 #input("Bir yazi gir: ")
-for i in y:
-    if i.isalpha() == True:
-        print(i, end=" ")
+i = 0
+a = []
+while True:
+    while i < len(text) and not text[i].isalnum():
+        i += 1
+    start = i
+
+    if i == len(text):
+        break
+
+    while i < len(text) and text[i].isalnum():
+        i += 1
+    a.append(text[start:i])
+
+print(a)
 """
 
-
-# Solution 5 
+# Solution 5
 """
-n = int(input("Bir sayi gir: "))
+n = int(input('Bir sayı giriniz:'))
 
-for i in range(n+1):
-    if i % 2 == 0:
-        print(i)
+for i in range(n + 1):
+    flag = True
+    val = i
+    while val:
+        digit = val % 10
+        if digit % 2 != 0:
+            flag = False
+            break
+        val = val // 10
+    if flag:
+        print(i, end=' ')
 
+# -------- OR -----------
+
+print("")
+for i in range(n + 1):
+    flag = True
+    for c in str(i):
+        if c not in ['0', '2', '4', '6', '8']:
+            flag = False
+            break
+    if flag:
+        print(i, end=' ')
 """
+
 # Solution 6
 """   
 a = input("Bir yazi gir: ")
@@ -68,18 +106,29 @@ for i in a:
 print(f" {count_lower} tane küçük harf vardır")                
 print(f" {count_upper} tane küçük harf vardır")     
 """
+
 # Solution 7
 """
-b = input("Bir yazi gir: ")
+text = input("Bir yazi gir: ")
 a = []  
 
-for i in range(len(b)):
-    c = b.count(b[i])
-    a.append([b[i],c])
+for i in range(len(text)):
+    c = text.count(text[i])
+    a.append([text[i],c])
 
 d = dict(a)
 print(d)
-"""   
+
+# -------- OR -----------
+
+print("")
+d = {}
+for c in set(text):
+    d[c] = text.count(c)
+
+print(d)
+"""
+
 # Solution 8
 """
 a = [12, 56, 89, 32, 19, 99, 43]
@@ -87,8 +136,17 @@ a = [12, 56, 89, 32, 19, 99, 43]
 for i in range(len(a)):
     a[i] = a[i] // 10 + (a[i] % 10) *10
 print(a)
+print("")
+
+# -------- OR -----------
+
+for i in range(len(a)):
+    a[i] = int(str(a[i])[::-1])
+print(a)
 """
+
 # Solution 9
+
 """
 width = int(input("genişlik gir: "))
 height = int(input("yükseklik gir: "))
@@ -100,6 +158,7 @@ for i in range(height):
 for i in range(height):
     print("|" + i*" " + '*' + (height - i) *" " + '|')
 """
+
 # Solution 10
 """
 n = int(input("n sayisi gir: "))
@@ -117,7 +176,7 @@ for _ in range(n):
     t -=2
 """
 # Solution 11
-
+"""
 while True:
     cmd = input("CSD> ")
     
@@ -174,7 +233,7 @@ while True:
          
     if 'quit' in cmd:
         break
-
+"""
 
     
     
