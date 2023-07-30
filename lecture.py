@@ -751,6 +751,9 @@ for i in range(2, a+1):
     if isprime(i):
         print(i, end=' ')
 """
+
+
+
 """
 def disp_range(start, stop=None, step=1):
     if stop == None:
@@ -760,6 +763,7 @@ def disp_range(start, stop=None, step=1):
     for i in range(start, stop, step):
         print(i, end=' ')
     print()
+    
 disp_range(10)
 disp_range(10, 20)
 disp_range(10, 20, 2)
@@ -779,7 +783,16 @@ def banner(s, ch='-'): # isinstance(s, str) -> s nesnesi str ise True, degilse F
 banner('ankara', 'ali')
 """
 
+#  Parametredeki "*" gerçek bir parametre değildir. Yani asagidaki foo fonksiyonunun 4 parametresi vardir
+def foo(a, b, *, c, d=10):
+    pass
+# '*'ın sagindaki tüm parametreler cagrim sirasinda isimli argumanlarla cagrilmak zorundadir.
 
+
+
+def foo(a, b, /, c = 100, d = 200):
+        pass # Fonksiyonun parametre listesinde bir parametre yalnızca '/' biciminde girilmişse
+# bu durum "onun solundaki tum parametreler argumanlarin pozisyonel olarak girilmesi gerektigi" anlamina gelmektedir.
 
 
 
