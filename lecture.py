@@ -783,6 +783,7 @@ def banner(s, ch='-'): # isinstance(s, str) -> s nesnesi str ise True, degilse F
 banner('ankara', 'ali')
 """
 
+"""
 #  Parametredeki "*" gerçek bir parametre değildir. Yani asagidaki foo fonksiyonunun 4 parametresi vardir
 def foo(a, b, *, c, d=10):
     pass
@@ -801,6 +802,8 @@ def foo(a, b, *c):
 foo(10, 20, 30,645,23)
 print("")
 """
+
+"""
 def myprint(*objects, sep=' ', end='\n'):
     i = 0
     while i < len(objects):
@@ -816,6 +819,7 @@ myprint(10, 20, 30, sep='*')
 myprint(10, 20, 30, sep='*', end='/')
 """
 
+"""
 def mymax(*args):
     iterable = args[0] if len(args) == 1 else args
 
@@ -855,6 +859,25 @@ print(result)  # 1
 
 result = mymin(4, 16, 2, 3)
 print(result)  # 2
+"""
+
+def foo(a, *args, **kwargs): # **'lı parametre sonda olmali, * ve ** parametreleri sadece 1 tane olur
+    print(type(kwargs))
+    print(type(args))
+    print('a = {}, args = {}, kwargs = {}'.format(a, args, kwargs))
+
+
+foo(10, sad=20, rad=30)
+
+
+
+
+
+
+
+
+
+
 
 
 
