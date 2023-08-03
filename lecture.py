@@ -795,13 +795,66 @@ def foo(a, b, /, c = 100, d = 200):
 # bu durum "onun solundaki tum parametreler argumanlarin pozisyonel olarak girilmesi gerektigi" anlamina gelmektedir.
 
 
+def foo(a, b, *c):
+    print(f"a= {a}, b= {b}, c= {c}")
+
+foo(10, 20, 30,645,23)
+print("")
+"""
+def myprint(*objects, sep=' ', end='\n'):
+    i = 0
+    while i < len(objects):
+        if i != 0:
+            print(end=sep)
+        print(objects[i], end='')
+        i += 1
+    print(end=end)
 
 
+myprint(10, 20, 30)
+myprint(10, 20, 30, sep='*')
+myprint(10, 20, 30, sep='*', end='/')
+"""
+
+def mymax(*args):
+    iterable = args[0] if len(args) == 1 else args
+
+    maxval = None
+    for x in iterable:
+        if maxval == None or x > maxval:
+            maxval = x
+
+    return maxval
 
 
+a = [1, 6, 3, 2, 5]
+
+result = mymax(a)
+print(result)  # 6
+
+result = mymax(4, 16, 2, 3)
+print(result)  # 16
+
+print("----------------------")
+
+def mymin(*args):
+    iterable = args[0] if len(args) == 1 else args
+
+    minval = None
+    for x in iterable:
+        if minval == None or x < minval:
+            minval = x
+
+    return minval
 
 
+a = [1, 6, 3, 2, 5]
 
+result = mymin(a)
+print(result)  # 1
+
+result = mymin(4, 16, 2, 3)
+print(result)  # 2
 
 
 
