@@ -860,20 +860,67 @@ print(result)  # 1
 result = mymin(4, 16, 2, 3)
 print(result)  # 2
 """
-
-def foo(a, *args, **kwargs): # **'lı parametre sonda olmali, * ve ** parametreleri sadece 1 tane olur
+"""
+def foo(a, b, *args, **kwargs): # **'lı parametre sonda olmali, * ve ** parametreleri sadece 1 tane olur,
+    # *'lı parametre default deger alamazlar ve isimli olarak argüman iceremezler
     print(type(kwargs))
     print(type(args))
-    print('a = {}, args = {}, kwargs = {}'.format(a, args, kwargs))
+    print('a = {}, b = {}, args = {}, kwargs = {}'.format(a, b, args, kwargs))
 
 
-foo(10, sad=20, rad=30)
+foo(10, b=20, sad=20, rad=30)
+"""
+
+"""
+def foo(a, b, **kwargs):
+    legal_args = ['c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm']
+
+    for key in kwargs:
+        if key not in legal_args:
+            print(f'invalid argument: {key}={kwargs[key]}')
+            return
+
+    c = kwargs.get('c', 100)
+    d = kwargs.get('d', 200)
+    e = kwargs.get('e', 300)
+    f = kwargs.get('f', 400)
+    g = kwargs.get('g', 500)
+    h = kwargs.get('h', 600)
+    i = kwargs.get('i', 700)
+    j = kwargs.get('j', 800)
+    k = kwargs.get('k', 900)
+    l = kwargs.get('l', 1000)
+    m = kwargs.get('m', 1100)
+
+    print(f'c = {c}, d = {d}, e = {e}, f = {f}, g = {g}, h = {h}, i = {i}, j = {j}, k = {k}, l = {l}, m = {m}')
 
 
+foo(10, 20, c=10, f=20, i=30,k=40)  # c = 10, d = 200, e = 300, f = 20, g = 500, h = 600, i = 30, j = 800, k = 40, l = 1000, m = 1100
+print()
+foo(10, 20)
+print("-----------------------------------------------------------")
 
 
+def foo(a, b, **kwargs):
+    legal_args = {'c': 100, 'd': 200, 'e': 300, 'f': 400, 'g': 500, 'h': 600, 'i': 700, 'j': 800, 'k': 900, 'l': 1000,
+                  'm': 1100}
+
+    for key in kwargs:
+        if key not in legal_args:
+            print(f'invalid argument: {key}={kwargs[key]}')
+            return
+
+    for key, value in kwargs.items():
+        legal_args[key] = value
+
+    for key, value in legal_args.items():
+        print(f'parameter: {key}, value: {value}')
 
 
+foo(10, 20, c=10, f=20, i=30, k=40)
+print()
+foo(10, 20)
+"""
 
 
 
