@@ -147,7 +147,7 @@ print(a)
 
 # Solution 9
 
-"""
+
 width = int(input("genişlik gir: "))
 height = int(input("yükseklik gir: "))
 
@@ -157,7 +157,7 @@ for i in range(height):
     print("|" + (height - i)*" " + '*' +  i*" " + '|')
 for i in range(height):
     print("|" + i*" " + '*' + (height - i) *" " + '|')
-"""
+
 
 # Solution 10
 """
