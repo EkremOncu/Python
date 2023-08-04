@@ -860,6 +860,7 @@ print(result)  # 1
 result = mymin(4, 16, 2, 3)
 print(result)  # 2
 """
+
 """
 def foo(a, b, *args, **kwargs): # **'lı parametre sonda olmali, * ve ** parametreleri sadece 1 tane olur,
     # *'lı parametre default deger alamazlar ve isimli olarak argüman iceremezler
@@ -921,10 +922,6 @@ foo(10, 20, c=10, f=20, i=30, k=40)
 print()
 foo(10, 20)
 """
-
-
-
-
 
 
 
