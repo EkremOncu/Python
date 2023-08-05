@@ -146,8 +146,7 @@ print(a)
 """
 
 # Solution 9
-
-
+"""
 width = int(input("genişlik gir: "))
 height = int(input("yükseklik gir: "))
 
@@ -157,7 +156,7 @@ for i in range(height):
     print("|" + (height - i)*" " + '*' +  i*" " + '|')
 for i in range(height):
     print("|" + i*" " + '*' + (height - i) *" " + '|')
-
+"""
 
 # Solution 10
 """
@@ -168,7 +167,7 @@ for _ in range(n):
     k = m.center(n*2 -1)
     print(k)
     t +=2
-t-=2    
+t-=4
 for _ in range(n):
     m = t * '*'
     k = m.center(n*2 -1)
@@ -185,8 +184,8 @@ while True:
         r_index = cmd.rfind('"')
         a = cmd[index+1 : r_index]
         print(len(a))
-    
-    if 'upper ' in cmd:
+
+    if 'upper' in cmd:
         index = cmd.find('"')
         r_index = cmd.rfind('"')
         a = cmd[index+1 : r_index]
