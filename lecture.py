@@ -935,10 +935,20 @@ a = [5, 6, 7, 8, 9, 10]
 b = {100, 200, 300}
 print(*a, 10, *b)                   # 5 6 7 8 9 10 10 200 100 300
 print(*range(20,30))
+print()
+
+def bar(a, b, *c):
+    print(f'a = {a}, b = {b}, c = {c}')
+x = [10, 20, 30, 40, 50, 60]
+bar(1, *x)  # a = 1, b = 10, c = (20, 30, 40, 50, 60)
+print()
+
+d = {10: 'ali', 20: 'veli', 30: 'selami', 40: 'ayşe', 50: 'fatma'}
+print(*d)                   # 10 20 30 40 50
+print(*d.values())          # ali veli selami ayşe fatma
 """
 
-
-
+# **'lı argumanlar bir sozluk nesnesi olmak zorundadır. Bu argumanlara iliskin sozluk nesnelerinin anahtarlarının str turunden olmasi gerekir.
 
 
 
