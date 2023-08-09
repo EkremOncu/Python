@@ -949,13 +949,34 @@ print(*d.values())          # ali veli selami ayşe fatma
 """
 
 # **'lı argumanlar bir sozluk nesnesi olmak zorundadır. Bu argumanlara iliskin sozluk nesnelerinin anahtarlarının str turunden olmasi gerekir.
+"""
+def foo(a, b, c, d, e, f):
+    print(f'a = {a}, b = {b}, c = {c}, d = {d}, e = {e}, f = {f}')
 
+d = {'c': 100, 'd': 200, 'e': 300}
+foo(10, 20, **d, f=400)  # a=10, b=20, c=100, d=200, e=300, f=400
+"""
 
+# Forwarding
+"""
+def myprint(*args, **kwargs):
+    print(*args, **kwargs)  # perfect forwarding
+myprint(10, 20, 30, sep=', ', end='*')
 
+# "forwarding" bir bir fonksiyonun aldığı parametreleri baska bir fonksiyona argüman olarak iletmesi durumuna denilmektedir. 
+# Yukarıdaki örnekte myrint fonksiyonu kendisi hangi argümanlarla çağrılmışsa print fonksiyonunu da o argümanlarla çağırmıştır. 
+"""
 
+# Ozyineleme (recursion)
+def add(*args):
+    total = 0
+    for x in args:
+        total += x
 
+    return total
 
-
+result = add(1, 2, 3, 4, 5, *(7, *(8, 9)), *[9, 2, *(3, 5, 6)])
+print(result)
 
 
 
