@@ -924,7 +924,30 @@ foo(10, 20)
 """
 
 """
+# *'li argumanlarin "dolasilabilir (iterable)" nesne belirtmesi gerekir
+def foo(a, b, c, d, e):
+    print(f'a = {a}, b = {b}, c = {c}, d = {d}, e = {e}')
+
+t = 10, 20, 30
+foo(1, 2, *t)  # a = 1, b = 2, c = 10, d = 20, e = 30
+
+a = [5, 6, 7, 8, 9, 10]
+b = {100, 200, 300}
+print(*a, 10, *b)                   # 5 6 7 8 9 10 10 200 100 300
 """
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
