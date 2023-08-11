@@ -968,6 +968,7 @@ myprint(10, 20, 30, sep=', ', end='*')
 """
 
 # Ozyineleme (recursion)
+"""
 def add(*args):
     total = 0
     for x in args:
@@ -977,9 +978,16 @@ def add(*args):
 
 result = add(1, 2, 3, 4, 5, *(7, *(8, 9)), *[9, 2, *(3, 5, 6)])
 print(result)
+"""
 
+# -------------- MODULE ----------------
+import math
+print(type(math)) # <class 'module'>
+print(math.sqrt(10)) # 3.1622776601683795
 
-
+x = math
+print(x.sqrt(10)) # 3.1622776601683795
+print(type(x))
 
 
 
