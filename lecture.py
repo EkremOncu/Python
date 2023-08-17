@@ -533,7 +533,7 @@ match s:
 
 while True:
     cmd = input('CSD>').strip()
-    if cmd =='':
+    if cmd == '':
         continue
     match cmd:
         case 'copy':
@@ -609,8 +609,9 @@ x = -2
 match a:
     case 10 if x > 0:
         print('Ok')
+# a'nin 10 olmasinin yani sira ayni zamanda x'in de 0'dan buyuk olmasi gerekmektedir 
     case _:
-        print('cannot match...')
+        print('cannot match...')      
 """
 
 # -------------- Kosul Operatoru (If deyiminden farklı) ------------------
@@ -624,14 +625,14 @@ b = 100 if a % 2 == 0 else 200
 print(b)
 
 # Koşul operatörü özellikle üç durumda tercih edilmelidir:
-#1- Bir karşılaştıma sonucunda elde edilen değerin bir değişkene atandığı durumlarda. Örneğin:
+#1- Bir karşılaştıma sonucunda elde edilen degerin bir degişkene atandıgı durumlarda. Ornegin:
 result = 100 if a % 2 == 0 else 200
 
-#2- Fonksiyon ya da metot çağrımlarında argüman olarak koşul operatörü bazen yazımı kısaltmak için kullanılabilmektedir. Örneğin:
+#2- Fonksiyon ya da metot çagrımlarında arguman olarak koşul operatoru bazen yazımı kısaltmak icin kullanılabilmektedir. Ornegin:
 # val = int(input('Bir sayı giriniz:'))
 # print('çift' if val % 2 == 0 else 'tek')
 
-#3- return ifadelerinde de koşul operatörü bazı durumlarda tercih edilmektedir. Örneğin:
+#3- return ifadelerinde de koşul operatörü bazı durumlarda tercih edilmektedir. Ornegin:
 # return 100 if a % 2 == 0 else 200
 
 
