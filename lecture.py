@@ -968,6 +968,9 @@ myprint(10, 20, 30, sep=', ', end='*')
 # Yukarıdaki örnekte myrint fonksiyonu kendisi hangi argümanlarla çağrılmışsa print fonksiyonunu da o argümanlarla çağırmıştır. 
 """
 
+# **'lı argümanlar bir sözlük nesnesi olmak zorundadır. Bu argümanlara ilişkin sözlük nesnelerinin
+# anahtarlarının str türünden olması gerekir. Ancak değerleri herhangi bir türden olabilir.
+
 # Ozyineleme (recursion)
 """
 def add(*args):
