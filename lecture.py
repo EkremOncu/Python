@@ -982,6 +982,7 @@ print(result)
 """
 
 # -------------- MODULE ----------------
+"""
 import math
 print(type(math)) # <class 'module'>
 print(math.sqrt(10)) # 3.1622776601683795
@@ -989,7 +990,7 @@ print(math.sqrt(10)) # 3.1622776601683795
 x = math
 print(x.sqrt(10)) # 3.1622776601683795
 print(type(x))
-
+"""
 
 
 
