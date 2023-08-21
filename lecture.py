@@ -1021,12 +1021,24 @@ for i in range(3):
     print(result)
 """
 
+result = random.randint(10, 20) # kesikli düzgün (discrete uniform) dagilim
+print(result)    # 10 ve 20 dahil
+print()
 
+# random.choice( sequence container ya da küme )
+a = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
+result = random.choice(a)
+print(result)
+print()
 
+# random.sample( sequence container ya da küme , int) -> Ayni degerleri dondurmez
+a = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
+result = random.sample(a, 3)
+print(result)
+print()
 
-
-
-
+column = random.sample(range(1, 50), 6)
+print(column)
 
 
 
