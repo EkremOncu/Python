@@ -995,5 +995,41 @@ print(x.sqrt(10)) # 3.1622776601683795
 print(type(x))
 """
 
+# from utility import add   -> Aslında bu işlemin eşdeğeri şöyledir:
+"""     import utility
+        add = utility.add
+        del utility     """
+
+# __init__ -> "dunder init" demekle biz "__init__" demiş olmaktayız.
+
+# if __name__ == '__main__':
+# biz yazdığımız programdaki fonksiyonların ve değişkenlerin import edilerek kullanılmasını istiyorsak
+# ve aynı zamanda da onu bağımsız bir program gibi de çalıştırmak istiyorsak kullanilir
+
+
+# ------------------------------- Rastgele Sayı Uretme ----------------------------------------------
+
+import random
+"""
+for _ in range(1):
+    result = random.random()
+    print(result)
+print("")
+#  Fonksiyonun ilk parametresi ortalamayı, ikinci parametresi standart sapmayı belirtir:
+for i in range(3):
+    result = random.gauss(100, 15)
+    print(result)
+"""
+
+
+
+
+
+
+
+
+
+
+
 
 
