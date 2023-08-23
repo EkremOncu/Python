@@ -1067,7 +1067,7 @@ print()
 """
 #  Aşağıdaki örnekte bir oyun kartı destesi oluşturulmuş sonra da bu deste dört oyuncuya dağıtılmıştır. 
 # Ancak oyunculara dağıtılan kartlar sıraya da dizilmiştir.
-""""""
+"""
 import random
 
 card_vals = {'As': 14, 'Papaz': 13, 'Kız': 12, 'Vale': 11, '10': 10, '9': 9, '8': 8, '7': 7, '6': 6, '5': 5, '4': 4, '3': 3, '2': 2}
@@ -1110,7 +1110,7 @@ def main():
     disp_players(players)
     
 main()  
-
+"""
 
 
 
