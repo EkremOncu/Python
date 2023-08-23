@@ -1009,7 +1009,6 @@ print(type(x))
 
 # ------------------------------- Rastgele Sayı Uretme ----------------------------------------------
 
-import random
 """
 for _ in range(1):
     result = random.random()
@@ -1020,6 +1019,8 @@ for i in range(3):
     result = random.gauss(100, 15)
     print(result)
 """
+"""
+import random
 
 result = random.randint(10, 20) # kesikli düzgün (discrete uniform) dagilim
 print(result)    # 10 ve 20 dahil
@@ -1032,13 +1033,85 @@ print(result)
 print()
 
 # random.sample( sequence container ya da küme , int) -> Ayni degerleri dondurmez
-a = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
+a = ('ali', 'veli', 'selami', 'ayşe', 'fatma')
 result = random.sample(a, 3)
 print(result)
 print()
 
-column = random.sample(range(1, 50), 6)
+column = random.sample(range(1, 50), 6) # iadesiz cekim
 print(column)
+print()
+
+names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
+result = random.choices(names, k=3)     # iadeli cekim
+print(result)
+print()
+
+result = random.randrange(0, 10, 2)
+print(result) # Burada aslında biz 0, 2, 4, 8 sayıları arasında rastgele bir sayı üretmiş oluruz. 
+print()    
+
+a = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
+print(a)
+random.shuffle(a) # inplace olarak karistiriyor
+print(a)
+def myshuffle(a):
+    for i in range(len(a)):
+        k = random.randrange(len(a))
+        a[k], a[i] = a[i], a[k]
+              
+names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']  
+myshuffle(names)
+print(names)
+print()
+"""
+#  Aşağıdaki örnekte bir oyun kartı destesi oluşturulmuş sonra da bu deste dört oyuncuya dağıtılmıştır. 
+# Ancak oyunculara dağıtılan kartlar sıraya da dizilmiştir.
+
+import random
+
+card_vals = {'As': 14, 'Papaz': 13, 'Kız': 12, 'Vale': 11, '10': 10, '9': 9, '8': 8, '7': 7, '6': 6, '5': 5, '4': 4, '3': 3, '2': 2}
+card_types = {'Kupa': 3, 'Maça': 2, 'Karo': 1, 'Sinek': 0}
+
+def build_deck():
+    deck = []
+
+    for cval in card_vals:
+        for ctype in card_types:
+            deck.append((cval, ctype))
+        
+    return deck
+
+def distribute(deck):
+    random.shuffle(deck)
+
+    players = [[], [], [], []]
+    
+    for i in range(52):
+        players[i % 4].append(deck[i])
+        
+    for player in players:
+       player.sort(key=keyfunc, reverse=True)
+
+    return players
+
+def keyfunc(t):
+    cval, ctype = t
+    return card_vals[cval] * 4 + card_types[ctype]  
+   
+def disp_players(players):  
+    for player in players:
+        print(player)
+        print('-------')
+  
+def main():
+    deck = build_deck()
+    players = distribute(deck)
+    disp_players(players)
+    
+main()  
+
+
 
 
 
