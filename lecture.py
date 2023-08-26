@@ -1043,7 +1043,7 @@ print(column)
 print()
 
 names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
-result = random.choices(names, k=3)     # iadeli cekim
+result = random.choices(names, k=8)     # iadeli cekim
 print(result)
 print()
 
