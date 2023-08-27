@@ -9,14 +9,23 @@ if b[0] == '0':
     a = a.lstrip("0")
     b.append(a[0])    
     i = 0
+    flag = True
     while i < len(a)-1:        
-            if a[i] < a[i+1]:
+            if a[i] < a[i+1] and flag == True:
                 b.append(a[i+1])
                 i +=1
+                
             else:
-                b.append(a[i+1:i+3])
-                i += 3
-
+                if a[i+1:i+3] < a[i:i+2]: 
+                    
+                    b.append(a[i+1:i+4])
+                    i +=2
+                    flag = False
+                
+                else:
+                    b.append(a[i+1:i+3])
+                    i +=2
+                    flag = False
 
 
 print("------------")    
