@@ -1,32 +1,29 @@
 # Solution 1 
-"""
-????????????????????????????????????????????????????????????
-a = "001223332"
+
+a = "04534965" # 0 4 5 34 96  5
 b = []
 
-if a[0] == "0":
-    b.append(a[0])
-    flag = True
+b.append(a[0])
 
-    
-a = a.lstrip("0")
-if a[0] < a[1]:
-    b.append(a[0])
-    b.append(a[1])
-    
-for i in range(len(a) - 2):
-    i += 1
-    if a[i] < a[i+1]:
-        b.append(a[i])
-    else:
-        b.append(a[i+1:i+3])
+if b[0] == '0':
+    a = a.lstrip("0")
+    b.append(a[0])    
+    i = 0
+    while i < len(a)-1:        
+            if a[i] < a[i+1]:
+                b.append(a[i+1])
+                i +=1
+            else:
+                b.append(a[i+1:i+3])
+                i += 3
+
 
 
 print("------------")    
 print(b)
-????????????????????????????????????????????????????????????
 
-"""
+
+
 
 
 # Solution 2
@@ -103,12 +100,13 @@ print(x,y)
 """
 
 # Solution 4
+"""
 import random
 
 a = []
 hist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-for i in range(1000):
+for i in range(5000):
     column = random.sample(range(1, 10000), 5) # iadesiz cekim
     x = (column[0] + column[1] + column[2] + column[3] + column[4]) / 5 
     a.append(x)
@@ -145,12 +143,70 @@ for i in range(len(a)):
         hist[9] += 1
 
 print(hist)        
-        
+
+print(hist[0] * 'X')
+print(hist[1] // 18 * 'X')
+print(hist[2] // 18 * 'X')
+print(hist[3] // 18 * 'X')
+print(hist[4] // 18 * 'X')
+print(hist[5] // 18 * 'X')
+print(hist[6] // 18 * 'X')
+print(hist[7] // 18 * 'X')
+print(hist[8] // 18 * 'X')
+print(hist[9] // 18 * 'X')     
+"""
+
 # Solution 5
+"""
+import random
+
+a = []
+hist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+for i in range(5000):
+    column = random.sample(range(1, 10000), 5) # iadesiz cekim
+    x = (column[0] + column[1] + column[2] + column[3] + column[4]) / 5 
+    a.append(x)
+    
+for i in range(len(a)):
+    if 0 <= a[i] < 1000:
+        hist[0] += 1
+
+    if 1000 <= a[i] < 2000:
+        hist[1] += 1
+    
+    if 2000 <= a[i] < 3000:
+        hist[2] += 1        
+
+    if 3000 <= a[i] < 4000:
+        hist[3] += 1
+
+    if 4000 <= a[i] < 5000:
+        hist[4] += 1
+        
+    if 5000 <= a[i] < 6000:
+        hist[5] += 1
+
+    if 6000 <= a[i] < 7000:
+        hist[6] += 1
+
+    if 7000 <= a[i] < 8000:
+        hist[7] += 1
+
+    if 8000 <= a[i] < 9000:
+        hist[8] += 1
+        
+    if 9000 <= a[i] < 10000:
+        hist[9] += 1
+
+print(hist) 
 
 
+import matplotlib.pyplot as plt
 
-
+plt.hist(a, 10)
+plt.show()
+"""
 
 # Solution 6
 """
