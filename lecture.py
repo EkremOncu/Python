@@ -1112,6 +1112,37 @@ def main():
 main()  
 """
 
+# ------ Enumerate Fonksiyonu ------
+
+"""-> enumerate isimli built-in fonksiyon bizden dolaşılabilir bir nesne alır, 
+bize dolaşılabilir bir nesne verir. iki elemanlı demetler elde edilecektir.
+"""
+
+"""
+names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
+
+for t in enumerate(names,10):
+    print(t)
+print()
+for index,name in enumerate(names):
+    print(index,name)
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
