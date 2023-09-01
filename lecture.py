@@ -1128,6 +1128,14 @@ for index,name in enumerate(names):
     print(index,name)
 """
 
+# ------ Degiskenlerin faaliyet alanı (scope) ------
+
+""" Python'da değişkenler faaliyet alanları bakımından üç gruba ayrılmaktadır:
+
+    1) Yerel Değişkenler (Local Variables)
+    2) Global Değişkenler (Global Variables)
+    3) Sınıf Değişkenleri (Class Variables)
+"""
 
 
 
