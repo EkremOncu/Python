@@ -27,17 +27,21 @@ disp_shape(n)
 """
 
 
-# Solution 2  ???????????????????????
+# Solution 2
 
 def crown(n):
-   
-    for i in range(1,n+1):
-        for k in range(1,i+1):
-            print(k, end="")
-        print()
-        print(" "* (n-i)*2, end='')
-        
-crown(5)
+    for i in range(1, n + 1):
+        for k in range(1, i + 1):
+            print(k, end='')
+        print(' ' * (n - i) * 2, end='')
+        for k in range(i, 0, -1):
+            print(k, end='')
+        for k in range(2, i + 1):
+            print(k, end='')
+
+
+crown(6)
+
 
 
 # Solution 3
