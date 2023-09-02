@@ -28,21 +28,17 @@ disp_shape(n)
 
 
 # Solution 2  ???????????????????????
-"""
+
 def crown(n):
-    t = 0
-    s = 0
-    for i in range(n):
-        print(" " * (2*s-2)  , end=" ")
-        for i in range(1, 2+t):
-            print(i, end="")
+   
+    for i in range(1,n+1):
+        for k in range(1,i+1):
+            print(k, end="")
+        print()
+        print(" "* (n-i)*2, end='')
         
-        print("")
-        t = t+1
-        s = s+1
-n = 3
-crown(n)
-"""
+crown(5)
+
 
 # Solution 3
 """
