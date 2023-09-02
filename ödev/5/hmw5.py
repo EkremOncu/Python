@@ -26,9 +26,8 @@ n = int(input("Bir sayi giriniz: "))
 disp_shape(n)
 """
 
-
 # Solution 2
-
+"""
 def crown(n):
     for i in range(1, n + 1):
         for k in range(1, i + 1):
@@ -38,11 +37,13 @@ def crown(n):
             print(k, end='')
         for k in range(2, i + 1):
             print(k, end='')
-
+        print(' ' * (n - i) * 2, end='')
+        for k in range(i, 0, -1):
+            print(k, end='')
+        print()
 
 crown(6)
-
-
+"""
 
 # Solution 3
 """
