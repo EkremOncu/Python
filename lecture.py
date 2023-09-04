@@ -1139,7 +1139,7 @@ for index,name in enumerate(names):
 
 # ----------- map Fonksionu -----------
 
-# map (fonksiyon nesnesi, *iterable)
+# map (fonksiyon nesnesi, iterable, *iterable)
 """
 -----------------------------------------------------------------------------
 Bu fonksiyon bizden bir fonksiyonu ve dolaşılabilir bir nesneyi parametre 
@@ -1185,18 +1185,72 @@ metot vereceksek metodu isimle değil <değişken>.<metot> biçiminde vermeliyiz
 -----------------------------------------------------------------------------
 """
 
+"""
+a = [1, 2, 3, 4, 5]
+b = ['ali', 'Ja']
+c = [100.34, 200, 300.23, 400, 500]
+
+def foo(*x):
+    return x
+
+iterable = map(foo, a, b, c)
+for x in iterable:
+    print(x)
+
+print()
+"""
 
 
+# ----------- iç içe(nested) fonksionlar -----------
 
+"""    
+Tabii iç fonksiyonun içerisinde de başka bir fonksiyon tanımlanabilir. 
+Bu tür durumlarda iç fonksiyon ismi yerel bir değişken olmaktadır. 
+Dolayısıyla iç fonksiyon ancak dıştaki fonksiyonun içerisinden çağrılabilir. 
 
+Aşağıdaki örnekte biz bar fonksiyonunu ancak foo fonksiyonun içerisinde ve 
+bar tanımlandıktan sonra çağırabiliriz. bar fonksiyonunu dışarıdan çağıramayız:
 
+def foo():
+    print('foo')
+    def bar():
+        print('bar')
+    bar()
 
+foo()    
+"""
 
+"""
+import math 
 
-
-
-
-
+def print_primes(n):
+    def isprime(val):
+        if val % 2 == 0:
+            return val == 2
+        for i in range(3, int(math.sqrt(val)) + 1, 2):
+            if val % i == 0:
+                return False
+        return True
+    
+    for x in range(2, n + 1):
+        if isprime(x):
+            print(x, end=' ')
+        
+print_primes(100)
+"""
+# nonlocal
+"""
+def foo():
+    a = 10
+    def bar():
+        nonlocal a
+        a = 20          # buradaki a foo'nun a'sı
+        print(a)        # foo'nun a'sı, 20
+    bar()
+    print(a)            # foo'nun a'sı, 20
+    
+foo()
+"""
 
 
 
