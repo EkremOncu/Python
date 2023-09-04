@@ -1141,9 +1141,10 @@ for index,name in enumerate(names):
 
 # map (fonksiyon nesnesi, *iterable)
 """
+-----------------------------------------------------------------------------
 Bu fonksiyon bizden bir fonksiyonu ve dolaşılabilir bir nesneyi parametre 
 olarak alır. Bize bir dolaşım (iterator) nesnesi verir.
-
+-----------------------------------------------------------------------------
 iterator nesnesi bir kez dolasılip biter 
 
 iterator (dolasim) nesne
@@ -1162,6 +1163,8 @@ for x in iterable:
     print(x, end=" ")
 """
 
+
+"""
 s = '1 2 3 4 5'
 
 total = 0
@@ -1170,8 +1173,17 @@ for x in map(int, s.split()):
     
 print(total)
 print()
+"""
 
-
+"""
+-----------------------------------------------------------------------------
+Tabii map fonksiyonunun birinci parametresi bir metot da olabilir. 
+Ancak metotlar tek başına kullanılamazlar. Metotlar ancak 
+ilişkin oldukları sınıf türünden bir değişkenle '.' operatörü ile 
+kullanılabilirler. Bu durumda map fonksiyonunun birinci parametresine 
+metot vereceksek metodu isimle değil <değişken>.<metot> biçiminde vermeliyiz
+-----------------------------------------------------------------------------
+"""
 
 
 
