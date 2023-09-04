@@ -1149,9 +1149,27 @@ iterator nesnesi bir kez dolasılip biter
 iterator (dolasim) nesne
 iterable (dolasilabilir) nesne 
 
+
+a = [3, 13, 23, 33]
+iterable = map(int, a)
+
+for x in iterable:
+    print(x, end=" ")
+
+print()
+
+for x in iterable:
+    print(x, end=" ")
 """
 
+s = '1 2 3 4 5'
 
+total = 0
+for x in map(int, s.split()):
+    total += x
+    
+print(total)
+print()
 
 
 
