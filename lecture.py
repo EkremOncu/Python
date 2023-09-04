@@ -1137,6 +1137,39 @@ for index,name in enumerate(names):
     3) Sınıf Değişkenleri (Class Variables)
 """
 
+# ----------- map Fonksionu -----------
+
+# map (fonksiyon nesnesi, *iterable)
+"""
+Bu fonksiyon bizden bir fonksiyonu ve dolaşılabilir bir nesneyi parametre 
+olarak alır. Bize bir dolaşım (iterator) nesnesi verir.
+
+iterator nesnesi bir kez dolasılip biter 
+
+iterator (dolasim) nesne
+iterable (dolasilabilir) nesne 
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
