@@ -125,6 +125,8 @@ print(a)
 a = {1, 5, (2,4), 'ali', [22,46]} # TypeError: unhashable type: 'list'
 # Kümelerde hushable degildir, yani kümenin elemanı küme olamaz.
 print(a)
+
+# Kümeler(set) mutable dir.
 """
 
 
