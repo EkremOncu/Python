@@ -1333,11 +1333,18 @@ names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
 print(*[len(name) for name in names])
 """
 
-""" # if kosulu
+"""# if kosulu
 
 a = [i for i in range(10) if i % 2 == 0]
 print(a)        # [0, 2, 4, 6, 8]
+print()
+
+sentences = ['anastas mum satsana', 'izmir', 'ey edip adanada pide ye', 'eskişehir', 'adamla çeneç almada']
+
+palindromes = [sentence for sentence in sentences if sentence == sentence[::-1]]
+print(palindromes)
 """
+
 
 # Küme içlemleri -> 
 
