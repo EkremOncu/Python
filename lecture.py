@@ -1327,12 +1327,17 @@ for i in range(10):
     temp.append(i * i)
 a = temp
 print(a)
-"""
+print()
 
 names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
 print(*[len(name) for name in names])
+"""
 
+""" # if kosulu
 
+a = [i for i in range(10) if i % 2 == 0]
+print(a)        # [0, 2, 4, 6, 8]
+"""
 
 # Küme içlemleri -> 
 
