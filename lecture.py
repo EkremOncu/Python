@@ -1307,6 +1307,66 @@ bar()
 """
 
 
+# -------------------- Comprehensions(içlemler) -------------------------1
+"""
+1) Liste içlemleri (list comprehensions)
+2) Küme içlemleri (set comprehensions)
+3) Sözlük içlemleri (dictionary comprehensions)
+"""
+
+# Liste içlemleri -> [<ifade> for <değişken> in <dolaşılabilir nesne> [if koşul] ]
+"""
+a = [i * i for i in range(10)]
+print(a)
+print()
+
+# Bu işlemin eşdeğeri şöyledir: 
+
+temp = []
+for i in range(10):
+    temp.append(i * i)
+a = temp
+print(a)
+"""
+
+names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
+print(*[len(name) for name in names])
+
+
+
+# Küme içlemleri -> 
+
+# Sözlük içlemleri -> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
