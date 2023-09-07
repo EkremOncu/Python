@@ -1265,7 +1265,7 @@ global değişkenin yorumlayıcı tarafından oluşturulduğunu görmüştük. B
 built-in değişkenler __builtins__ isimli bir global sözlük nesnesi içerisinde bulunmaktadır. 
 ----------------------------------------------------------------------------------------------------
 """
-
+"""
 a = 10
 name = 'ali'
 
@@ -1275,11 +1275,36 @@ def foo():
 g = globals()
 print(g)
 print(list(g)) # ['__name__', '__file__', '__nonzero__', '__builtins__', 'a', 'name', 'foo', 'g']
+"""
 
+# -------------- locals built-in fonksiyonu --------------
+"""
+------------------------------------------------------------------------------------
+globals fonksiyonuna benzeyen locals isimli bir built-in fonksiyon daha vardır. 
+locals fonksiyonu hangi fonksiyon içerisinde çağrılmışsa o fonksiyonun yerel 
+değişkenlerini bir sözlük olarak vermektedir. locals fonksiyonu global 
+düzeyde çağrılırsa tamamen globals fonksiyonu çağrılmış gibi etki göstermektedir. 
+------------------------------------------------------------------------------------
+"""
+"""
+a = 10
 
-
-
-
+def foo():
+    b = 20
+    d = locals()
+    print(d)            # {'b': 20}
+    print(list(d))      # ['b']
+    
+def bar():
+    a = 30
+    c = locals()
+    print(c)            # {'a': 300}
+    print(list(c))      # ['a']
+    
+foo()
+print()
+bar()
+"""
 
 
 
