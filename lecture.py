@@ -1254,12 +1254,27 @@ def foo():
 foo()
 """
 
+# -------------- globals built-in fonksiyonu --------------
+"""
+---------------------------------------------------------------------------------------------------
+Python'da globals isimli built-in fonksiyon o andaki tüm global değişkenleri bir sözlük nesnesi 
+biçiminde bize verir. Sözlüğün anahtarları global değişkenlerin isimlerinden değerleri ise
+onların değerlerinden oluşur. globals fonksiyonu ile global değişkenleri elde ettiğinizde sizin 
+yaratmadığınız başka değişkenleri de görürseniz şaşırmayınız. Örneğin biz daha önce __name__ isimli
+global değişkenin yorumlayıcı tarafından oluşturulduğunu görmüştük. Benzer biçimde bütün 
+built-in değişkenler __builtins__ isimli bir global sözlük nesnesi içerisinde bulunmaktadır. 
+----------------------------------------------------------------------------------------------------
+"""
 
+a = 10
+name = 'ali'
 
+def foo():
+    pass
 
-
-
-
+g = globals()
+print(g)
+print(list(g)) # ['__name__', '__file__', '__nonzero__', '__builtins__', 'a', 'name', 'foo', 'g']
 
 
 
