@@ -1139,7 +1139,7 @@ for index,name in enumerate(names):
     3) Sınıf Değişkenleri (Class Variables)
 """
 
-# ----------- map Fonksionu -----------
+# ---------------- map Fonksionu -------------------
 
 # map (fonksiyon nesnesi, iterable, *iterable)
 """
@@ -1315,7 +1315,7 @@ bar()
 3) Sözlük içlemleri (dictionary comprehensions)
 """
 
-# Liste içlemleri -> [<ifade> for <değişken> in <dolaşılabilir nesne> [if koşul] ]
+# Liste içlemleri -> [<ifade> for <değişken> in <dolaşılabilir nesne> if <koşul> ]
 """
 a = [i * i for i in range(10)]
 print(a)
@@ -1369,22 +1369,62 @@ for x in iterable1:
 result = temp
 """
 
+"""
+a = [[0, 0, 0, 0, 0] for _ in range(5)]
+a[0][0] = 100
+print(a)
+print()
 
+# alt ve üst aynısı, Comprehension'dan kaynaklı, shallow copy yok ikisinde de
 
+a = [[0, 0, 0, 0, 0] for _ in range(5)]
+a[0][0] = 100
+print(a)
+"""
 
-# Küme içlemleri -> 
+# Küme içlemleri -> [<ifade> for  <değişken>  in  <dolaşılabilir nesne> if <koşul>]
 
-# Sözlük içlemleri -> 
+# Sözlük içlemleri -> { <key: value>  for <değişken> in <iterable> if <koşul>}
+"""
+a = [1, 2, 3, 4, 5]
 
+d = {x: str(x) for x in a}
+print(d)
 
+print()
 
+d = {}
+for x in a:
+    d[x] = str(x)
+    
+print(d)
+"""
 
+# ---------------- zip built-in fonksionu -------------------
+# def zip(*iterables):
+"""
+a = ['ali', 'veli', 'selami']
+b = [10, 20, 30, 50, 65, 956, 65, 654, 852, 564, 656, 5123, 26494]
+c = [5.2, 3.8, 4.6]
 
+z = zip(a, b, c)
 
+for t in z:
+    print(t)
+"""
+# unzip
+"""
+a = ['ali', 'veli', 'selami']
+b = [10, 20, 30, 50, 65, 956, 65, 654, 852, 564, 656, 5123, 26494]
+c = [5.2, 3.8, 4.6]
 
+z = zip(a, b, c)
 
-
-
+d,e,f = zip(*z)
+print(d)
+print(e)
+print(f)
+"""
 
 
 
