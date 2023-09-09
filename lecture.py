@@ -1347,6 +1347,31 @@ print(palindromes)
 """
 
 
+"""
+------------------------------------------------------------------------------------
+Aslında içlemlerin içerisinde birden fazla for döngüsü de olabilir. 
+Yani aşağıdaki gibi içlemler de söz konusu olabilir:
+------------------------------------------------------------------------------------
+"""
+# result = [ifade for x in iterable1 for y in iterable2 if koşul]
+
+"""
+------------------------------------------------------------------------------------    
+İç içe for döngüleri nasıl çalışıyorsa buradaki çalışma da benzer biçimdedir.
+Dıştaki döngünün her bir yinelemesinde içteki döngü baştan sona 
+çalıştırılmaktadır. Yukarıdaki içlemin kod karşılığı şöyle ifade edilebilir:
+------------------------------------------------------------------------------------
+temp = []
+for x in iterable1:
+    for y in iterable2:
+        if koşul:
+            temp.append(ifade)    
+result = temp
+"""
+
+
+
+
 # Küme içlemleri -> 
 
 # Sözlük içlemleri -> 
