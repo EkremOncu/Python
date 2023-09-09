@@ -1412,6 +1412,14 @@ z = zip(a, b, c)
 for t in z:
     print(t)
 """
+
+"""
+a = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
+
+for t in zip(*enumerate(a)):
+    print(t)
+"""
+
 # unzip
 """
 a = ['ali', 'veli', 'selami']
@@ -1427,17 +1435,36 @@ print(f)
 """
 
 
+# ---------------- kombinasyon / permütasyon ----------------
+"""
+import math
+
+a = math.perm(5, 3) # 60
+b = math.comb(5, 3) # 10
 
 
+------------------------------------------------------------------------------------
+itertools modülündeki permutations isimli fonksiyon bizden dolaşılabilir 
+bir nesneyi ve bir sayıyı parametre olarak alır ve bize dolaşılabilir 
+bir nesne verir. İşte permutations fonksiyonunun bize verdiği 
+dolaşılabilir nesneyi dolaştığımızda bizim birinci parametreyle 
+verdiğimiz kümenin ikinci parametreyle belirtilen permütasyonlarını 
+demetler halinde elde ederiz.Örneğin:
+------------------------------------------------------------------------------------
+"""
+"""
+import itertools
 
+names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
 
+for t in itertools.permutations(names, 2):
+    print(t)
 
+print()
 
-
-
-
-
-
+for t in itertools.combinations(names, 3):
+    print(t)
+"""
 
 
 
