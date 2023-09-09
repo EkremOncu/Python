@@ -1258,7 +1258,7 @@ foo()
 """
 ----------------------------------------------------------------------------------
 Bir sözlük nesnesi biçiminde bize verir. Sözlüğün anahtarları global 
-değişkenlerin isimlerinden değerleri iseonların değerlerinden oluşur.
+değişkenlerin isimlerinden değerleri ise onların değerlerinden oluşur.
 globals fonksiyonu ile global değişkenleri elde ettiğinizde sizin yaratmadığınız 
 başka değişkenleri de görürseniz şaşırmayınız. Örneğin biz daha önce __name__ 
 isimli global değişkenin yorumlayıcı tarafından oluşturulduğunu görmüştük. 
