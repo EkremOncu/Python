@@ -1413,13 +1413,6 @@ for t in z:
     print(t)
 """
 
-"""
-a = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
-
-for t in zip(*enumerate(a)):
-    print(t)
-"""
-
 # unzip
 """
 a = ['ali', 'veli', 'selami']
@@ -1434,6 +1427,12 @@ print(e)
 print(f)
 """
 
+"""
+a = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
+
+for t in zip(*enumerate(a)):
+    print(t)
+"""
 
 # ---------------- kombinasyon / permütasyon ----------------
 """
