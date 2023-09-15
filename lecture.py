@@ -1488,6 +1488,21 @@ a = [3, 5, 65, 32, 254]
 c = bytes(a)
 print(c)
 """  
+"""
+s = 'ağrı dağı'
+b = bytes(s, 'utf-8')
+print(b)
+
+print()
+
+s = 'ağrı dağı'
+sd = s.encode('utf-8')  # decode() ->  encode()'nin tersi
+                        # yani bytes'dan str türüne dönüstürür
+print(sd)
+"""
+
+
+
 
 
 
