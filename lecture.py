@@ -1402,6 +1402,14 @@ print(d)
 
 # ---------------- zip built-in fonksionu -------------------
 # def zip(*iterables):
+"""   
+------------------------------------------------------------------------------------
+zip fonksiyonu bizden dolaşılabilir nesneleri alır ve bize geri dönüş 
+değeri olarak bir dolaşım nesnesi verir. zip fonksiyonun geri 
+döndürdüğü dolaşım nesnesini dolaştığımızda demetler elde ederiz.
+------------------------------------------------------------------------------------
+"""   
+    
 """
 a = ['ali', 'veli', 'selami']
 b = [10, 20, 30, 50, 65, 956, 65, 654, 852, 564, 656, 5123, 26494]
