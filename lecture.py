@@ -1477,9 +1477,16 @@ for t in itertools.combinations(names, 3):
 # ---------------- bytes nesneleri ----------------
 """
 # amaç -> en yalın bellek birimi olan byte'ı temsil eden bir tür oluşturmak
+#  Byte kavramı [0, 255] arasında bir sayı belirtir
 
-b = b'ankara'
+b = b'alebron'
 type(b) # <class 'bytes'>
+b[0] #  97
+
+
+a = [3, 5, 65, 32, 254]
+c = bytes(a)
+print(c)
 """  
 
 
