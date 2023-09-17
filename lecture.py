@@ -1477,7 +1477,8 @@ for t in itertools.combinations(names, 3):
 # ---------------- bytes nesneleri ----------------
 """
 # amaç -> en yalın bellek birimi olan byte'ı temsil eden bir tür oluşturmak
-#  Byte kavramı [0, 255] arasında bir sayı belirtir
+#  Byte kavramı [0, 255] arasında bir sayı belirtir, immutable'dır
+# bytearray -> set-frozenset gibi, mutable'dır
 
 b = b'alebron'
 type(b) # <class 'bytes'>
@@ -1501,8 +1502,7 @@ sd = s.encode('utf-8')  # decode() ->  encode()'nin tersi
 print(sd)
 """
 
-
-
+# ------------------------ Pythonda Nesne Yönelimi ------------------------
 
 
 
