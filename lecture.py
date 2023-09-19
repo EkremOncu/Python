@@ -1503,6 +1503,16 @@ print(sd)
 """
 
 # ------------------------ Pythonda Nesne Yönelimi ------------------------
+class Sample:
+    pass
+
+s = Sample() # s -> instance
+
+s.a = 10 # -> instance attribute, s'in a isimli bir instance attribute'unu oluşturuldu
+
+print(s.a)          # 10
+print(id(s))        # 1256763753232
+print(id(s.a))      # 140717322703944
 
 
 
