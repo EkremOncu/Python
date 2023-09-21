@@ -1502,7 +1502,8 @@ sd = s.encode('utf-8')  # decode() ->  encode()'nin tersi
 print(sd)
 """
 
-# ------------------------ Pythonda Nesne Yönelimi ------------------------
+# ------------------------------------- Pythonda Nesne Yönelimi ------------------------------------------
+"""
 class Sample:
     pass
 
@@ -1513,6 +1514,56 @@ s.a = 10 # -> instance attribute, s'in a isimli bir instance attribute'unu oluş
 print(s.a)          # 10
 print(id(s))        # 1256763753232
 print(id(s.a))      # 140717322703944
+
+"""
+#  ---------------- Metot(Method) ----------------
+"""
+-----------------------------------------------------------------------------
+Sınıfların  içerisindeki fonksiyonlara "metot (method)" denilmektedir. 
+Eğer bir fonksiyon sınıfların dışındaysa ona "fonksiyon (function)"
+Python'da metotların en azından bir parametresi olur. Metotların ilk 
+parametreleri özel bir anlama sahiptir. Programcılar genel olarak
+metotların bu ilk parametrelerini "self" biçiminde isimlendirirler. 
+Ancak bu ilk parametrenin "self" biçiminde isimlendirilmesi 
+zorunlu değildir.
+-----------------------------------------------------------------------------
+
+class Sample:
+   def foo(self):
+       print('foo')
+
+   def bar(self, a):
+       print(f'bar: {a}')
+
+   def tar(self, a, b):
+       print(f'tar: {a}, {b}')
+
+def zar():
+    pass
+
+-----------------------------------------------------------------------------
+Bir metodun çağrılması için o metodun içinde bulunduğu sınıf türünden bir 
+değişkenin olması gerekir. Metot çağırma işleminin genel biçimi şöyledir:
+
+    <değişken_ismi>.<metot_ismi>([argüman listesi])
+-----------------------------------------------------------------------------
+
+s = Sample()
+
+s.foo()
+s.bar(10)
+s.tar(10, 20)
+
+
+-----------------------------------------------------------------------------
+Metot bu biçimde çağrılırken birinci self parametresi için argüman girilmez. 
+Metoda girilen argümanlar self parametresinden sonraki parametrelere ilişkindir.
+-----------------------------------------------------------------------------
+"""
+
+
+
+
 
 
 
