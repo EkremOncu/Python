@@ -951,7 +951,8 @@ print(*d)                   # 10 20 30 40 50
 print(*d.values())          # ali veli selami ayşe fatma
 """
 
-# **'lı argumanlar bir sozluk nesnesi olmak zorundadır. Bu argumanlara iliskin sozluk nesnelerinin anahtarlarının str turunden olmasi gerekir.
+# **'lı argumanlar bir sozluk nesnesi olmak zorundadır. Bu argumanlara 
+# iliskin sozluk nesnelerinin anahtarlarının str turunden olmasi gerekir.
 """
 def foo(a, b, c, d, e, f):
     print(f'a = {a}, b = {b}, c = {c}, d = {d}, e = {e}, f = {f}')
@@ -966,8 +967,11 @@ def myprint(*args, **kwargs):
     print(*args, **kwargs)  # perfect forwarding
 myprint(10, 20, 30, sep=', ', end='*')
 
-# "forwarding" bir bir fonksiyonun aldığı parametreleri baska bir fonksiyona argüman olarak iletmesi durumuna denilmektedir. 
-# Yukarıdaki örnekte myrint fonksiyonu kendisi hangi argümanlarla çağrılmışsa print fonksiyonunu da o argümanlarla çağırmıştır. 
+
+"forwarding" bir bir fonksiyonun aldığı parametreleri baska bir fonksiyona 
+argüman olarak iletmesi durumuna denilmektedir.Yukarıdaki örnekte myrint 
+fonksiyonu kendisi hangi argümanlarla çağrılmışsa print fonksiyonunu da o 
+argümanlarla çağırmıştır. 
 """
 
 # **'lı argümanlar bir sözlük nesnesi olmak zorundadır. Bu argümanlara ilişkin sözlük nesnelerinin
@@ -1005,8 +1009,9 @@ print(type(x))
 # __init__ -> "dunder init" demekle biz "__init__" demiş olmaktayız.
 
 # if __name__ == '__main__':
-# biz yazdığımız programdaki fonksiyonların ve değişkenlerin import edilerek kullanılmasını istiyorsak
-# ve aynı zamanda da onu bağımsız bir program gibi de çalıştırmak istiyorsak kullanilir
+# biz yazdığımız programdaki fonksiyonların ve değişkenlerin import edilerek 
+# kullanılmasını istiyorsak ve aynı zamanda da onu bağımsız bir program 
+# gibi de çalıştırmak istiyorsak kullanilir
 
 
 # ------------------------------- Rastgele Sayı Uretme ----------------------------------------------
@@ -1502,7 +1507,7 @@ sd = s.encode('utf-8')  # decode() ->  encode()'nin tersi
 print(sd)
 """
 
-# ------------------------------------- Pythonda Nesne Yönelimi ------------------------------------------
+# ----------------------------------- Pythonda Nesne Yönelimi -------------------------------------
 """
 class Sample:
     pass
@@ -1516,7 +1521,7 @@ print(id(s))        # 1256763753232
 print(id(s.a))      # 140717322703944
 
 """
-#  ---------------- Metot(Method) ----------------
+#  ------------------ Metot(Method) ------------------
 """
 -----------------------------------------------------------------------------
 Sınıfların  içerisindeki fonksiyonlara "metot (method)" denilmektedir. 
@@ -1553,17 +1558,103 @@ s = Sample()
 s.foo()
 s.bar(10)
 s.tar(10, 20)
-
-
 -----------------------------------------------------------------------------
 Metot bu biçimde çağrılırken birinci self parametresi için argüman girilmez. 
 Metoda girilen argümanlar self parametresinden sonraki parametrelere ilişkindir.
 -----------------------------------------------------------------------------
 """
 
+"""
+-----------------------------------------------------------------------------
+Metotlar ilgili sınıf türünden bir değişkenle çağrıldığına göre o değişkenin 
+atanacağı metotta bir self parametresinin bulunması gerekmektedir. Aşağıdaki 
+örnekte self parametresi ile s aynı nesneyi gösteriyor durumdadır.
+Dolayısıyla nesnenin a özniteliğine self parametresiyle de erişilebilmiştir:
+-----------------------------------------------------------------------------
+class Sam:
+    def foo(self):
+        print(self.a, self.b)       # 10
+            
+s = Sam()
+s.a = 10
+s.b = 11
 
+s.foo()
 
+----------------------------------------------------------------------------------
+Yukarıdaki, işlemin tersini de yapabiliriz. Yani metodun içerisinde nesenin 
+öznitelikleri yaratılabilir. Yaratılan bu öznitelikler daha sonra kullanılabilir:
+----------------------------------------------------------------------------------       
+class Sample:
+    def foo(self):
+        self.a = 10
+        self.b = 20
+           
+s = Sample()
+s.foo()
 
+print(s.a, s.b)         # 10 20
+""" 
+
+# ----- __init__ metodu -------
+
+"""
+----------------------------------------------------------------------------------
+Python'da sınıfların __init__ isimli özel bir metotları vardır. Bu metotlara 
+"initializer" ya da bazen "constructor" da denilmektedir. __init__ metodu 
+bir sınıf türünden nesne yaratıldığında otomatik olarak çağrılan bir metottur.
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+Burada Sample nesnesi Sample() ifadesi ile yaratılmak istendiğinde Python 
+yorumlayıcısı önce nesneyi yaratır. Sonra yaratılan nesnenin adresini 
+self parametresine geçirerek __init__ metodunu çağırır, ondan sonra s 
+değişkenine atama yapılır. Yani önce __init__ metodu çağrılıp sonra nesnenin 
+adresi s değişkenine atanmaktadır.
+
+Aşağıdaki örnekte Sample sınıfı türünden her nesne yaratıldığında yorumlayıcı 
+tarafından sınıfın __init__ metodu otomatik bir biçimde çağrılacaktır.
+----------------------------------------------------------------------------------
+
+class Sample:
+    def __init__(self):
+        print('__init__ called')
+        
+s = Sample()
+print('Ok')
+k = Sample()
+
+"""
+
+"""
+----------------------------------------------------------------------------------
+Yukarıda de belirtitğimiz gibi bir sınıf türünden nesne yaratıldığında önce 
+nesne yaratılır. Sonra sınıfın __init__ metodu çağrılır. 
+Ondan sonra nesnenin adresi değişkene atanır. Örneğin:
+----------------------------------------------------------------------------------
+
+s = Sample()
+----------------------------------------------------------------------------------
+Burada __init__ çağrıldıktan sonra s'e atama yapılacaktır. __init__ metodunun 
+self parametresi henüz (yani yeni) yaratılmış olan nesneyi belirtmektedir. 
+İşte programcı tipik olarak oluşturduğu nesnenin nesnenin özniteliklerini 
+__init__ metodu  içerisinde yaratmaktadır. Böylece yaratılan her nesne aynı 
+elemanlara yani özniteliklere sahip olur. Örneğin:
+----------------------------------------------------------------------------------
+class Sample:
+    def __init__(self):
+        self.a = 10
+        self.b = 20
+        
+s = Sample()
+print(s.a, s.b)
+
+k = Sample()
+print(k.a, k.b)
+
+----------------------------------------------------------------------------------
+Burada s ve k değişkenlerinin gösteridği yereki nesnelerin öznitelikleri 
+__init__ tarafından yaratılmıştır.
+----------------------------------------------------------------------------------
 
 
 
