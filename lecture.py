@@ -1698,7 +1698,7 @@ s.disp()
 k.disp()
 """
 
-
+"""
 class Complex:
     def __init__(self, real, imag):
         self.real = real
@@ -1731,6 +1731,26 @@ z.disp()
 
 z = x.sub(y)
 z.disp()
+"""
+
+class Complex:
+    def __init__(self, real=0, imag=0):
+        self.real = real
+        self.imag = imag
+
+    def disp(self):
+        print(f'{self.real}', end='')
+        if self.imag != 0:
+            print(f' + {self.imag}i')
+        else:
+            print()
 
 
+x = Complex(6, 5)
+y = Complex(6)
+z = Complex()
+
+x.disp()  # 6+5i
+y.disp()  # 6
+z.disp()  # 0
 
