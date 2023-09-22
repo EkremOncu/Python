@@ -1657,13 +1657,80 @@ __init__ tarafından yaratılmıştır.
 ----------------------------------------------------------------------------------
 """
 
+"""
+class Sample:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def disp(self):
+        print(self.a, self.b)
 
 
+s = Sample(10, 20)
+k = Sample(30, 40)
+
+s.disp()  # 10 20
+k.disp()  # 30 40
+----------------------------------------------------------------------------------
+Tabii biz nesnenin örnek özniteliklerini başka bir metotta da yaratabiliriz.
+__init__ metodunun diğer metotlardan tek farkı yorumlayıcı tarafından oromatik 
+çağrılmasıdır. Aşağıdaki örnekte nesnenin a ve öznitelikleri __init__ metodunda 
+değil foo metodunda yaratılmıştır.
+----------------------------------------------------------------------------------
+
+class Sample:
+    def foo(self, a, b):
+        self.a = a
+        self.b = b
+
+    def disp(self):
+        print(self.a, self.b)
 
 
+s = Sample()
+k = Sample()
+
+s.foo(10, 20)
+k.foo(30, 40)
+
+s.disp()
+k.disp()
+"""
 
 
+class Complex:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+        
+    def disp(self):
+        print(f'{self.real}+{self.imag}i')
+        
+    def add(self, z):
+        real = self.real + z.real
+        imag = self.imag + z.imag
+        
+        result = Complex(real, imag)
+        
+        return result
+    
+    def sub(self, z):
+        real = self.real - z.real
+        imag = self.imag - z.imag
+        
+        result = Complex(real, imag)
+        
+        return result   
+        
+x = Complex(6, 5)
+y = Complex(2, 3)
 
+z = x.add(y)
+z.disp()
+
+z = x.sub(y)
+z.disp()
 
 
 
