@@ -1655,7 +1655,7 @@ print(k.a, k.b)
 Burada s ve k değişkenlerinin gösteridği yereki nesnelerin öznitelikleri 
 __init__ tarafından yaratılmıştır.
 ----------------------------------------------------------------------------------
-
+"""
 
 
 
