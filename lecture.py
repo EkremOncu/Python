@@ -1756,13 +1756,46 @@ x.disp()  # 6+5i
 y.disp()  # 6
 z.disp()  # 0
 """
+"""
+----------------------------------------------------------------------------------
+Sınıfların metotları alternatif biçimde sınıf ismi ile de çağrılabilmektedir. 
+Ancak bu çağrı biçiminde self parametresini açıkça argüman olarak geçirmek 
+gerekir. Örneğin:
+----------------------------------------------------------------------------------
+class Sample:
+    def foo(self):
+        print('foo')
+        
+    def bar(self, a):
+        print(f'bar: {a}')
+                    
+s = Sample()
 
+s.foo()
+s.bar(10)
+print("--------")
+Sample.foo(s)
+Sample.bar(s, 10)
+----------------------------------------------------------------------------------
+Burada örneğin s.foo() çağrısı ile Sample.foo(s) çağrısı tamamen eşdeğerdir. 
+Ancak birinci çağrı yani s.foo() çağrısı tercih edilmelidir. 
+----------------------------------------------------------------------------------
+"""
 
+"""
+class Sample:
+    print('one')
 
+    def foo(self):
+        pass
 
+    print('two')
 
-
-
+    def bar(self):
+        pass
+    
+    print('three')
+"""
 
 
 
