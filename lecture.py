@@ -1509,6 +1509,8 @@ print(sd)
 
 # ----------------------------------- Pythonda Nesne Yönelimi -------------------------------------
 """
+# Sınıflar mutable türlerdir
+
 class Sample:
     pass
 
@@ -1652,7 +1654,7 @@ k = Sample()
 print(k.a, k.b)
 
 ----------------------------------------------------------------------------------
-Burada s ve k değişkenlerinin gösteridği yereki nesnelerin öznitelikleri 
+Burada s ve k değişkenlerinin gösteridği yerdeki nesnelerin öznitelikleri 
 __init__ tarafından yaratılmıştır.
 ----------------------------------------------------------------------------------
 """
@@ -1732,7 +1734,7 @@ z.disp()
 z = x.sub(y)
 z.disp()
 """
-
+"""
 class Complex:
     def __init__(self, real=0, imag=0):
         self.real = real
@@ -1753,4 +1755,26 @@ z = Complex()
 x.disp()  # 6+5i
 y.disp()  # 6
 z.disp()  # 0
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
