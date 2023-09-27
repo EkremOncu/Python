@@ -1823,20 +1823,63 @@ da bir ilişki biçimi olarak ele alırsak o zaman beşinci maddeyi
 """
 
 #  ---------------- İçerme İlişkisi (Composition) ----------------
+"""
+-------------------------------------------------------------------------------
+Örneğin "insan" ile "karaciğer" sınıfları arasında, "araba" ile "motor" sınıfları 
+arasında bu biçimde içerme ilişkisi vardır. İki sınıf arasında içerme ilişkisi 
+olması için aşağıdaki iki özelliğin ikisinin de sağlanması gerekir:
 
+    1) İçeren nesneyle içerilen nesnenin ömürleri aynı olmalıdır. 
+    2) İçerilen nesne tek bir nesne tarafından içerilmelidir. 
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+Bu durumda örneğin "hastane" sınıfı ile "doktor" sınıfı arasında içerme ilişkisi 
+yoktur. Çünkü bunların ömürleri aynı değildir. Ayrıca bir doktor aynı anda 
+birden fazla hastanede de çalışabilmektedir. Ancak insan ile karaciğer arasında, 
+arabayla motor arasında, "saat" ile "akrep" arasında, "dünya" ile "kıtalar" 
+arasında, "cep telefonu" ile "işlemcisi" arasında içerme ilişkisi vardır. "Oda"
+ile "duvar" arasında içerme ilişkisi yoktur. Her ne kadar oda ile duvar aynı 
+ömre sahipse de duvar aynı zamanda yan odanın da duvarıdır
+-------------------------------------------------------------------------------
+"""
+"""
 
+-------------------------------------------------------------------------------
+Python'da içerme ilişkisi içeren sınıfın __init__ metodunda içerilen nesnenin 
+yaratılarak içeren sınıfın örnek özniteliğinde tutulması yoluyla sağlanabilir.
+-------------------------------------------------------------------------------
 
+class Araba:
+    def __init__(self):
+        self.motor = Motor()
+                        
+class Motor:
+    pass
 
+a = Araba()
+-------------------------------------------------------------------------------
+Burada Araba sınıfı türünden nesne yaratıldığında Araba sınıfının __init__ metodu 
+çağrılacak ve Motor nesnesi de yaratılacaktır. Böylece araba nesnesi motor 
+nesnesine sahip olmaktadır (has a ilişkisi). Henüz görmemiş olsak da 
+"çöp toplayıcı (garvage collector)" mekanizma Araba nesnesini yok ettiğinde motor
+nesnesi de yok olacaktır.
+-------------------------------------------------------------------------------
+"""
 
-
-
-
-
-
-
-
-
-
+#  ---------------- Birleşme İlişkisi (Aggregation) ----------------
+"""
+----------------------------------------------------------------------------------
+Birleşme ilişkisinde (aggregation) bir sınıf türünden nesne başka bir sınıf 
+türünden nesneyi bünyesine katarak kullanmaktadır. Ancak kullanılan nesne tek 
+bir nesne tarafından kullanılmak zorunda değildir. Kullanan nesneyle kullanılan
+nesnenin ömürleri de aynı olmak zorunda değildir. İşte bu durumda bu nesnelerin 
+sınıfları arasında "birleşme" ilişkisi vardır.Aslında çoğu zaman "içerme" 
+ilişkisine benzeyen ancak içerme ilişkisi olmayan iişkiler "birleşme" ilişkisidir.
+Örneğin "hastane" ile "doktor" sınıfları arasında, "bilgisayar" ile "fare" 
+sınıfları arasında "oda" ile "duvar" sınıfları arasında içerme ilişkisi yoktur, 
+birleşme ilişkisi vardır.
+----------------------------------------------------------------------------------
+"""
 
 
 
