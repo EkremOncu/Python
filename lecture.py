@@ -1807,9 +1807,22 @@ print(type(s))          # <class '__main__.Sample'>
 """
 
 
+"""
+-------------------------------------------------------------------------------
+NYPT'de sınıflar arasındaki ilişkiler dört başlıkta ele alınmaktadır:
 
+    1) İçerme İlişkisi (Composition)
+    2) Birleşme İlişkisi (Aggregation)
+    3) Türetme İlişkisi (Inheritance)
+    4) Çağrışım İlişkisi (Association)
 
+Tabii iki sınıf arasında hiçbir ilişki de olmayabilir. Eğer ilişki olmamasını 
+da bir ilişki biçimi olarak ele alırsak o zaman beşinci maddeyi 
+"ilişki yok" biçiminde de oluşturabiliriz. 
+-------------------------------------------------------------------------------
+"""
 
+#  ---------------- İçerme İlişkisi (Composition) ----------------
 
 
 
