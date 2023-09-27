@@ -1796,6 +1796,38 @@ class Sample:
     
     print('three')
 """
+"""
+class Sample:
+       pass
+
+print(type(Sample))     # <class 'type'>
+
+s = Sample()
+print(type(s))          # <class '__main__.Sample'>
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
