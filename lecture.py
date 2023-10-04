@@ -1924,6 +1924,25 @@ dikkat ediniz.
 ----------------------------------------------------------------------------------
 """
 
+
+#  ---------------- Association İlişkisi (Çağrışım) -----------------
+"""
+----------------------------------------------------------------------------------
+Sınıflararası son ilişki biçimine "çağrışım ilişkisi (association)" denilmektedir. 
+Çağrışım ilişkisinde bir sınıf nesnesi başka bir nesneyi kullanır. Ancak bu 
+kullanma yüzeyseldir. Bünyesine katarak bir kullanma değildir. Örneğin Taksi sınıfı 
+Müşteri sınıfını kullanır. Ancak Taksi ile Şoför arasındaki ilişki birleşme 
+ilişkisiyken Taksi ile Müşteri arasındaki ilişki çağrışım ilişkisidir. Çağrışım 
+ilişkisi yüzeysel bir ilişkidir. Örneğin bir sınıf diğer sınıfı yalnızca bir 
+metodunda kullanıyorsa,bünyesine katarak kullanmıyorsa burada bir çağrışım 
+ilişkisinden bahsedilebilir. Örneğin Hastane sınıfı reklam yapılacağı zaman
+Reklam Şirketi sınıfını kullanıyor olabilir.
+
+Çağrışım ilişkisi UML sınıf diyagramlarında kullanan sınıftan kullanılan 
+sınıfa çekilen ince bir ok ile temsil edilmektedir.
+----------------------------------------------------------------------------------
+"""
+
 #  ---------------- Inheritance İlişkisi (Türetme ) -----------------
 """
 ----------------------------------------------------------------------------------
@@ -1935,11 +1954,85 @@ denilmektedir. Türetmede türemiş sınıf tamamen taban sınıf gibi de işlem
 ancak fazlalıkları da vardır. UML sınıf diyagramlarında türetme ilişkisi 
 türemiş sınıftan taban sınıfa doğru çekilen içi boş bir okla gösterilmektedir.
 ----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+Örneğin:
+
+    A
+    B
+
+Burada B sınıfı A sınıfından türetilmiştir. Yani B sınıfı türünden bir nesne 
+ile hem B sınıfının elemanlarını hem de A sınıfının elemanlarını kullanabiliriz. 
+
+Türemiş sınıftan yeniden türetme yapılabilir. Böylece bir dizi türetme söz 
+konusu olabilir. Örneğin:
+
+    A
+    B
+    C
+----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------
+Bir türetme şemasında yukarıya çıktıkça genelleşme, aşağıya indikçe özelleşme
+olur. Yani yukarıdaki sınıflar diğer sınıflarda olan ortak özellikleri barındırır. 
+NYPT'de türetme ilişkisine İngilizce "is a" ilişkisi de denilmektedir. Örneğin 
+"işçi bir çalışandır". O zaman İşçi sınıfı Çalışan sınıfından türetilebilir. 
+----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------
+Bir sınıfın birden fazla sınıfa taban sınıflık yapması tamamen normal bir durumdur. 
+Örneğin:
+    
+          A
+    B           C
+
+Burada A hem B'nin hem de C'nin taban sınıfı durumundadır. Ancak bir sınıfın 
+birden fazla taban sınıfa sahip olması durumu özel bir durumdur. Buna NYPT'de 
+"çoklu türetme (multiple inheritance)" denilmektedir. Doğada çoklu türetme az
+olmasına karşın karşılaşılmaktadır. Örneğin:
+
+    A       B
+        C
+----------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------
+İçerme ilişkisi, birleşme ilişkisi ve çağrışım ilişkisi şimdiye kadar görmüş 
+olduğumuz bilgilerle oluşturulabilmektedir. Ancak türetme ilişkisi ayrı bir 
+sentaks ile oluşturulmaktadır. Biz de şimdi Python'da türetme ilişkisinin 
+oluşturulması ve kullanılması üzerinde duracağız.
+
+Python'da türetme sentaksının genel biçimi şöyledir:
+
+    
+class <türemiş sınıf ismi>(<taban sınıf listesi>):
+    pass
+
+Örneğin:
+
+class A:
+    pass
+
+class B(A):
+    pass
+----------------------------------------------------------------------------------
 """
 
+class A:
+    def foo(self):
+        print('A.foo')
+    
+    def bar(self):
+        print('A.bar')
+        
+class B(A):
+    def tar(self):
+        print('B.tar')
+        
+b = B()
 
-
-
+b.foo()
+b.bar()
+b.tar()
 
 
 
