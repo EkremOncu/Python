@@ -2017,6 +2017,7 @@ class B(A):
 ----------------------------------------------------------------------------------
 """
 
+"""
 class A:
     def foo(self):
         print('A.foo')
@@ -2034,8 +2035,37 @@ b.foo()
 b.bar()
 b.tar()
 
+------------------------------------------------------------------------------------
+Türetme ilişkisinde türemiş sınıf taban sınıfı kullanmaktadır. Taban sınıf 
+türemiş sınıfı kullanmamaktadır. Aşağıdaki örnekte B ve C sınıflarının ortak 
+elemanları A taban sınıfında toplanmış ve kod tekrarı bu sayede elimine edilmiştir.
+------------------------------------------------------------------------------------
 
+class A:
+    def foo(self):
+        print('foo')
+    
+    def bar(self):
+        print('bar')
 
+class B(A):
+    def tar(self):
+        print('tar')
+        
+class C(A):
+    def zar(self):
+        print('zar')
+        
+b = B()
+b.foo()
+b.bar()
+b.tar()
+
+c = C()
+c.foo()
+c.bar()
+c.zar()
+"""
 
 
 
