@@ -1676,7 +1676,7 @@ s.disp()  # 10 20
 k.disp()  # 30 40
 ----------------------------------------------------------------------------------
 Tabii biz nesnenin örnek özniteliklerini başka bir metotta da yaratabiliriz.
-__init__ metodunun diğer metotlardan tek farkı yorumlayıcı tarafından oromatik 
+__init__ metodunun diğer metotlardan tek farkı yorumlayıcı tarafından otomatik 
 çağrılmasıdır. Aşağıdaki örnekte nesnenin a ve öznitelikleri __init__ metodunda 
 değil foo metodunda yaratılmıştır.
 ----------------------------------------------------------------------------------
@@ -1797,13 +1797,13 @@ class Sample:
     print('three')
 """
 """
-class Sample:
+class Sammmple:
        pass
 
-print(type(Sample))     # <class 'type'>
+print(type(Sammmple))     # <class 'type'>
 
-s = Sample()
-print(type(s))          # <class '__main__.Sample'>
+s = Sammmple()
+print(type(s))          # <class '__main__.Sammmple'>
 """
 
 
