@@ -1879,7 +1879,76 @@ ilişkisine benzeyen ancak içerme ilişkisi olmayan iişkiler "birleşme" iliş
 sınıfları arasında "oda" ile "duvar" sınıfları arasında içerme ilişkisi yoktur, 
 birleşme ilişkisi vardır.
 ----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------
+Python'da birleşme ilişkisi kullanan sınıfta kullanılan nesneyi geçici olarak 
+tutma yoluyla sağlanabilir. Yani birleşme ilişkisinde kullanılacak nesnenin
+kullanan nesneye dahil edilmesi ve çıkartılması gibi işlemler söz konusu olmaktadır. 
+----------------------------------------------------------------------------------
+
+class Doctor:
+        def __init__(self, name, specialty):
+            self.name = name
+            self.specialty = specialty
+
+class Hospital:
+    def __init__(self, name):
+        self.name = name
+        self.doctors = []
+        
+    def add_doctor(self, doctor):
+        self.doctors.append(doctor)
+        
+    def remove_doctor(self, name):
+        self.doctors.remove(name)
+                
+    def another_metods(self):
+        print('self.doctors is using...')
+            
+hospital1 = Hospital('Yaşam'"")
+
+doctor1 = Doctor('Ali Serçe', 'Kalp Damar')
+hospital1.add_doctor(doctor1)
+
+doctor2 = Doctor('Mehmet güneş', 'Kulak Burun Boğaz')
+hospital1.add_doctor(doctor2)
+
+hospital2 = Hospital('Gelecek')
+hospital2.add_doctor(doctor1)
+
+----------------------------------------------------------------------------------
+Burada bir Hospital nesnesi birden fazla Doctor nesnesini kullanabildiği gibi
+bir Doctor nesnesi de birden fazla Hospital nesnesi tarafından kullanılabilmektedir.
+Hospital nesnesinin ve Doctor nesnelerinin ömürlerinin farklı olabildiğine 
+dikkat ediniz. 
+----------------------------------------------------------------------------------
 """
+
+#  ---------------- Inheritance İlişkisi (Türetme ) -----------------
+"""
+----------------------------------------------------------------------------------
+Sınıflar arasındaki diğer bir ilişki biçimi de "türetme" ilişkisidir. Türetme 
+ilişkisine İngilizce  "inheritance" yani "kalıtım" da denilmektedir. Türetme 
+mevcut bir sınıfa dokunmadan onu genişletme anlamına gelir. Burada asıl sınıfa 
+"taban sınıf (base class)", genişletilmiş olan sınıfa da "türemiş sınıf (derived class)"
+denilmektedir. Türetmede türemiş sınıf tamamen taban sınıf gibi de işlem görür 
+ancak fazlalıkları da vardır. UML sınıf diyagramlarında türetme ilişkisi 
+türemiş sınıftan taban sınıfa doğru çekilen içi boş bir okla gösterilmektedir.
+----------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
