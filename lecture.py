@@ -2145,6 +2145,7 @@ D
 
 Burada D'nin taban sınıfları C, B ve A'dır. D'nin doğrudan taban sınıfı C'dir.
 D'nin dolaylı taban sınıfları A ve B'dir.
+
 """
 
 
