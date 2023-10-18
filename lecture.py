@@ -2069,6 +2069,100 @@ c.zar()
 
 
 
+"""
+------------------------------------------------------------------------------------
+Anımsanacağı gibi nesnelerin öznitelikleri tipik olarak __init__ metotlarında 
+yaratılmaktadır. Türemiş sınıf türünden bir nesne yaratıldığında eğer türemiş 
+sınıfın __init__ metodu yazılmışsa türemiş sınıfın __init__ metodu otomatik çağrılır.
+Ancak türemiş sınıfın __init__ metodu yazılmamışsa bu durumda taban sınıfın
+__init__ metodu çağrılmaktadır. 
+
+Türemiş sınıfın __init__ metodunun türetmeyi yapan programcı tarafından yazılmış 
+olduğunu varsayalım. Bu durumda türemiş sınıf türünden bir nesne yaratıldığında 
+türemiş sınıfın __init__ metodu çağrılacaktır.Taban sınıfın __init__ metodu 
+çağrılmayacaktır. Oysa taban sınıfın __init__ metodunun içerisinde taban sınıf 
+gereken birtakım şeyler yapılmış olabilmektedir. Türemiş sınıf türünden nesne 
+yaratıldığında türemiş sınıfın __init__ metodunun çağrılması ancak taban sınıfın
+ __init__ netodunun çağrılmaması önemli sorunlara yol açabilmektedir. Örneğin:
+------------------------------------------------------------------------------------
+
+class A:
+    def __init__(self):
+        self.x = 10
+        
+    def dispA(self):
+        print(self.x)
+    
+class B(A):
+    def __init__(self):
+        self.y = 20
+    
+    def dispB(self):
+        print(self.y)
+            
+
+a = A()
+a.dispA()           # sorun yok! nesnenin a özniteliği yaratılmış durumda
+
+b = B()
+b.dispA()           # dikkat! nesnenin bir a örnek özniteliği yaratılmamış!
+b.dispB()
+
+------------------------------------------------------------------------------------
+COZUMU:
+------------------------------------------------------------------------------------
+
+class A:
+    def __init__(self):
+        self.x = 10
+        
+    def dispA(self):
+        print(self.x)
+    
+class B(A):
+    def __init__(self):
+        A.__init__(self)   # açıkça A'nın __init__ metodunun çağrıldığı anlaşılıyor
+        self.y = 20
+    
+    def dispB(self):
+        print(self.y)
+ 
+           
+a = A()
+a.dispA()           
+
+b = B()
+b.dispA()           
+b.dispB()
+
+"""
+
+"""
+A
+B
+C
+D
+
+Burada D'nin taban sınıfları C, B ve A'dır. D'nin doğrudan taban sınıfı C'dir.
+D'nin dolaylı taban sınıfları A ve B'dir.
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
