@@ -1905,7 +1905,7 @@ class Hospital:
     def another_metods(self):
         print('self.doctors is using...')
             
-hospital1 = Hospital('Yaşam'"")
+hospital1 = Hospital('Yaşam')
 
 doctor1 = Doctor('Ali Serçe', 'Kalp Damar')
 hospital1.add_doctor(doctor1)
@@ -1928,7 +1928,7 @@ dikkat ediniz.
 #  ---------------- Association İlişkisi (Çağrışım) -----------------
 """
 ----------------------------------------------------------------------------------
-Sınıflararası son ilişki biçimine "çağrışım ilişkisi (association)" denilmektedir. 
+Sınıflararası ucuncu ilişki biçimine "çağrışım ilişkisi (association)" denilmektedir. 
 Çağrışım ilişkisinde bir sınıf nesnesi başka bir nesneyi kullanır. Ancak bu 
 kullanma yüzeyseldir. Bünyesine katarak bir kullanma değildir. Örneğin Taksi sınıfı 
 Müşteri sınıfını kullanır. Ancak Taksi ile Şoför arasındaki ilişki birleşme 
