@@ -2147,6 +2147,47 @@ D'nin dolaylı taban sınıfları A ve B'dir.
 
 """
 
+# dir() fonksiyonu
+"""
+------------------------------------------------------------------------------------
+Built-in dir isimli fonksiyon bir sınıfın ya da bir nesnenin öznitekilklerini 
+elde etmek için kullanılmaktadır. dir fonksiyonu parametre olarak bir sınıf 
+ismini (yani type türünden bir değişkeni) ya da bir sınıf türünden değişkeni 
+alabilmektedir. dir fonksiyonu o sınıf ismi ile ya da o sınıf türünden değişken 
+ile kullanılabilecek bütün isimleri string'lerden oluşan bir liste biçiminde 
+bize vermektedir. Pytoh programcıları bir sınıfın elemanlarını hatırlamak 
+istediklerinde bu fonksiyonu sıkça kullanmaktadır
+------------------------------------------------------------------------------------
+class Sample:
+    x = 10
+
+s = Sample()
+s.y = 20
+dir(Sample) # x var y yok -> dir fonksiyonu Sample ile kullanılabilecek oznitelikleri gösteriyor
+dir(s) # x de var y de var -> dir fonksiyonu s ile kullanılabilecek oznitelikleri gösteriyor
+
+"""
+
+
+# ---------------- super() fonksiyonu -------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
