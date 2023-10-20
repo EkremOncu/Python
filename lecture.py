@@ -2170,10 +2170,64 @@ dir(s) # x de var y de var -> dir fonksiyonu s ile kullanılabilecek oznitelikle
 
 
 # ---------------- super() fonksiyonu -------------------------
+"""
+class A:
+    def __init__(self):
+        print('A.__init__')
+        
+class B(A):
+    def __init__(self):
+        A.__init__(self)
+        print('B.__init__')
+    
+class C(A):
+    def __init__(self):
+        A.__init__(self)
+        print('C.__init__')
+    
+class D(B, C) :
+    def __init__(self):
+        B.__init__(self)
+        C.__init__(self)
+    
+d = D()
 
+Burada ekrana şunlar çıkacaktır:
 
+A.__init__
+B.__init__
+A.__init__
+C.__init__
 
+------------------------------------------------------------------------------------
+İşte bu tür baklava biçiminde yapılan türetmelerde tepedeki taban sınıfın 
+__init__ metodunun iki kere çağrılmasını engellemek için super isimli bir 
+fonksiyon bulundurulmuştur.
+------------------------------------------------------------------------------------
 
+class A:
+    def foo(self):
+        print('A.foo')
+
+class B(A):
+    def foo(self):
+        print('B.foo')
+
+class C(B):
+    def foo(self):
+        print('C.foo')
+        
+class D(C):
+    def foo(self):
+        print('D.foo')
+        
+d = D()
+
+super(B, d).foo()           # A.foo çağrılır
+super(C, d).foo()           # B.foo çağrılır
+super(D, d).foo()           # C.foo çağrılır
+
+"""
 
 
 
