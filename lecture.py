@@ -2224,10 +2224,68 @@ class D(C):
 d = D()
 
 super(B, d).foo()           # A.foo çağrılır
-super(C, d).foo()           # B.foo çağrılır
+super(C, d).foo()           # B.foo çağrılır  
 super(D, d).foo()           # C.foo çağrılır
 
+print(D.__mro__)
+
+-> alttakinden farkı super fonksiyonunun __mro__ sırasına göre işlev yapması
+
+A.foo(d)                    # A.foo çağrılır
+B.foo(d)                    # B.foo çağrılır
+C.foo(d)                    # C.foo çağrılır
+
 """
+"""
+class A:
+    def __init__(self):
+        super(A, self).__init__
+        print('A.__init__')
+    
+class B(A):
+    def __init__(self):
+        super(B, self).__init__()
+        print('B.__init__')
+        
+class C(A):
+    def __init__(self):
+        super(C, self).__init__()
+        print('C.__init__')
+        
+class D(B, C):
+    def __init__(self):
+        super(D, self).__init__()
+        print('D.__init__')
+        
+d = D()
+
+------------------------------------------------------------------------------------
+aslında super fonksiyonun en önemli işlevi baklava şeklindeki çoklu türetme 
+durumunda baklavanın tepesindeki taban sınıfın __init__ metodunun birden fazla
+kez çağrılmasını engellemek içindir. Anımsanacağı gibi super(B, d).foo() gibi 
+bir çağırmada foo metodunun aranması d değişkeninin ilişkin olduğu sınıfın MRO 
+sırasında B sınıfından sonraki sınıftan başlatılmaktadır.
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
