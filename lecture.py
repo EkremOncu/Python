@@ -1848,7 +1848,6 @@ ile "duvar" arasında içerme ilişkisi yoktur. Her ne kadar oda ile duvar aynı
 Python'da içerme ilişkisi içeren sınıfın __init__ metodunda içerilen nesnenin 
 yaratılarak içeren sınıfın örnek özniteliğinde tutulması yoluyla sağlanabilir.
 -------------------------------------------------------------------------------
-
 class Araba:
     def __init__(self):
         self.motor = Motor()
