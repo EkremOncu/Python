@@ -2155,7 +2155,7 @@ elde etmek için kullanılmaktadır. dir fonksiyonu parametre olarak bir sınıf
 ismini (yani type türünden bir değişkeni) ya da bir sınıf türünden değişkeni 
 alabilmektedir. dir fonksiyonu o sınıf ismi ile ya da o sınıf türünden değişken 
 ile kullanılabilecek bütün isimleri string'lerden oluşan bir liste biçiminde 
-bize vermektedir. Pytoh programcıları bir sınıfın elemanlarını hatırlamak 
+bize vermektedir. Python programcıları bir sınıfın elemanlarını hatırlamak 
 istediklerinde bu fonksiyonu sıkça kullanmaktadır
 ------------------------------------------------------------------------------------
 class Sample:
@@ -2260,11 +2260,17 @@ class D(B, C):
 d = D()
 
 ------------------------------------------------------------------------------------
-aslında super fonksiyonun en önemli işlevi baklava şeklindeki çoklu türetme 
+Aslında super fonksiyonun en önemli işlevi baklava şeklindeki çoklu türetme 
 durumunda baklavanın tepesindeki taban sınıfın __init__ metodunun birden fazla
 kez çağrılmasını engellemek içindir. Anımsanacağı gibi super(B, d).foo() gibi 
 bir çağırmada foo metodunun aranması d değişkeninin ilişkin olduğu sınıfın MRO 
 sırasında B sınıfından sonraki sınıftan başlatılmaktadır.
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Biz bir sınıf yazarken bizden çoklu türetme yapılıp yapılmayacağını bilmediğimize 
+göre taban sınıf ismi ile değil super fonksiyonu ile sıradaki sınıfın __init__ 
+metodunu çağırmalıyız. İyi teknik __init__ metodu çağrılırken taban sınıf 
+isminin değil super fonksiyonunun kullanılmasıdır.
 ------------------------------------------------------------------------------------
 """
 
