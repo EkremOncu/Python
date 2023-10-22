@@ -2436,11 +2436,41 @@ s = Sample()
 """
 
 
+# ---------------- çokbiçimlilik (polymorphism) ------------------ 
+"""
+Pek çok teorisyene göre bir dilin "nesne yönelimli" olması için dilin şu üç 
+özelliği destekliyor olması gerekmektedir:
 
+   - Sınıf kavramı
+   - Türetme kavramı
+   - Çokbiçimlilik (polymophism)
 
+Eğer bir dilde sınıflar olduğu halde çokbiçimlilik yoksa böyle dillere "nesne 
+tabanlı (object based)" diller denilmektedir. Başka bir deyişle dilin nesne 
+yönelimli olabilmesi için "çokbiçimli mekanizmaya" sahip olması gerekmektedir. 
+C++, Java, C# gibi dillerde çokbiçimli mekanizma bulunmaktadır. 
+Dolayısıyla bu diller "nesne yönelimli" dillerdir. 
 
+------------------------------------------------------------------------------------
+NYPT'de bir eylem temel işlevi aynı olmak üzere sınıflar arasında farklılıklar 
+gösteriyorsa bu eyleme "çokbiçimli" eylem denilmektedir. Örneğin A, B, C, D, E
+sınıflarının disp isimli metotları olsun. Bu metotlar kendi sınıflarının birtakım 
+elemanlarını kendilerine özgü biçimde ekrana yazdırıyor olsun. Burada disp metodu 
+"çokbiçimli" bir metottur. Çünkü çeşitli sınıflarda bu metot vardır. Temel işlevi
+sınıf hakkında bilgileri ekrana yazdırmaktır. Ancak her sınıfın disp metodu kendine 
+özgüdür ve temel işlevi aynı olmasına karşın birbirlerinden farklıdır.
 
+Örneğin bir personel takip programında iş yerinde çalışan kişilerin görevlerine
+göre Worker, Manager, Executive, SalesPerson gibi farklı sınıflarla temsil 
+edildiğini düşünelim. Bu sınıfların hepsinde kişilerin maaşlarını hesaplayan 
+calculate_salary isimli bir metot olsun. Buradaki maaş hesaplama eylemi 
+çokbiçimlidir. Bu sınıfların hepsinde vardır ama her sınıfın maaş hesabı kendine 
+özgü bir biçimde yapılmaktadır. Çokbiçimli metotlar farklı sınıflarda aynı isimle 
+bulunurlar. Bunların yaptıkları işler ana hatlarıyla aynıdır ancak o sınıfa özgü 
+farklılıklar içermektedi
+------------------------------------------------------------------------------------
 
+"""
 
 
 
