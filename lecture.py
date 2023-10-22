@@ -2350,18 +2350,90 @@ Python'da bulunmamaktadır.
 ------------------------------------------------------------------------------------
 """
 
+#  _ (underscore) 
 
+"""
+------------------------------------------------------------------------------------
+Python'da her ne kadar C++, Java ve C# gibi dillerde bulunan "public", "private",
+"protcted" bölümler olmasa da bir sınıfın bir metodunun ya da nesnenin bir 
+özniteliğinin dış dünyadan gizlenmesi isimsel biçimde sağlanmaya çalışılmıştır. 
+Öyle ki eğer bir sınıfın ya da nesnenin özniteliğinin ismi '_' ile başlatılırsa 
+bu durum diğer dillerdeki private etkisi yaratmaktadır. Ancak bu etki yalnızca 
+bir tavsiye oluşturmaktadır. Başı '_' ile başlayan isimler için yorumlayıcı tarafından 
+erişimde bir denetleme yapılmamaktadır. Başka bir deyişle biz Python'da sınıfın 
+ya da nesnenin özniteliğinin '_' ile başladığını gördüğümüzde "bu özniteliklere 
+dışarıdan (sınıfın daşından) erişilmesinin istenmediği" anlamını çıkartmalıyız. 
+Ancak yine de biz istersek bu özniteliklere dışarıdan erişebiliriz. Burada bir 
+zorlayıcılığın olmadığna yalnızca yazım biçimiyle sınıf kullananlara bir 
+tavsiyede bulunulduğuna dikkat ediniz. Örneğin:
+------------------------------------------------------------------------------------
 
+class Sample:
+    def do_someting_important(self):
+        # ....
+        self._foo()
+        # ....
+        self._bar()
+        # ....
+        self._tar()
+        #....
+        
+    def _foo(self):
+        pass
+    
+    def _bar(self):
+        pass
+    
+    def _tar(self):
+        pass
+    
+s = Sample()
 
+s.do_someting_important()
 
+Burada sınıfın _foo, _bar ve _tar metotlarının dışarıdan çağrılması istenmemektedir.
+Bu metotlar yalnızca sınıf içerisindeki diğer metotlardan çağrılmaktadır. Tabiki 
+biz istersek gerçekten yine de onları dışarıdan kullanabiliriz. Bunun için yorumlayıcı 
+tarafından zorlayıcı bir denetim uygulanmamaktadır.
+"""
 
+#  __ (2 underscore) 
 
+"""
+------------------------------------------------------------------------------------
+Sınıfın ve nesnenin özniteliklerinin dış dünyadan gizlenmesi için diğer bir yöntem 
+de isimlerin başına '__' (iki alt tire)getirmektir. Bir isim iki alt tire ile 
+başlanarak isimlendirilmişse bu durum bu ismin "dışarıdan kullanımının daha katı 
+bir biçimde istenmediği" anlamına gelmektedir. İki alt tire ile verilen isimlere 
+gerçekten dışarıdan erişilemez. Ancak _sınıfismi__ öneki ile erişilebilir. Yani 
+başka bir deyişle Sample sınıfının  __xxx elemanına biz s.__xxx gibi bir ifadeyle 
+erişemeyiz. Ancak s._Sample__xxx ismiyle erişebiliriz. Bunun amacı kişilerin 
+ilgili özniteliğe yanlışlıkla erişmelerinin engellenmesidir. Mutlak anlamda 
+erişmelerinin engellenmesi değildir. Tabii başı iki alt tire ile başlayan isimlere 
+sınıf içerisinden yine iki alt tire ile erişebiliriz. 
+------------------------------------------------------------------------------------
 
-
-
-
-
-
+class Sample:
+    def do_someting_important(self):
+        # ....
+        self.__foo()
+        # ....
+        self.__bar()
+        # ....
+        self.__tar()
+        #....
+        
+    def __foo(self):
+        pass
+    
+    def __bar(self):
+        pass
+    
+    def __tar(self):
+        pass
+    
+s = Sample()
+"""
 
 
 
