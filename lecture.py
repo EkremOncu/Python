@@ -2274,19 +2274,81 @@ isminin değil super fonksiyonunun kullanılmasıdır.
 ------------------------------------------------------------------------------------
 """
 
+"""
+------------------------------------------------------------------------------------
+Burada C'nin MRO sırası C, A, B olduğu için C ve A'nin __init__ metotları 
+çağrılacaktır ancak B'ninki çağrılmayacaktır.Genellikle object sınıfından türetme
+yapıldığında (default durum) programcılar super çağrısıyla __init__ metotlarını 
+çağırmazlar. Bu durumda da çoklu türetmede sorunlar çıkabilir. Pekiyi çözüm nedir?
+------------------------------------------------------------------------------------
+class A:
+    def __init__(self):
+        print('A.__init__')
 
+class B:
+    def __init__(self):
+        print('B.__init__')
+        
+class C(B, A):
+    def __init__(self):
+        super(C, self).__init__()
+        print('C.__init__')
+        
+c = C()
 
+------------------------------------------------------------------------------------
+Aslında bir sınıfı yazan kişi o sınıfın çoklu türetmede kullanılıp kullanılmayacağını 
+belirleyip bunu dokümantasyonda belirtmelidir. Yani sınıfı yazan kişinin sınıfın 
+çoklu türetmede kullanılıp kullanılmayacağını baştan öngörebilmesi gerekir.Eğer 
+programcının sınıfı çoklu türetmeyi destekleyecekse sınıf object sınıfından 
+türetilmiş olsa bile super çağrısıyla MRO sırasına göre sıradaki sınıfın __init__ 
+metodunu çağırmalıdır. Eğer sınıfı çoklu türetmeyi desteklemiyorsa bu durumda 
+böyle bir çağrı yapmasına gerek yoktur. Örneğin:
+------------------------------------------------------------------------------------
+class A:
+    def __init__(self):
+        super(A, self).__init__()
+        print('A.__init__')
 
+class B:
+    def __init__(self):
+        super(B, self).__init__()
+        print('B.__init__')
+        
+class C(A, B):
+    def __init__(self):
+        super(C, self).__init__()
+        print('C.__init__')
+           
+c = C()
+"""
 
+# ---------------- kapsülleme (encapsulation) ------------------
+"""
+------------------------------------------------------------------------------------
+NYPT'nin önemli bir prensibi "kapsülleme (encapsulation)" denilen prensiptir.
+Kapsülleme bir kavramın bir sınıfla temsil edilmesi ve sınıfın dışarıyı 
+ilgilendirmeyen, iç işleyişe ilişkin olan öğelerinin dış dünyadan gizlenmesi 
+anlamına gelmektedir. Bu gizleme hem algısal bir açıklık sağlamakta hem de yanlış 
+kullanımları engellemektedir. Aslında kapsülleme dış dünyada da sıklıkla 
+karşılaştığımız bir olgudur. Örneğin bir otomobilin pek çok aksamı kaput içerisinde 
+gizlenmiştir. Yalnızca kullanıcıyı ilgilendiren kısımları görünür hale 
+getirilmiştir. Bir televizyon için de aynı durum söz konusudur. Televizyonu 
+kullanabilmemiz için onun karmaşık yapısını bilmemize gerek yoktur.
 
+C++, Java ve C# gibi dillerde kapsülleme için sınıfların "public", "private", 
+"protected" gibi bölümleri vardır. Sınıfı yazan kişi birtakım elemanları private 
+bölüme yerleştirire o öğelere dışarıdan erişilemez. Sınıfın veri elemanlarının 
+(örnek dözniteliklerinin) dış dünyadan gizlenmesine ise "veri elemanlarının 
+gizlenmesi (data hiding)" prensibi denilmektedir. Sınıfın veri elemanları iç 
+işleyişe ilişkindir. Programcılar da C++, Java ve C# gibi dillerde veri 
+elemanlarını sınıfın private bölümine yerleştirerek dış dünyadan gizlerler. 
 
-
-
-
-
-
-
-
+Ancak Python'da bu anlamda bir gizleme mekanizması yoktur. Yani C++, Java ve C# 
+gibi dillerdeki "public", "protected", private" gibi erişim belirten kavramlar 
+Python'da bulunmamaktadır. 
+------------------------------------------------------------------------------------
+"""
 
 
 
