@@ -2471,16 +2471,66 @@ farklılıklar içermektedi
 ------------------------------------------------------------------------------------
 """
 
+# ---------------- __str__ ----------------
+"""
+------------------------------------------------------------------------------------
+Bir sınıf türünden nesneyi str türüne dönüştürebiliriz. Böyle bir dönüştürme için 
+ilgili sınıfın __str__ isimli bir metodunun bulunuyor olması gerekir. s bir sınıf 
+türünden değişken olmak üzere str(s) işlemi tamamen s.__str__() ile aynı anlamdadır.
+Programcı sınıfın __str__ metodunu bir str nesnesiyle geri döndürmelidir. 
 
+Aslında print fonksiyonu yalnızca string'leri bastırmaktadır. Eğer print 
+fonksiyonuna girdiğimiz argüman string değilse print fonksiyonu onu str türüne 
+dönüştürüp yazıyı ekrana basmaktadır. s string türünden olmayan bir türden olsun.
+ Bu durumda:
 
+ print(s)
 
+ile 
 
+print(str(s))
 
+ya da 
 
+print(s.__str__())
 
+tamamen aynı anlamdadır. Örneğin:
+------------------------------------------------------------------------------------
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        
+    def __str__(self):
+        return f'({self.x}, {self.y})'
+    
+pt = Point(3, 2)
 
+print(pt)           
+print(str(pt))          
+print(pt.__str__())
 
+------------------------------------------------------------------------------------
+Burada biz kendi sınıf nesnemizi print fonksiyonuyla yazdırmak istediğimizde 
+aslında print fonksiyonu onu str türüne dönüştürüp yazdırmaktadır. str türüne 
+dönüştürme sırasında sınıfımızın __str__ metodu çağrılmaktadır. 
+------------------------------------------------------------------------------------
+class Date:
+    def __init__(self, day, month, year):
+        self.day = day
+        self.month = month
+        self.year = year
+        
+    def __str__(self):
+        return f'{self.day:02d}/{self.month:02d}/{self.year:04d}'
+    
+d = Date(4, 10, 2022)
+print(d)
 
+k = Date(11, 3, 2008)
+print(k)
+
+"""
 
 
 
