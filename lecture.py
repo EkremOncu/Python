@@ -2469,7 +2469,6 @@ calculate_salary isimli bir metot olsun. Buradaki maaş hesaplama eylemi
 bulunurlar. Bunların yaptıkları işler ana hatlarıyla aynıdır ancak o sınıfa özgü 
 farklılıklar içermektedi
 ------------------------------------------------------------------------------------
-
 """
 
 
