@@ -2289,7 +2289,7 @@ class B:
     def __init__(self):
         print('B.__init__')
         
-class C(B, A):
+class C(A, B):
     def __init__(self):
         super(C, self).__init__()
         print('C.__init__')
@@ -2531,6 +2531,55 @@ k = Date(11, 3, 2008)
 print(k)
 
 """
+
+
+# ---------------- __repr__ ----------------
+"""
+------------------------------------------------------------------------------------
+__str__ metodunun __repr__ isminde bir benzeri de vardır. __repr__ metodu da 
+tıpkı __str__ netodunda olduğu gibi bir string ile geri dönmelidir. Pekiyi iki 
+metot arasında ne farklılık vardır? İşte __str__ metodu "daha çok kullanıcıya 
+yönelik", __repr__ metodu ise "daha çok programcıya yönelik" bir yazı verme 
+iddiasındadır. Tabii bu iki metodun veridiği yazılar aynı da olabilir. Örneğin
+Python'ın komut satırında, Spyder'ın komut satırında (IPython) bir değişkeni 
+yazıp ENTER tuşuna bastığımızda bu komut satırı programları değişken ile __repr__
+metodunu çağırıp buradan elde edilen yazıyı bastırmaktadır. Örneğin:
+------------------------------------------------------------------------------------
+class Sample:
+    def __str__(self):
+        return '__str__'
+       
+    def __repr__(self):
+        return '__repr__'
+    
+s = Sample()
+s           # __repr__
+print(s)    # __str__
+
+
+ Aslında programcının bu iki metodu ayrı ayrı yazması da gerekmemektedir. Çünkü:
+
+1) Eğer sınıfın __repr__ metodu varsa fakat __str__ metodu yoksa str türüne 
+dönüştürmede __repr__ metodu kullanılmaktadır. Aynı zamanda  komut satırında 
+değişken ismi yazılıp ENTER tuşuna basıldığında da __repr__ metodu kullanılılır. 
+Yani biz sınıf için yalnızca __repr__ metodunu yazarsak hem str türüne 
+dönüştürmelerde hem de komut satırında değişken ismini yazıp ENTER tuşuna 
+basıldığında bu metot çağrılacaktır.
+
+2) Sınıfta hem __str__ hem de __repr__ metodu varsa bu durumda str türüne 
+dönüştürmede __str__ metodu, komut satırında değişken ismi yazılıp ENTER tuşuna 
+basıldığında __repr__ metodu çağrılmaktadır. 
+
+3) Sınıfta yalnızca __str__ metodu varsa str türüne dönüştürmede __str__ metodu 
+çağrılır. Komut satırında değişken ismi yazılıp ENTER tuşuna basıldığında 
+object sınıfının __repr__ metodu çağrılır. 
+
+"""
+
+
+
+
+
 
 
 
