@@ -2574,6 +2574,8 @@ basıldığında __repr__ metodu çağrılmaktadır.
 çağrılır. Komut satırında değişken ismi yazılıp ENTER tuşuna basıldığında 
 object sınıfının __repr__ metodu çağrılır. 
 
+Yukarıda da belirtildiği gibi object sınıfında da __repr__ metodu vardır. Bu 
+metot da yine değişkenin ilişkin olduğu sınıfın ismini ve nesnenin id'sini vermektedir. 
 """
 
 
