@@ -2578,12 +2578,26 @@ Yukarıda da belirtildiği gibi object sınıfında da __repr__ metodu vardır. 
 metot da yine değişkenin ilişkin olduğu sınıfın ismini ve nesnenin id'sini vermektedir. 
 """
 
+# ---------------- Sınıfların __del__ Metotları ----------------
+"""
+------------------------------------------------------------------------------------
+Python'ın çöp toplayıcı mekanizması nesneyi yok etmeden hemen önce o nesne için 
+"eğer varsa" ilgili sınıfın __del__ isimli metodunu çağırmaktadır. 
+------------------------------------------------------------------------------------
 
+class Sample:
+    def __init__(self):
+        print('işletim sistemi düzeyinde bir kaynak tahsis ediliyor')
+        
+    def __del__(self):
+        print('tahsis edilen kaynak boşaltılıyor')
 
-
-
-
-
+print('bir')        
+s = Sample()
+print('iki')
+s = 10
+print('üç')
+"""
 
 
 
