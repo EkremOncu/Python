@@ -2650,6 +2650,59 @@ result = hasattr(Mample, 'foo')
 print(result)               # True
 """
 
+# ---------------- operator metotları ----------------
+"""
+------------------------------------------------------------------------------------
+"Operatör metotları" konusu nesne yönelimli dillerin çoğunda bulunmaktadır. 
+Örneğin bu özellik C++'ta, C#'ta, Swift'te vardır. Fkata örneğin Java'da 
+bulunmamaktadır. Python da operatör metotlarını desteklemektedir. Operatör 
+metotları aslında dile ekstra bir özellik katmamaktadır. Yalnızca okunabilirlik 
+bakımından bir avantaj sağlamaktadır. Yani başka bir deyişle nesne yönelimli bir 
+dilde operatör metotları olmasa da (örneğin Java'da yok) bu işlemler normal 
+metotlarla sağlanabilir. Ancak operatör metotları güzel bir görünüm sunmakta ve 
+kodun daha anlaşılabilir olmasını sağlamaktadır. 
+
+Aşağıdaki örnekte bir Complex sayı sınıfı oluşturulmuştur. Bu sınıfa iki Complex 
+sayıyı toplayabilen ve bir Complex sayıdan başka bir Complex sayıyı çıkartabilen 
+add ve sub metotları eklenmiştir. 
+------------------------------------------------------------------------------------
+
+class Complex:
+    def __init__(self, real = 0, imag = 0):
+        self.real = real
+        self.imag = imag
+        
+    def add(self, z):
+        real = self.real + z.real
+        imag = self.imag + z.imag
+        
+        return Complex(real, imag)
+    
+    def sub(self, z):
+        real = self.real - z.real
+        imag = self.imag - z.imag
+        
+        return Complex(real, imag)
+    
+    def __repr__(self):
+        return f'{self.real}+{self.imag}i'
+                
+x = Complex(7, 4)
+y = Complex(5, 2)
+
+result = x.add(y)
+print(result)  # 12+6i
+
+result = x.sub(y)
+print(result)  # 2+2i
+
+------------------------------------------------------------------------------------
+Operatör metotları özel dunder isimli metotlardır. Yani operatör metotlarının 
+isimleri dilin içerisinde belirlenmiştir. Örneğin toplama işlemini yapan operatör 
+metodu __add__, çıkartma işlemini yapan opereatör metodu __sub__, çarpma işlemini 
+yapan operatör metodu __mul__ ismindedir. Programcı bu metotları yazarak Python 
+opereatörlerinde kendi sınıfları için bu metotların çağrılmasını sağlayabilir. 
+------------------------------------------------------------------------------------
 
 
 
@@ -2659,6 +2712,11 @@ print(result)               # True
 
 
 
+
+
+
+
+"""
 
 
 
