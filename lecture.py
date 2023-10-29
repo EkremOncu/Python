@@ -2760,14 +2760,77 @@ print(result)
 result = x.__add__(y.__mul__(z))
 print(result)
 
+------------------------------------------------------------------------------------
+Pekiyi a + b gibi bir işlemde b'nin a ile aynı sınıf türünden olma zorunluluğu 
+var mıdır? Hayır yoktur. Bu durumda farklı b türleri için farklı işlemlerin 
+yapılması gerekebilmektedir. C++, C# gibi dillerde "function/method overloading"
+özelliği olduğundan her farklı tür için farklı bir operatör fonksiyonu/metodu 
+yazılabilmektedir. Python'da bir sınıf için aynı isimli tek bir operatör metodu 
+bulunabileceğinden dolayı bu işlem tür kontrolleriyle sağlanabilmektedir. 
+Aşağıdaki örnekte bir sayıyı temsil eden bir Number sınıfı oluşturulmuştur. 
+Sınıfın __add__, __sub__ ve __mul__ metotları iki Number nesnesini ve bir 
+Number nesnesi ile int ve float nesneyi toplayabilecek, çıkartabilecek ve 
+çarpabilecek biçimde yazılmıştır. 
+------------------------------------------------------------------------------------
+class Number:
+    def __init__(self, val = 0):
+        self.val = val
+        
+    def __repr__(self):
+        return str(self.val)
+    
+    def __add__(self, number):
+        if isinstance(number, int|float):
+            result = self.val + number
+        elif isinstance(number, Number):
+            result = self.val + number.val
+        else:
+            raise TypeError('invalid type')
+        
+        return Number(result)
+    
+    def __sub__(self, number):
+        if isinstance(number, int|float):
+            result = self.val - number
+        elif isinstance(number, Number):
+            result = self.val - number.val
+        else:
+            raise TypeError('invalid type')
+        
+        return Number(result)
 
+    def __mul__(self, number):
+        if isinstance(number, int|float):
+            result = self.val * number
+        elif isinstance(number, Number):
+            result = self.val * number.val
+        else:
+            raise TypeError('invalid type')
+        
+        return Number(result)
 
+x = Number(10)
+y = Number(20)
+z = Number(2)
 
+result = (x + 10) * 2
+print(result) # 40
 
+------------------------------------------------------------------------------------
+Karşılaştırma operatörleri için operatör metot isimleri de şöyledir:
 
+    >       __gt__
+    <       __lt__
+    >=      __ge__
+    <=      __le__
+    ==      __eq__
+    !=      __ne__
 
-
+Tabii programcı tipik olarak bu operatör metotlarını bool bir değerle geri döndürür. 
+------------------------------------------------------------------------------------
 """
+
+
 
 
 
