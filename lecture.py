@@ -2537,7 +2537,7 @@ print(k)
 """
 ------------------------------------------------------------------------------------
 __str__ metodunun __repr__ isminde bir benzeri de vardır. __repr__ metodu da 
-tıpkı __str__ netodunda olduğu gibi bir string ile geri dönmelidir. Pekiyi iki 
+tıpkı __str__ netodunda olduğu gibi bir string ile geri dönmelidir. Peki iki 
 metot arasında ne farklılık vardır? İşte __str__ metodu "daha çok kullanıcıya 
 yönelik", __repr__ metodu ise "daha çok programcıya yönelik" bir yazı verme 
 iddiasındadır. Tabii bu iki metodun veridiği yazılar aynı da olabilir. Örneğin
@@ -2599,10 +2599,56 @@ s = 10
 print('üç')
 """
 
+# ---------------- hasattr bulit-in fonksiyonu ----------------
+"""
+------------------------------------------------------------------------------------
+Bazen bir sınıfın ya da nesnenin bir özniteliğinin (metotların da aslında sınıf 
+öznitelikleri olduğunu anımsayınız) var olup olmadığını anlamak isteyebiliriz. 
+Örneğin Sample sınıfının bir foo metodunun olup olmadığını anlamak bilmek isteyebiliriz. 
+Bunun için standart kütüphanede bulunan hasattr isimli built-in fonksiyon 
+kullanılmaktadır. hasttar fonksiyonu iki parametreye sahiptir. Fonksiyonun birinci 
+parametresei ilgili sınıf türünden değişkeni ikinci parametresi ise söz konusu 
+özniteliğin string biçiminde ismini almaktadır. Fonksiyon bool bir değere geri 
+dönmektedir. Eğer değişken bir sınıf türündense bu fonksiyon önce o sınıf nesnesinin 
+içerisindeki örnek özniteliklerine bakmakta sonra o nesnenin ilişkin olduğu sınıf 
+içerisindeki özniteliklere bakmaktadır. Eğer birinci parametre type türündense 
+fonksiyon ilgili sınıfın özniteliklerine bakmaktadır. Örneğin:
+------------------------------------------------------------------------------------
+
+class Sample:
+    def foo(self):
+        pass
+
+s = Sample()
+s.a = 10
+
+result = hasattr(s, 'foo')          
+print(result)                       # True
+
+result = hasattr(Sample, 'foo')
+print(result)                       # True
+
+result = hasattr(s, 'a')          
+print(result)                       # True
+
+hasttar fonksiyonu sınıfın taban sınıflarına da bakmaktadır. Örneğin:
+
+class Sample:
+    def foo(self):
+        pass
+
+class Mample(Sample):
+    pass
+
+m = Mample()
+
+result = hasattr(m, 'foo')
+print(result)               # True
 
 
-
-
+result = hasattr(Mample, 'foo')
+print(result)               # True
+"""
 
 
 
