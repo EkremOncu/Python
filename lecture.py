@@ -1,4 +1,14 @@
 """
+---------------------------------------------------------------------------
+C ve Sistem Programcıları Derneği Python Programlama Dili 
+Sınıfta Yapılan Örnekler ve Özet Notlar
+                                
+Bu notlar Kaan ASLAN'ın notlarından yararlanılarak oluşturulmuştur. 
+---------------------------------------------------------------------------
+"""
+
+
+"""
 s = ' abcd'
 a = list(s)
 c = [1, 2, 3,]
@@ -2704,10 +2714,51 @@ yapan operatör metodu __mul__ ismindedir. Programcı bu metotları yazarak Pyth
 opereatörlerinde kendi sınıfları için bu metotların çağrılmasını sağlayabilir. 
 ------------------------------------------------------------------------------------
 
+------------------------------------------------------------------------------------
+Python yorumlayıcısı sınıf türünden bir değişkenin bir operatör ile kullanıldığını 
+gördüğünde bu ifadeyi eşğder metot çağrısına dönüştürmektedir. Örneğin a bir sınıf 
+türünden olmak üzere a + b ifadesi tamamen a.__add__(b) ile eşdeğerdir. Örneğin 
+a > b ifadesi de a.__gt__(b) ile eşdeğerdir. Böylece aslında biz bir sınıf 
+nesnesini operatörlerle işleme soktuğumuzda arka planda sınıfın dunder'lı operatör 
+metotları çağrılmaktadır. Tabii biz de a + b yerine aslında a.__add__(b) yazabilirdik. 
+İki ifade arasında bir farklılık yoktur. 
+------------------------------------------------------------------------------------
 
+class Complex:
+    def __init__(self, real = 0, imag = 0):
+        self.real = real
+        self.imag = imag
+        
+    def __add__(self, z):
+        real = self.real + z.real
+        imag = self.imag + z.imag
+        
+        return Complex(real, imag)
+    
+    def __sub__(self, z):
+        real = self.real - z.real
+        imag = self.imag - z.imag
+        
+        return Complex(real, imag)
+    
+    def __mul__(self, z):
+        real = self.real * z.real - self.imag * z.imag
+        imag = self.real * z.imag + self.imag * z.real
+        
+        return Complex(real, imag)
+    
+    def __repr__(self):
+        return f'{self.real}+{self.imag}i'
+                
+x = Complex(7, 4)
+y = Complex(5, 2)
+z = Complex(1, 2)
 
+result = x + y * z      # x.__add__(y.__mul__(z))
+print(result)
 
-
+result = x.__add__(y.__mul__(z))
+print(result)
 
 
 
