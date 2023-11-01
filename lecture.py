@@ -2828,13 +2828,39 @@ Karşılaştırma operatörleri için operatör metot isimleri de şöyledir:
 
 Tabii programcı tipik olarak bu operatör metotlarını bool bir değerle geri döndürür. 
 ------------------------------------------------------------------------------------
+class Number:
+    def __init__(self, val = 0):
+        self.val = val
+        
+    def __add__(self, number):
+        if isinstance(number, int|float):
+            result = self.val + number
+        elif isinstance(number, Number):
+            result = self.val + number.val
+        else:
+            raise TypeError('invalid type')
+            
+        return Number(result)
+    
+    __radd__ = __add__
+    
+    def __repr__(self):
+        return str(self.val)
+          
+x = Number(10)
+
+result = x + 2
+print(result)
+
+result = 2 + x    # x.__radd__(2)
+print(result)
 """
 
 
 
 
 
-
+    
 
 
 
