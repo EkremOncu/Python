@@ -2856,12 +2856,35 @@ result = 2 + x    # x.__radd__(2)
 print(result)
 """
 
+# ---------------- fonksiyon çağırma operator metodu ----------------
+"""
+------------------------------------------------------------------------------------
+a bir sınıf türünden değişken olmak üzere a(...) biçiminde biz bu değişkeni sanki 
+fonksiyonmuş gibi fonksiyon çağırma operatörü ile kullanabiliriz. Ancak bunun 
+için ilgili sınıfın __call__ isimli bir operatör metodunun bulunuyor olması 
+gerekir. Yani:
+
+a(...)
+
+çağrısı aslında aşağıdaki çağrı tamamne eşdeğerdir:
+
+a.__call__(...)
+
+Bu nedenle Python'da fonksiyon çağırma operatörü ile çağrılabilen nesnelere 
+"callable" nesneler denilmektedir. Bir fonksiyon "callable" bir nesnedir. 
+__call__ metodu buunan bir sınıf nesnesi de "callable" bir nesnedir.
+------------------------------------------------------------------------------------
+
+class Sample:
+    def __call__(self):
+        print('this is a test')
+        
+s = Sample()
+
+s()
 
 
-
-
-    
-
+"""
 
 
 
