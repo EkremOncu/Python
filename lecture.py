@@ -2882,9 +2882,138 @@ class Sample:
 s = Sample()
 
 s()
+"""
 
+# ---------------- __len__ metodu ----------------
+"""
+------------------------------------------------------------------------------------
+Biz daha önce string'lerin, listelerin, demetlerin, kümelerin, sözlüklerin len 
+fonksiyonuna sokulabildiğini gördük. Aslında len fonksiyonu ilgili sınıfın 
+__len__ isimli metodunu çağırıp onun geri dönüş değeri ile geri dönmektedir.
+Yani:
+
+len(a)    
+
+ile 
+
+a.__len__()
+
+aynı anlamdadır. Bu durumda len fonksiyonu aslında şöyle yazılmıştır:
+
+def len(a):
+    return a.__len__()
+------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------
+len fonksiyonunun çokbiçimli (polymorpic) oldupuna dikkat ediniz. Yani biz pek 
+nesnenin uzunluğunu len ile elde edebiliriz. Ancak elde ettiğimiz değer o nesneye 
+bağlıdır. 
+
+Biz de kendi sınıfımız türünden nesnelerin len fonksiyonuna sokulmasını istersek 
+sınıfımızda __len__ metodunu yazmalıyız. 
+__len__ metodunun yalnızca self parametresi vardır. Bu self parametresi len 
+fonksiyonun argümanını oluşturmaktadır. Örneğin:
+
+class Sample:
+    def __init__(self, *args):
+        self.args = args
+    
+    def __len__(self):
+        return len(self.args)
+
+s = Sample(10, 20, 30, 40)
+
+result = len(s)
+
+print(result)       # 4
+print(s.__len__())  # 4
+------------------------------------------------------------------------------------
+"""
 
 """
+------------------------------------------------------------------------------------
+Kendi sınıfımız türünden bir nesneyi biz int, float, bool, str, complex türlerine 
+dönüştürmek istediğimizde bu dönüştürme işlemi için sınıfımızın sırasıyla 
+__int__, __float__, __bool__, __str__ ve __complex__ metotları çağrılmaktadır. 
+Bu metotlarınyalnızca self parametreleri bulunmaktadır. Aslında biz daha önce 
+__str__ metodunu görmüştük. Bu metot str türüne dönüştürülürken çağrılıyordu. 
+İşte diğer metotlar da diğer türlere dönüştürülürken çağrılmaktadır.
+
+
+class Rational:
+    def __init__(self, num, denom):
+        self.num = num
+        self.denom = denom
+        
+    def __str__(self):
+        return f'{self.num}/{self.denom}'
+    
+    def __float__(self):
+        return self.num / self.denom
+    
+r = Rational(2, 3)
+print(r)
+
+result = float(r)
+print(result)
+
+------------------------------------------------------------------------------------
+"""
+
+
+# ---------------- Sınıf türünden degiskenlerin koseli parantezlerle kullanımı ----------------
+"""
+------------------------------------------------------------------------------------
+Bir sınıf türünden değişken köşeli parantez operatörüyle kullanıldığında sınıfın 
+__getitem__ metodu çağrılmaktadır. Böylece sanki sınıf türünden değişken bir 
+liste gibi köşeli parantez operatörleriyle kullanılabilmektedir. Sınıf türünden 
+değişken atama operatörünün solunda da kullanılabilir. Bu durumda da sınıfın 
+__setitem__ metodu çağrılmaktadır. Başka bir deyişle eğer biz değişkeni köşeli
+parantezli bir biçimde ancak atama operatörünün solunda kullanmıyorsak ilgili sınıfın
+__getitem__ metodu, atama operatörünün solunda kullanıyorsak ilgili sınıfın 
+__setitem__ metodu çağrılmaktadır. 
+
+__getitem__ metodu self parametresinin yanı sıra indeks belirten bir parametre 
+daha sahiptir. __setitem__ ise self parametresinin yanı sıra hem indeks belirten 
+bir parametreye hem de atanacak değeri belirten bir parametreye sahiptir.
+Bu iki metodun parametik yapıları şöyledir:
+------------------------------------------------------------------------------------
+
+def __getitem__(self, index):
+    pass
+
+def __setitem__(self, index, value):
+    pass
+
+------------------------------------------------------------------------------------
+Kullanım sırasında köşeli parantez içerisindeki ifade metotların index 
+parametresine aktarılmaktadır. __setitem__ metodunun üçüncü parametresi ise 
+atanan değeri belirtmektedir. a bir sınıf nesnesi olmak üzere:
+------------------------------------------------------------------------------------
+
+b = a[index]
+
+işleminin eşdeğeri şöyledir:
+
+b = a.__getitem__(index)
+
+Benzer biçimde:
+
+a[index] = value
+
+işlemiin de eşdeğeri şöyledir:
+
+a.__setitem__(index, value)
+
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
 
 
 
