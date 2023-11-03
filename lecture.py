@@ -3006,6 +3006,35 @@ işlemiin de eşdeğeri şöyledir:
 a.__setitem__(index, value)
 
 ------------------------------------------------------------------------------------
+
+class Sample:
+    def __init__(self, *args):
+        self.args = list(args)
+        
+    def __getitem__(self, index):
+        return self.args[index]
+    
+    def __setitem__(self, index, value):
+        self.args[index] = value
+    
+    def __len__(self):
+        return len(self.args)
+    
+s = Sample(10, 20, 30, 40, 50)
+
+for i in range(len(s)):
+    print(s[i], end=' ')        # print(s.__getitem__(i), end=' ')
+print()
+    
+s[0] = 100                      # s.__setitem(0, 100)
+s[2] = 300                      # s.__setitem__(2, 300)
+
+print()
+
+for i in range(len(s)):
+    print(s[i], end=' ')        # print(s.__getitem__(i), end=' ')
+print()
+
 """
 
 
