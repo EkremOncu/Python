@@ -3038,6 +3038,89 @@ print()
 """
 
 
+"""
+class Matrix:
+    def __init__(self, a):
+        self.a = a
+        
+    def __getitem__(self, index):
+        if isinstance(index, int):
+            return self.a[index]
+        
+        if isinstance(index, tuple):
+            if len(index) != 2:
+                raise ValueError('matrix must must have two dimensions')
+            return self.a[index[0]][index[1]]
+        
+        raise TypeError('index invalid type')
+        
+    def __setitem__(self, index, value):
+        if isinstance(index, tuple):
+            if len(index) != 2:
+                raise ValueError('matrix must must have two dimensions')
+            self.a[index[0]][index[1]] = value
+        else:
+            raise TypeError('index invalid type')
+    
+
+a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]        
+
+m = Matrix(a)
+
+result = m[1, 2]
+print(result)           # 6
+
+result = m[1]
+print(result)           # [4, 5, 6]
+
+m[1, 2] = 100
+
+result = m[1, 2]
+print(result)           # 100
+
+result = m['LA24']
+print(result) 
+
+------------------------------------------------------------------------------------
+Köşeli parantez operatöründe dilimleme yapabilmek için slice isminde bir sınıftan 
+faydalanılmaktadır. slice sınıfı built-in bir sınıftır. Bir slice nesnesi tek 
+argümanla, iki argümanla ya da üç argümanla yaratılabilir. slice sınıfının start, 
+stop ve step isimli üç örnek özniteliği vardır. Eğer slice nesnesi tek argümanla 
+yaratılmışsa start ve step None değerinde ancak stop ise girilen argüman değerinde 
+olur. slice nesnesi iki argümanla yaratılmışsa start birinci argümanın, stop 
+ikinci argümanın değerinde olur ancak step None değerinde olur. slice nesnesi üç 
+argümanla yaratılmışsa argümanlar sırasıyla start, stop ve step değerlerinde olur. 
+Örneğin:
+------------------------------------------------------------------------------------
+
+
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
