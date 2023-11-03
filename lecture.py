@@ -2199,7 +2199,7 @@ class D(B, C) :
     def __init__(self):
         B.__init__(self)
         C.__init__(self)
-    
+        print('D.__init__')
 d = D()
 
 Burada ekrana şunlar çıkacaktır:
@@ -2208,6 +2208,7 @@ A.__init__
 B.__init__
 A.__init__
 C.__init__
+D.__init__
 
 ------------------------------------------------------------------------------------
 İşte bu tür baklava biçiminde yapılan türetmelerde tepedeki taban sınıfın 
@@ -3080,7 +3081,10 @@ print(result)           # 100
 
 result = m['LA24']
 print(result) 
+"""
 
+# ---------------- slice built-in fonksiyonu ----------------
+"""
 ------------------------------------------------------------------------------------
 Köşeli parantez operatöründe dilimleme yapabilmek için slice isminde bir sınıftan 
 faydalanılmaktadır. slice sınıfı built-in bir sınıftır. Bir slice nesnesi tek 
@@ -3092,13 +3096,36 @@ ikinci argümanın değerinde olur ancak step None değerinde olur. slice nesnes
 argümanla yaratılmışsa argümanlar sırasıyla start, stop ve step değerlerinde olur. 
 Örneğin:
 ------------------------------------------------------------------------------------
+s = slice(10)
+print(s.start, s.stop, s.step)  # None 10 None
 
+s = slice(10, 20)
+print(s.start, s.stop, s.step)  # 10 20 None
+
+s = slice(10, 20, 2)
+print(s.start, s.stop, s.step)  # 10 20 2
+
+------------------------------------------------------------------------------------
+İşte biz köşeli parantez içerisinde dilimle yaparsak Python yorumlayıcısı bu 
+dilimleme için __getitem__ ve __setitem__ metotlarına slice nesnesi geçirmektedir. 
+Yani yorumlayıcı dilimleme sentaksını gördüğünde bir slice nesnesi yaratıp onu 
+da __getitem__ ve __setitem__ metotlarına argüman olarak geçirmektedir. Örneğin:
+   
+result = a[10:20:2]
+
+işleminin eşdeğeri şöyledir:
+
+result = a.__getitem__(slice(10, 20, 2))
+
+result = a[10:20]
+
+işleminin eşdeğeri şöyledir:
+
+result = a.__getitem__(slice(10, 20, None))
+------------------------------------------------------------------------------------
 
 
 """
-
-
-
 
 
 
