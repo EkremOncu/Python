@@ -3080,7 +3080,7 @@ result = m[1, 2]
 print(result)           # 100
 
 result = m['LA24']
-print(result) 
+print(result)           # TypeError: index invalid type
 """
 
 # ---------------- slice built-in fonksiyonu ----------------
@@ -3112,23 +3112,102 @@ Yani yorumlayıcı dilimleme sentaksını gördüğünde bir slice nesnesi yarat
 da __getitem__ ve __setitem__ metotlarına argüman olarak geçirmektedir. Örneğin:
    
 result = a[10:20:2]
-
-işleminin eşdeğeri şöyledir:
-
 result = a.__getitem__(slice(10, 20, 2))
 
+
 result = a[10:20]
-
-işleminin eşdeğeri şöyledir:
-
 result = a.__getitem__(slice(10, 20, None))
+
+
+result = a[:10:2]
+result = a.__getitem__(slice(None, 10, 2))
 ------------------------------------------------------------------------------------
 
+class Sample:
+    def __init__(self, *args):
+        self.args = list(args)
+        
+    def __getitem__(self, index):
+        return self.args[index]
+    
+    
+    def __setitem__(self, index, value):
+        self.args[index] = value
+    
+    def __len__(self):
+        return len(self.args)
+    
+    def __repr__(self):
+        return repr(self.args)
+    
+s = Sample(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+print(s)
 
+result = s[2:5]     # result = s.__getitem(slice(2,5))
+print(result)
+
+result = s[:5]      # result = s.__getitem(slice(None,5))
+print(result)
+
+------------------------------------------------------------------------------------
+Aşağıdaki örnekte Date sınıfına köşeli parantez desteği verilmiştir. Yani bu 
+örnekte Date nesnesinin gün, ay, yıl bileşenlerine sanki onlar bir diziymiş 
+gibi erişebilmektedir. 
+------------------------------------------------------------------------------------
+
+class Date:
+    def __init__(self, day, month, year):
+        self.day = day
+        self.month = month
+        self.year = year
+    
+    def __getitem__(self, index):
+        if isinstance(index, int):            
+            match index:
+                case 0:
+                    return self.day
+                case 1:
+                    return self.month
+                case 2:
+                    return self.year
+                case _:
+                    raise ValueError('invalid index')
+                    
+        raise TypeError('invalid index type')
+        
+    def __setitem__(self, index, value):
+        if isinstance(index, int):            
+            match index:
+                case 0:
+                    self.day = value
+                case 1:
+                    self.month = value
+                case 2:
+                    self.year = value
+                case _:
+                    raise ValueError('invalid index')
+        else:
+             raise TypeError('invalid index type')
+    
+    def __repr__(self):
+        return f'{self.day:02d}/{self.month:02d}/{self.year:04d}'
+        
+d = Date(2, 11, 2023)
+print(d)
+
+result = d[0]       # result = d.__getitem__(0)
+print(result)
+
+result = d[1]
+print(result)       # result = d.__getitem__(1)
+
+result = d[2]
+print(result)       # result = d.__getitem__(2)
+
+d[1] = 8            # d.__setitem__(1, 8)
+
+print(d)
 """
-
-
-
 
 
 
