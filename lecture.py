@@ -3210,13 +3210,25 @@ print(d)
 """
 
 
+# ---------------- Ellipsis ----------------
+
+a = ...
+print(a)
+print(id(a))        # aynı id
+print(type(a))      # <class 'ellipsis'>
+print()
+
+b = Ellipsis
+print(b)
+print(id(b))        # aynı id
+print(type(b))      # <class 'ellipsis'>
+print()
+
+... is Ellipsis              # True
+a is b  and  a == b         # True
 
 
-
-
-
-
-
+    
 
 
 
