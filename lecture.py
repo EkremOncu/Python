@@ -3233,6 +3233,60 @@ a is b  and  a == b         # True
 # ---------------- Sınıfların statik metotları (class methods) ---------------- 
 """
 ------------------------------------------------------------------------------------
+static metot demek self parametresi olmayan dolayısıyla nesnenin özniteliklerini 
+kullanmayan ancak konu bakımından sınıfla ilişkili olan metot demektir.
+
+Python'da bir metodu static yapabilmek için metodun @staticmethod isimli bir 
+dekoratörle dekore edilmesi gerekmektedir. Dekoratörler konusu izleyen bölümlerde 
+ele alınmaktadır. Bir dekoratör bir fonksiyonu, bir metodu ya da bir sınıfı
+dekore edebilir. Dekoratör  kullanımının genel biçimi şöyledir:
+
+@dekoratör_ismi
+
+Dekoratörler fonksiyonların metotların ve sınıfların hemen üstünde aynı girinti 
+düzeyine sahip biçimde bulundurulmalıdır.
+------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------
+class Date:
+        def __init__(self, day, month, year):
+            self.day = day
+            self.month = month
+            self.year = year
+
+        def __repr__(self):
+            return f'{self.day:02d}/{self.month:02d}/{self.year:04d}'
+
+        @staticmethod   
+        def isleap(year):
+            return year % 400 == 0 or year % 4 == 0 and year % 100 != 0
+
+result = Date.isleap(2024)     
+print(result)   
+print('Artık yıl' if result else 'artık yıl değil')
+
+
+Artık burada isleap metodunun year parametresi birinci parametre olmasına karşın 
+self anlamında değildir. Yani metot artık self parametresine sahip değildir. 
+
+Static metotlar nesnenin özniteliklerini kullanmadığına göre onların çağrılması 
+için bir nesneye gereksinim yoktur. İşte static metotlar sınıf ismi ve metot 
+ismi belirtilerek çağrılırlar.
+------------------------------------------------------------------------------------
+"""            
+
+
+
+
+
+
+
+
+
+
+
+"""
+------------------------------------------------------------------------------------
 Sınıfların statik metotlara benzer ismine "sınıf metotları (class methods)" 
 denilen metotları da olabilmektedir. Sınıf metotları ile statik metotlar tamamen 
 benzer amaçlarla kullanılırlar. Bunların kullanım gerekçeleri ve kullanım biçimleri 
