@@ -3211,7 +3211,7 @@ print(d)
 
 
 # ---------------- Ellipsis ----------------
-
+"""
 a = ...
 print(a)
 print(id(a))        # aynı id
@@ -3226,12 +3226,42 @@ print()
 
 ... is Ellipsis              # True
 a is b  and  a == b         # True
-
-
-    
+"""
 
 
 
+# ---------------- Sınıfların statik metotları (class methods) ---------------- 
+"""
+------------------------------------------------------------------------------------
+Sınıfların statik metotlara benzer ismine "sınıf metotları (class methods)" 
+denilen metotları da olabilmektedir. Sınıf metotları ile statik metotlar tamamen 
+benzer amaçlarla kullanılırlar. Bunların kullanım gerekçeleri ve kullanım biçimleri 
+tamamen aynıdır. Ancak sınıf metotlarının ekstra bir parametresi bulunmaktadır. 
+Sınıf metotlarının birinci parametreleri metodun çağrılmasında kullanılan sınıfın 
+type nesnesini almaktadır. Bu parametre geleneksel olarak "cls" biçiminde 
+isimlendirilmektedir. Sınıf metotları @classmethod isimli dekoratörle dekore 
+edilirler. Örneğin:
+
+class Sample:
+   @staticmethod 
+    def foo():
+        pass
+
+   @classmethod
+   def bar(cls):
+       pass
+
+   def tar(self):
+       pass
+
+Burada foo bir static metottur. bar ise bir sınıf metodudur. tar metodu normal 
+bir metottur. bar metodunun cls parametresi self anlamında değildir. Bu 
+parametreye sınıfın type nesnesi geçirilmektedir. 
+
+Sınıf metotları da ilgili sınıf türünden bir değişkenle çağrılabilmektedir. 
+Ancak bu çağrı yine yanlış anlaşılmalara yol açtığı için iyi bir teknik değildir. 
+------------------------------------------------------------------------------------
+"""
 
 
 
