@@ -3317,6 +3317,10 @@ parametreye sınıfın type nesnesi geçirilmektedir.
 
 Sınıf metotları da ilgili sınıf türünden bir değişkenle çağrılabilmektedir. 
 Ancak bu çağrı yine yanlış anlaşılmalara yol açtığı için iyi bir teknik değildir. 
+
+Static metotlar varken sınıf metotlarına neden gereksinim duyulduğunu merak 
+edebilirsiniz. Aslında sınıf metotları static metotlarle aynı mantığa sahip 
+olsa da static metot yerine sınıf metodunun kullanılması gerektiği yerler olabilmektedir. 
 ------------------------------------------------------------------------------------
 """
 
