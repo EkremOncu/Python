@@ -3248,7 +3248,9 @@ düzeyine sahip biçimde bulundurulmalıdır.
 ------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------------
-class Date:
+
+import datetime
+class Date:  
         def __init__(self, day, month, year):
             self.day = day
             self.month = month
@@ -3257,9 +3259,19 @@ class Date:
         def __repr__(self):
             return f'{self.day:02d}/{self.month:02d}/{self.year:04d}'
 
-        @staticmethod   
-        def isleap(year):
+        @staticmethod    
+        def isleap(year):  # Artık yıl (leap year)
             return year % 400 == 0 or year % 4 == 0 and year % 100 != 0
+        
+        @staticmethod
+        def today():
+            dt = datetime.date.today()   
+            return Date(dt.day, dt.month, dt.year)
+
+date = Date.today()
+print(date)
+
+print()
 
 result = Date.isleap(2024)     
 print(result)   
@@ -3274,15 +3286,6 @@ için bir nesneye gereksinim yoktur. İşte static metotlar sınıf ismi ve meto
 ismi belirtilerek çağrılırlar.
 ------------------------------------------------------------------------------------
 """            
-
-
-
-
-
-
-
-
-
 
 
 """
