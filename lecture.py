@@ -3351,6 +3351,51 @@ class Sample:
 
 Burada da Sample sınıfı dekore edilmiştir. Yine buradaki sekoratör foo'dur.
 ------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------
+Bir dekorasyon yaparken @ sembolünün sağındaki ismin "çağrılabilen (callable)" 
+bir nesne belirtmesi gerekir. Yani bu isim tipik olarak  bir fonksiyon ismi 
+olabilir ya da __call__ metodu bulunan bir sınıf nesnesi olabilir. Buradaki 
+çağrılabilen nesnenin bir parametrenin olması gerekmektedir. Eğer çağrılabilen 
+(callable) nesne bir sınıf nesnesi ise __call_ metodunun self dışında ekstra 
+bir parametresinin bulunması gerekmektedir. Örneğin:
+ 
+def foo(f):
+    pass
+
+@foo
+def bar():
+    pass
+
+Burada foo dekoratördür. foo fonksiyonunun bir parametresi vardır. O halde 
+kullanım geçerlidir. Örneğin:
+
+class Sample:
+    def __call_(self, f):
+        pass
+
+@Sample
+def bar():
+    pass
+
+Burada da kullanım geçerlidir. Çünkü Sample sınıfının __call_ metodunun self 
+parametresi dışında ekstra bir parametresi daha vardır. 
+------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------
+Aşağıdaki gibi dekore edilmş bir fonksiyon olsun:
+
+@foo
+def bar():
+    pass
+
+Bunun tamamen eşdeğeri şöyledir.
+
+def bar():
+    pass
+
+bar = foo(bar)
+------------------------------------------------------------------------------------
 """
 
 
