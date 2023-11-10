@@ -3325,7 +3325,33 @@ olsa da static metot yerine sınıf metodunun kullanılması gerektiği yerler o
 """
 
 
+# ---------------- dekoratör (decorator) ----------------
+"""
+------------------------------------------------------------------------------------
+NYPT'de "dekoratör (decorator)" denilen bir "tasarım kalıbı (design pattern)" 
+vardır. Python'da bu tasarım kalıbı sentaks bakımından desteklenerek bir dil öğesi 
+haline getirilmiştir. Bu sayede bazı tasarımlar daha özlü bir biçimde yapılabilmektedir. 
 
+Python'da dekoratörler fonksiyonlar, metotlara ve sınıflara uygulanabilmektedir. 
+Bir dekoratör bir fonksiyona ya da metoda uygulanmışsa bunlara "fonksiyon dekoratörleri", 
+bir sınıfa uygulanmışsa bunlara da "sınıf dekoratörleri" denilmektedir. Bir 
+fonksiyonu ya da sınıfıdekora edebilmek için fonksiyon ya da sınıfın üstüne aynı 
+girinti düzeyine sahip olacak biçimde @dekoratör_ismi biçiminde bir sentaksın 
+eklenmesi gerekir. Örneğin:
+
+@foo
+def bar():
+    pass
+
+Burada bar fonksiyonu dekore edilmiştir. Buradaki dekoratör foo'dur. Örneğin:
+
+@foo
+class Sample:
+    pass
+
+Burada da Sample sınıfı dekore edilmiştir. Yine buradaki sekoratör foo'dur.
+------------------------------------------------------------------------------------
+"""
 
 
 
