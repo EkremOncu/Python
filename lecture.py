@@ -3209,7 +3209,6 @@ d[1] = 8            # d.__setitem__(1, 8)
 print(d)
 """
 
-
 # ---------------- Ellipsis ----------------
 """
 a = ...
@@ -3218,7 +3217,7 @@ print(id(a))        # aynı id
 print(type(a))      # <class 'ellipsis'>
 print()
 
-b = Ellipsis
+b = Ellipsis    
 print(b)
 print(id(b))        # aynı id
 print(type(b))      # <class 'ellipsis'>
@@ -3227,7 +3226,6 @@ print()
 ... is Ellipsis              # True
 a is b  and  a == b         # True
 """
-
 
 
 # ---------------- Sınıfların statik metotları (class methods) ---------------- 
@@ -3323,7 +3321,6 @@ edebilirsiniz. Aslında sınıf metotları static metotlarle aynı mantığa sah
 olsa da static metot yerine sınıf metodunun kullanılması gerektiği yerler olabilmektedir. 
 ------------------------------------------------------------------------------------
 """
-
 
 # ---------------- dekoratör (decorator) ----------------
 """
