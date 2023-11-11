@@ -3349,7 +3349,7 @@ Burada bar fonksiyonu dekore edilmiştir. Buradaki dekoratör foo'dur. Örneğin
 class Sample:
     pass
 
-Burada da Sample sınıfı dekore edilmiştir. Yine buradaki sekoratör foo'dur.
+Burada da Sample sınıfı dekore edilmiştir. Yine buradaki dekoratör foo'dur.
 ------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------------
@@ -3397,7 +3397,6 @@ def bar():
 bar = foo(bar)
 ------------------------------------------------------------------------------------
 """
-
 
 
 
