@@ -3435,4 +3435,25 @@ planda başka şeyler de yapılıyor olabilir. Örneğin yarattığım nesneye b
 
 
 
+# ---------------------- Pythonda exception işlemleri ----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
