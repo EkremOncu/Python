@@ -3395,10 +3395,33 @@ bar = foo(bar)
 ------------------------------------------------------------------------------------
 """
 
+"""
+------------------------------------------------------------------------------------
+Dekoratörler parametre de alabilmektedir.
 
+def foo(x, y, z):
+    print('foo called')
+    def wrapper1(f):
+        print('wrapper1')
+        def wrapper2(*args, **kwargs):
+            print(f'wrapper2: {x}, {y}, {z}')
+            return f(*args, **kwargs)
+        return wrapper2
+    return wrapper1
 
+@foo(10, 20, 30)
+def bar():
+    print('bar')
+    
+   
+Eşdeğeri
+foo = foo(10, 20, 30)(bar)
 
-
+    
+bar()
+bar()
+------------------------------------------------------------------------------------
+"""
 
 
 
