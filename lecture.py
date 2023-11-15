@@ -3421,10 +3421,17 @@ foo = foo(10, 20, 30)(bar)
 bar()
 bar()
 ------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Sonuç olarak biz bir fonksiyonun dekore edildiğini gördüğümüzde şunu düşünmeliyiz: 
+"Bu fonyksiyonu çağırdığımda aslında ben muhtemelen başka bir fonksiyonu çağırmış 
+olacağım. Ama o fonksiyon da benim fonksiyonumu çağıracak. Fakat bu arada benim 
+faydama bazı şeyler de arka planda yapılmış olacak". Benzer biçimde bir sınıf 
+dekoratörünü gördüğümüzde de şunu düşünmeliyiz: "Bu sınıfa benim eklediklerimden 
+başka şeyler de ekleniyor olabilir. Ben bu sınıf türünden nesne yarattığımda arka 
+planda başka şeyler de yapılıyor olabilir. Örneğin yarattığım nesneye bazı 
+öznitelikler de ekleniyor  olabilir."
+------------------------------------------------------------------------------------
 """
-
-
-
 
 
 
