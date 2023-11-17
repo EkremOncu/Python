@@ -3436,9 +3436,32 @@ planda başka şeyler de yapılıyor olabilir. Örneğin yarattığım nesneye b
 
 
 # ---------------------- Pythonda exception işlemleri ----------------------
+"""
+------------------------------------------------------------------------------------
+İngilizce "exception" sözcüğü "istisna" anlamına gelmektedir. Ancak bu sözcük 
+yazılımda "programın çalışma zamanı sırasında oluşan problemli durumları" 
+anlatmak için kullanılmaktadır. Exception mekanizması genel olarak nesne yönelimli 
+programlama dillerinde bulunmaktadır. Prosedürel dillerin çoğunda bu mekanizma 
+yoktur. Exception programın çalışma zamanına ilişkin bir kavramdır. Etimolojik 
+kökeni donanımsal sorunlara dayanmaktadır.
 
+Bir exception oluştuğunda exception'ın ele alınması (handle edilmesi) gerekir. 
+Eğer exception ele alınmazsa program çöker. Python'da exception'ların birer sınıf 
+ismi vardır. Bu isimler XXXError biçimindedir (örneğin TypeError, IndexError, ValueError gibi).
+------------------------------------------------------------------------------------
 
+Bir exception oluştuğunda programcının devreye girmesine "exception'ın yakalanması" 
+da denilmektedir. Dillerin çoğunda exception'ın ortaya çıkmasına "exception'ın 
+fırlatılması (throwing)" denilmektedir. Python'da bu bağlamda "fırlatma (throw) 
+yerine "raise etme" terimi kullanılmaktadır. 
 
+Python'da exception'ların ele alınması için 
+
+<<<<<  "try", "except", "else", "finally" ve "raise" >>>>>>
+
+anahtar sözcükleri kullanılmaktadır. 
+------------------------------------------------------------------------------------
+"""
 
 
 
