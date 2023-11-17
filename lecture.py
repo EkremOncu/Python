@@ -459,11 +459,14 @@ sql = f'{a:<12}{b:>14}'# sola dayali , saga dayali
 
 
 # ------------------------------------- DEYİM (Statament) ----------------------------------------------------
-
-# Programlar deyimlerin calismasi ile calisir
-# Suit -> Python'da bileşik deyimin anahtar sözcüğü ile aynı satıra yazılan birden fazla basit deyime ya da 
-#    -> farklı satırlara aynı girinti düzeyiyle yazılan birden fazla deyime "suit" denilmektedir. 
-
+"""
+------------------------------------------------------------------------------------
+Programlar deyimlerin calismasi ile calisir
+Suit -> Python'da bileşik deyimin anahtar sözcüğü ile aynı satıra yazılan birden 
+fazla basit deyime ya da 
+-> farklı satırlara aynı girinti düzeyiyle yazılan birden fazla deyime "suit" denilmektedir. 
+------------------------------------------------------------------------------------
+"""
 
 # ------------------------ For --------------------------------
 
@@ -3463,8 +3466,22 @@ anahtar sözcükleri kullanılmaktadır.
 ------------------------------------------------------------------------------------
 """
 
+"""
+------------------------------------------------------------------------------------
+try blokları şu biçimlerde oluşturulabilir:
 
+1) try bloğundan sonra bir grup except bloğu bulunabilir.
+2) try bloğundan sonra bir grup except bloğu ve en sonunda finally bloğu bulunabilir. 
+3) try bloğundan sonra except bloğu olmadan hemen finally bloğu bulunabilir. 
+4) try bloğundan sonra ve except bloklarından sonra ancak finally bloğundan 
+önce bir else bloğu da bulunabilir. 
 
+try anahtar sözcüğünden sonra, except cümleciğinden sonra, else anahtar sözcüğünden 
+sonra ve finally anahtar sözcüğünden sonra bunları bir "suit" izlemek zorundadır. 
+Biz burada suit yerine "blok" terimini kullanacağız. Örneğin "try bloğu" 
+dediğimizde "try" anahtar sözcüğü ve bir "suit" anlaşılmaıdır.  
+------------------------------------------------------------------------------------
+"""
 
 
 
