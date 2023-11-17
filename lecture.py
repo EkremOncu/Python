@@ -3481,6 +3481,42 @@ sonra ve finally anahtar sözcüğünden sonra bunları bir "suit" izlemek zorun
 Biz burada suit yerine "blok" terimini kullanacağız. Örneğin "try bloğu" 
 dediğimizde "try" anahtar sözcüğü ve bir "suit" anlaşılmaıdır.  
 ------------------------------------------------------------------------------------
+
+ except blokları oluşturulurken beş seçenek söz konusudur:
+
+1) except anahtar sözcüğünü bir exception sınıf ismi izleyebilir. Örneğin:
+
+except ValueError:
+    <suit>
+
+
+2) except anahtar sözcüğünü bir exception sınıf ismi ve "as" anahtar sözcüğü 
+ile bir değişken ismi izleyebilir. Örneğin:
+
+except ValueError as e:
+    <suit>
+
+
+3) except anahtar sözcüğünü parantezler içerisinde (yani demet sentaksıyla) bir 
+ya da birden fazla exception sınıf ismi izleyebilir. Örneğin:
+
+except (ValueError, TypeError):
+    <suite>
+
+
+4) except anahtar sözcüğünü parantezler içerisinde (yani demet sentaksıyla) bir 
+ya da birden fazla exception sınıf ismiizleyebilir. Bunu da as anahtar sözcüğü 
+ile bir değişken ismi izleyebilir. Örneğin:
+
+except (ValueError, TypeError) as e:
+    <suite>
+
+
+5) except anahtar sözcüğünü bir şey izlemeyebilir. Örneğin:
+
+except:
+    <suite>
+
 """
 
 
