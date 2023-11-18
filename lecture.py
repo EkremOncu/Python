@@ -3585,10 +3585,49 @@ deyiminin genel biçimi şöyledir:
 raise <exception sınıf nesnesi>
 ------------------------------------------------------------------------------------
 
+------------------------------------------------------------------------------------
+raise anahtar sözcüğünün yanında bir exception nesnesi bulunmalıdır. Bir problem 
+ortaya çıktığında programcı bir exception nesnesi oluşturur. Probleme ilişkin 
+bazı bilgileri eğer gerekiyorsa o nesnenin örnek özniteliklerine yazar ve o nesneyle 
+raise işlemi yapar. C++ gibi bazı programlama dillerinde bu tür işlemlerde herhangi 
+türden nesneler kullanılabilmektedir. Ancak Java gibi, C# gibi, Python gibi 
+dillerde exception nesneleri özel sınıflardan türetilmiş olan sınıflar türünden 
+olmak zorundadır. İzleyen pragraflarda bunun ayrıntıları ele alınacaktır.
 
+Daha önce sözünü ettiğimiz ValueError, TypeError, IndexError gibi exception 
+sınıflarının __init__ metorları bizden bir yazıyı parametre olarak almaktadır. 
+Eğer exception yakalanmazsa program çökerken bu yazı da ekrana bastırılmaktadır. 
+
+
+Aşağıdaki örnekte foo fonksiyonu negatif parametreleri kabul etmemektedir. Eğer 
+fonksiyon negatif bir değerle çağrılırsa exception oluşturmaktadır.
+------------------------------------------------------------------------------------
+
+def foo(a):
+    print('foo başladı')
+    if a < 0:
+        raise ValueError('parametre negatif olamaz')
+    print('foo bitti')
+    
+foo(-2)   
 
 """
+"""
+def disp_sqrt(val):
+   if not isinstance(val, float | int):
+       raise TypeError('parameter must be float or int')
+   if val < 0:
+       raise ValueError('value must not be negative')
+   print(val ** 0.5)  
+   
+try:
+    disp_sqrt(100)
+    disp_sqrt(144)
+    disp_sqrt('ali')
+except ValueError:
+    print('fonksiyon yanlışlıkla negatif bir değerle çağrıldı')
 
-
+print('son...')
+"""
 
 
