@@ -3556,15 +3556,38 @@ try:
 except ValueError:
     print('ValueError yakalandı')
 print('program devam ediyor')
+
+------------------------------------------------------------------------------------
+Python'da en çok karşılaşılan altı Exception sınıfı vardır: ValueError, 
+TypeError, IndexError, KeyError, NameError ve AttributeError.
+
+while True:
+    try:
+        val = int(input('Bir sayı giriniz:'))
+        print(val * val)
+        break
+    except ValueError:
+        print('Girdiğiniz sayı geçersiz!')
+
+------------------------------------------------------------------------------------
 """
 
+# raise
+"""
+------------------------------------------------------------------------------------
+Şimdiye kadar biz hep başkaları tarafından oluşturlan exception'ları yakalamaya 
+çalıştık. Aslında biz de exception oluşturabiliriz. 
+
+Exception'ı oluşturan asıl deyim raise deyimidir. Exception'lar kendiliğinde oluşmaz. 
+Exception'ı oluşturmk için raise anahtar sözcüğünü kullanmak gerekir. raise 
+deyiminin genel biçimi şöyledir:
+
+raise <exception sınıf nesnesi>
+------------------------------------------------------------------------------------
 
 
 
-
-
-
-
+"""
 
 
 
