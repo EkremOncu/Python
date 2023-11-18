@@ -3517,10 +3517,46 @@ except (ValueError, TypeError) as e:
 except:
     <suite>
 
+------------------------------------------------------------------------------------
+Exception mekanizması şöyle çalışlmaktadır: Programın akışı try bloğuna girdikten 
+sonra bir exception kontrolü uygulanır. Akış try bloğuna girdikten sonra herhangi 
+bir yerde exception oluşursa akış bir goto işlemi gibi oluşan exception'ın 
+türüne uygun olan except bloğuna aktarılır. İlgili except bloğu çalıştırılır, 
+diğer except blokları atlanır. Akış except bloklarının sonundan devam eder. Eğer 
+programın akışı try bloğuna girdikten sonra hiç exception oluşmazsa akış try 
+bloğunun sonuna geldiğinde except blokları atlanır ve akış except bloklarının 
+sonundan devam eder. Yani except blokları "exception oluşursa çalıştırılmaktadır".
+Exception oluşmazsa onların bir işlevi kalmaz. Bir exception oluştuğunda akış 
+o exception ile aynı türden except bloğuna aktarılmaktadır. Except bloklarının 
+yalnızca bir tanesinin çalıştırıldığına dikkat ediniz. (Yani bunlar adeta 
+match/case gibi işlem görmektedir). Exception nerede oluşursa oluşsun akış except 
+bloğuna aktarıldıktan sonra bir daha geri dönmez. except bloklarının sonundan 
+devam eder. finally bloğu ve parametresiz except bloğu daha ileride ele alınacaktır. 
+Bir exception oluştuğunda bu exception'ın türüne uygun bir except bloğunun 
+bulunuyor olması gerekir. Aksi takdirde yine program çökecektir. 
+------------------------------------------------------------------------------------
+
+def tar():
+    print('tar başladı')
+    int('xxxxx')        # ValueError oluşacak
+    print('tar bitti')
+
+def bar():
+    print('bar başladı')
+    tar()
+    print('bar bitti')
+
+def foo():
+    print('foo başladı')
+    bar()
+    print('foo bitti')
+
+try:
+    foo()
+except ValueError:
+    print('ValueError yakalandı')
+print('program devam ediyor')
 """
-
-
-
 
 
 
