@@ -3661,3 +3661,44 @@ class ValueError(Exception):
         super().__init__(*args)
 ------------------------------------------------------------------------------------        
 """
+
+"""
+------------------------------------------------------------------------------------ 
+Bir exception except bloğu ile yakalanırken exception sınıf isminin yanı sıra 
+as anahtar sözcüğü ve bir değişken kullanılabilir. Örneğin:
+
+except ValueError as e:
+    pass
+
+Bu durumda raise ile fırlatılan exception'daki exception nesnesi (yani onun adresi) 
+as ile belirtilen değişkene atanmaktadır. Böylece bir exception fırlatıldığında
+programcı o exception yakalayarak oradan exception arümanlarına erişebilir. 
+Örneğin:
+    
+def disp_sqrt(val):
+       if not isinstance(val, float|int):
+           raise TypeError('parameter must be float or int')
+       if val < 0:
+           raise ValueError('value must not be negative')
+       print(val ** 0.5)  
+       
+try:
+    disp_sqrt(-10)
+except ValueError as e:
+    print(e)
+        
+------------------------------------------------------------------------------------ 
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
