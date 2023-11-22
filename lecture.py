@@ -2253,7 +2253,7 @@ C.foo(d)                    # C.foo çağrılır
 """
 class A:
     def __init__(self):
-        super(A, self).__init__
+        super(A, self).__init__ #opsiyonel
         print('A.__init__')
     
 class B(A):
@@ -3595,7 +3595,7 @@ dillerde exception nesneleri özel sınıflardan türetilmiş olan sınıflar t�
 olmak zorundadır. İzleyen pragraflarda bunun ayrıntıları ele alınacaktır.
 
 Daha önce sözünü ettiğimiz ValueError, TypeError, IndexError gibi exception 
-sınıflarının __init__ metorları bizden bir yazıyı parametre olarak almaktadır. 
+sınıflarının __init__ metotları bizden bir yazıyı parametre olarak almaktadır. 
 Eğer exception yakalanmazsa program çökerken bu yazı da ekrana bastırılmaktadır. 
 
 
@@ -3630,4 +3630,34 @@ except ValueError:
 print('son...')
 """
 
+"""
+------------------------------------------------------------------------------------
+Python'daki ValueError gibi, TypeError gibi, IndexError gibi standart Exception 
+sınıflarının hepsi doğrudan ya da dolaylı olarak Exception isimli bir sınıftab 
+türetilmiş durumdadır. Bu Exception sınıfı da BaseException isimli bir sınıftan 
+türetilmiştir. Yani Python'daki exception sınıf hiyerarşisi tipik olarak şöyledir:
 
+                            BaseException  
+                              Exception
+    ValueError   TypeError   AttributeError   LookupError  ....
+                                         KeyError   IndexError 
+
+Tüm bu built-in exception sınıflarının hepsinin __init__ metodu *args parametrelidir. 
+Bunlar kullanıcıdan aldıkları argümanları taban sınıfın __init__ metodu yoluyla 
+taban sınıfa ilettirler. En tepedeki BaseException sınıfı da bu argümanları args 
+isimli örnek özniteliğinde saklamakltadır. Yani bu sınıfların __init__ metotları 
+aşağıdaki gibi yazılmış durumdadır:
+
+class BaseException:
+    def __init__(self, *args):
+        self.args = args
+
+class Exception(BaseException):
+    def __init__(selfs, *args):
+        super().__init__(*args)
+
+class ValueError(Exception):
+    def __init__(selfs, *args):
+        super().__init__(*args)
+------------------------------------------------------------------------------------        
+"""
