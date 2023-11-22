@@ -3686,11 +3686,44 @@ try:
     disp_sqrt(-10)
 except ValueError as e:
     print(e)
-        
+
+
+Bu örnekte programcı fırlatılan exception nesnesini as cümleciği ile elde etmiş 
+ve onun argümanlarını yazdırmıştır        
 ------------------------------------------------------------------------------------ 
 """
+"""
+------------------------------------------------------------------------------------
+Programcı kendi exception sınıflarını yazabilir ve onları kullanabilir. Bir sınıf 
+ile raise işleminin yapılabilmesi için ve o sınıfın except anahtar sözcüğünün 
+yanında kullanılabilmesi için BaseException sınıfından türetilmiş olması gerekir. 
+Ancak Python standartları programcının kendi exception sınıflarının doğrudan 
+BaseException sınıfından değil bu sınıftan türetilmiş olan Exception sınıfından 
+türetilmesi gerektiğini belirtmektedir. Tabii biz istersek zaten var olan 
+exception sınıflarından da türetme yapabiliriz. Örneğin:
 
+    
+class NegativeError(ValueError):
+    pass
 
+def disp_sqrt(val):
+    if val < 0:
+        raise NegativeError('value must not be negative')
+    print(val ** 0.5)  
+    
+try:
+    disp_sqrt(-10)
+except NegativeError as e:
+    print(e)
+
+        
+Bu örnekte biz Python Standart Kütüphanesinde olmayan NegativeError isimli bir 
+exceptionm sınıfı yazdık. Bu sınıfımızı ValueError sınıfından türettik. Sınıfımız 
+için __init__ metodu yazmadık. Bu durumda taban sınıfın __init__ metodu devreye
+girecektir. Exception yakalırken yine except anahtar sözcüğünün yanına kendi 
+exception sınıf ismini yazdığımıza dikkat ediniz. 
+------------------------------------------------------------------------------------
+"""
 
 
 
