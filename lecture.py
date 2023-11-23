@@ -3725,13 +3725,32 @@ exception sınıf ismini yazdığımıza dikkat ediniz.
 ------------------------------------------------------------------------------------
 """
 
+"""
+------------------------------------------------------------------------------------
+except (TypeError, ValueError) as e:
+       pass
 
+İşte böyle bir durumda hangi exception oluşrsa (örneğimizde TypeError ya da ValueError) 
+o exception nesnesi as ile belirtilen değişkene atanacaktır. Yani burada TypeError 
+oluşursa e değişkeni TypeError nesnesini, ValueError oluşursa e değişkeni 
+ValueError nesnesini tutacaktır. 
 
+def disp_sqrt(val):
+    if not isinstance(val, int):
+        raise TypeError('parameter must be float or int')
+    if val < 0:
+        raise ValueError('value must not be negative')
+    print(val ** 0.5)  
+    
+try:
+    disp_sqrt('xxx')
+except (ValueError, TypeError) as e:
+    print(e)
+        
+print('son...')
 
-
-
-
-
+------------------------------------------------------------------------------------
+"""
 
 
 
