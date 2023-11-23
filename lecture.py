@@ -3752,5 +3752,58 @@ print('son...')
 ------------------------------------------------------------------------------------
 """
 
+"""
+------------------------------------------------------------------------------------
+Türemiş sınıf türünden oluşan bir exception taban sınıf türünden bir except bloğu 
+tarafından yakalanabilir. Başka birdeyişle bir except bloğu yalnızca o sınıf 
+türünden exception'ları değil aynı zamanda o sınıftan türetilmiş olan exception'ları 
+da yakalayabilmektedir. Örneğin biz NegativeError isimli exception sınıfının 
+ValueError sınıfından türetmiştik. O halde biz bu NegativeError exception'ını 
+istersek ValueError except bloğu ile de yakalayabiliriz. Örneğin:
+
+class NegativeError(ValueError):
+    pass
+
+def disp_sqrt(val):
+    if val < 0:
+        raise NegativeError('value must not be negative')
+    print(val ** 0.5)  
+  
+try:
+    disp_sqrt(-10)
+except ValueError as e:
+    print(e)
+
+  
+Burada NegativeError exception'ı NegativeError içeren except bloğu tarafından da yakalanabilir, ValueError içeren 
+except bloğu taraından da yakalanabilir.
+------------------------------------------------------------------------------------
+
+Bütün exception sınıfları taban Exception sınıfından türetildiğine göre biz 
+aslında bütün exception'ları Exception parametreli ya da BaseException 
+parametreli bir except bloğu ile yakalabiliriz. Örneğin:
+
+try:
+    do_something()
+except Exception as e:
+    print(e)
+
+------------------------------------------------------------------------------------
+try:
+    val = int(input('Bir sayı giriniz:'))
+    print(val * val)
+except Exception as e:
+    print(f'Exception: {e}', type(e))
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
+
+
 
 
