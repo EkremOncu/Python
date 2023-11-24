@@ -3902,17 +3902,43 @@ except:
     print('argument error')  
 
 """
+"""
+------------------------------------------------------------------------------------
+Peki, Exception parametreli except bloğu parametresiz except bloğu gibi de zaten 
+işlev görmüyor mu? Ne de olsa Python'da tüm exception'şarın BaseError sınıfından 
+türetilmiş olan Exception sınıfından türetildiğini görmüştük. Yani örneğin:
 
+try:
+    pass
+except Exception:
+    pass
 
+ile aşağıdaki arasında işlevsel bir farklılıkm var mıdır?
 
+try:
+    pass
+except:
+    pass
 
+İşte aslında parametresiz except bloğu toplamda Exception parametreli 
+except bloğundan daha geneldir.
+------------------------------------------------------------------------------------
+"""
 
+# Finally blogu
 
+"""
+------------------------------------------------------------------------------------
+try bloğunun bir de finally bloğu olabilmektedir. finally bloğu parametresiz 
+olmak zorundadır. finally bloğu except blokları ile birlikte ya da except blokları 
+olmadan kullanılabilir. Her durumda finally bloğu en sonda olmak zorundadır. 
+    
+finally bloğu exception oluşsa da oluşmasa da çalıştırılır. Yani exception 
+oluşursa önce exception'ı yakalayan exceptbloğu çalıştırılır sonra finally bloğu 
+çalıştırılır. Eğer exception oluşmazsa yine finally bloğu çalıştırılır.     
 
-
-
-
-
+------------------------------------------------------------------------------------
+"""
 
 
 
