@@ -3846,7 +3846,7 @@ main()
 bloğuna girmiştir. Örneğimizde oluşanValueError exception'ı için önce son girilen 
 (bar'daki) try bloğunun except bloklarına bakılır. Bu exception burada yakalanamadığı 
 için bu kez foo fonksiyonundaki except bloklarına bakılacaktır. ValueError 
-exception'ı foo fonksiyonunda akalanmıştır. Artık sanki exception oluşmamış gibi 
+exception'ı foo fonksiyonunda yakalanmıştır. Artık sanki exception oluşmamış gibi 
 programın çalışması oradan devam edecektir. Programı çalıştırdığınızda
 ekranda şu yazıları göreceksiniz:
 
@@ -3859,6 +3859,63 @@ ekranda şu yazıları göreceksiniz:
     main ends...
 ------------------------------------------------------------------------------------
 """
+
+
+# Parametresiz Except blogu
+"""
+------------------------------------------------------------------------------------
+Özel bir except bloğu da parametresiz except bloğudur. Parametresiz except bloğu 
+tüm exception'ları yakalar. Ancak parametresiz except blokları bulundurulacaksa 
+tüm except bloklarının sonunda bulundurulmalıdır. Aksi takdirde "sentaks hatası" 
+ile programın çalıştırılması da başlatılmaz. Örneğin:
+
+try:
+    foo()
+except ValueError:
+    pass
+except TypeError:
+    pass
+except:
+    pass
+
+Burada ValueError ve TypeError ayrı except bloklarıyla yakalanmıştır. Ancak diğer 
+tüm exception'lar parametresiz except bloğu ile yakalanır. Parametresiz except 
+bloğunda bir as cümleceği bulunamaz.
+------------------------------------------------------------------------------------
+import math
+
+def disp_sqrt(val):
+    if not isinstance(val, int|float):
+        raise TypeError('argument must be int or float!')
+    if val < 0:
+        raise ValueError('argumant must be positive or zero')
+        
+    result = math.sqrt(val)
+    print(result)
+ 
+try:
+    disp_sqrt(10)
+    disp_sqrt('ankara')
+except ValueError as e:
+    print(e)
+except:
+    print('argument error')  
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
