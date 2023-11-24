@@ -3797,10 +3797,68 @@ except Exception as e:
 ------------------------------------------------------------------------------------
 """
 
+"""
+------------------------------------------------------------------------------------
+Programın akışı birden fazla kez try bloğuna girebilir. Bu durumda bir exception 
+oluşursa try bloklarının except blokları içten dışa doğru (yani son girilen try 
+bloğundan ilk girilene doğru) gözden geçirilir. Eğer exception bir try bloğunun 
+except bloğu tarafından yakalanırsa orada ele alınmış alur. Artık dış try 
+bloklarına bu exception yansıtılmaz. Eğer exception dış hiçbir try bloklerının 
+except blokları tarafından da yakalanamazsa program çöker. 
+
+Aşağıdaki örnekte main fonksiyonu foo fonksiyonunu, foo fonksiyonu bar 
+fonksiyonunu, bar fonksiyonu da tar fonksiyonunu çağırmaktadır. 
+
+main ---> foo ---> bar ---> tar
 
 
+def foo(a):
+    print('foo begins...')
+    try:
+        bar(a)
+    except ValueError as e:
+        print(e)
+    print('foo ends')
+
+def bar(a):
+    print('bar begins...')
+    try:
+        tar(a)
+    except TypeError as e:
+        print(e)
+    print('bar ends')
+    
+def tar(a):
+    print('tar begins...')
+    if a < 0:
+        raise ValueError('parameter may not be negative!...')
+    print('tar begin...')
+    
+def main():
+    print('main begins...')
+    foo(-2)
+    print('main ends...')
+
+main()
 
 
+Örneğimizde tar fonksiyonunda exception oluşmuştur. Programın akışı iki kez try 
+bloğuna girmiştir. Örneğimizde oluşanValueError exception'ı için önce son girilen 
+(bar'daki) try bloğunun except bloklarına bakılır. Bu exception burada yakalanamadığı 
+için bu kez foo fonksiyonundaki except bloklarına bakılacaktır. ValueError 
+exception'ı foo fonksiyonunda akalanmıştır. Artık sanki exception oluşmamış gibi 
+programın çalışması oradan devam edecektir. Programı çalıştırdığınızda
+ekranda şu yazıları göreceksiniz:
+
+    main begins...
+    foo begins...
+    bar begins...
+    tar begins...
+    parameter may not be negative!...
+    foo ends
+    main ends...
+------------------------------------------------------------------------------------
+"""
 
 
 
