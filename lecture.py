@@ -3965,7 +3965,7 @@ bloğundan faydalanılabilir.
 Burada kaynak tahsis edildikten sonra bir exception oluşsa da kaynağın geri 
 bırakılması finally bloğu sayesinde mümkün olmaktadır. Örneğin bir fonksiyon 
 içerisinde bir dosya açılmış olabilir. Ancak dosya kapatılmadan exception oluşabilir. 
-İşte dosya finally bloğunda kapatılırsa bir sorun oluşmaz:
+İşte dosya finally bloğunda kapatılırsa bir sorun oluşmaz.
 
 def foo():
     f = None
@@ -3981,6 +3981,55 @@ def foo():
 ------------------------------------------------------------------------------------
 """
 
+# reraise islemi
+
+"""
+------------------------------------------------------------------------------------
+raise deyiminde raise anahtar sözcüğünün yanına ifade getirilmeyebilir. Buna 
+"reraise" denilmektedir. Bu biçimdeki reaise deyimi ancak except bloklarında 
+kullanılabilmektedir. Reraise işlemi aslında "exception'ı yakalanmamış hale 
+getirmektedir. Başka bir deyişle reraise işlemi aynı exception aynı parametreyle 
+yeniden fırlatılıyor gibi bir etki oluşturmaktadır. Reraise işlemleri tipik olarak 
+iç içe try bloklarında exception'ın içteki try bloğunun except blokları tarafından 
+yakalanması durumunda aynı yakalamanın dışarıda da yapılması amacıyla kullanılmaktadır.
+------------------------------------------------------------------------------------
+"""
+
+# sys
+
+"""
+------------------------------------------------------------------------------------
+Python'ın standart sys modülünde exc_info isimli exception mekainizması ile ilgili 
+bir fonksiyon vardır. Bu fonksiyon bir except bloğu içerisinde çağrılmalıdır. 
+
+Bu fonksiyon bize üçlü bir demet verir. 
+Demetin ilk elemanı oluşan exception'ın türünü, 
+ikinci elemanı exception nesnesini 
+üçüncü elemanı da trace bilgisini belirtmektedir. 
+
+Programcı isterse as cümleciği ile elde edebileceği exception nesnesini bu 
+fonksiyonla da elde edebilir. Örneğin parametresiz except bloklarında as cümleciği 
+kullanılamayacağından dolayı exception nesnesi ve türü bu yolla elde edilebilmektedir. 
+Fonksiyon except bloğunun dışında çağrılmasının bir anlamı yoktur. Eğer fonksiyon 
+except bloğunun dışında çağrılırsa fonksiyonun verdiği demetin üç elemanı da 
+None olmaktadır. 
+
+Aşağıdaki örnekte parametresiz except bloğunda exception bilgileri 
+sys.exc_info fonksiyonu ile elde edilmiştir. 
+
+
+import sys
+
+try:
+    val = int(input('Bir sayı giriniz:'))
+    print(val * val)
+except:
+    print('exception oluştu')
+    exc_type, exc_obj, exc_trace = sys.exc_info()
+    print(exc_type, exc_obj, exc_trace, sep=' ||| ')
+
+------------------------------------------------------------------------------------
+"""
 
 
 
