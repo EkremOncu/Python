@@ -4030,6 +4030,36 @@ except:
 
 ------------------------------------------------------------------------------------
 """
+"""
+------------------------------------------------------------------------------------
+sys.exc_info fonksiyonundan elde edilen trace bilgisi bir bağlı liste biçimindedir. 
+Bu bağlı liste bize exception'ın oluştuğu noktaya kadarki fonksiyon akışlarını 
+vermektedir.
 
+Bir exception yakalanmadığında program çökerken bu trace bilgileri de ekrana basılmaktadır. Böylece programcı buradaki
+bilgileri izeleyerek çökmenin akıştaki yerini tespit edebilir. Aşağaıdaki programda oluşan exception ele alınmadığından
+program çökecektir. Program çöktüğünde ekrana çıkan yazılara dikkat ediniz:
 
+Traceback (most recent call last):
 
+File ~\anaconda3\lib\site-packages\spyder_kernels\py3compat.py:356 in compat_exec
+    exec(code, globals, locals)
+
+File c:\dropbox\shared\kurslar\python\src\sample.py:15
+    main()
+
+File c:\dropbox\shared\kurslar\python\src\sample.py:13 in main
+    foo()
+
+File c:\dropbox\shared\kurslar\python\src\sample.py:4 in foo
+    bar()
+
+File c:\dropbox\shared\kurslar\python\src\sample.py:7 in bar
+    tar()
+
+File c:\dropbox\shared\kurslar\python\src\sample.py:10 in tar
+    raise ValueError()
+
+ValueError
+------------------------------------------------------------------------------------
+"""
