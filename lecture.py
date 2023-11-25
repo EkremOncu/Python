@@ -3940,10 +3940,46 @@ oluşursa önce exception'ı yakalayan exceptbloğu çalıştırılır sonra fin
 ------------------------------------------------------------------------------------
 """
 
+"""
+------------------------------------------------------------------------------------
+Peki finally bloğuna neden gereksinim duyulmaktadır? finally bloğu "yapılmış 
+tahisisatların garantili bir biçimde geri bırakılması amacıyla" kullanılmaktadır. 
+Burada "tahsisat" demekle bir kaynak kullanımından bahsediyoruz. Bazı kaynaklar
+sınırlı ölçüdedir. Kaynak kullanıldıktan sonra onun geri bırakılması gerekir. Örneğin:
 
+def foo():
+      try:
+          ...
+          <kaynak tahsisatı yapılıyor>
+          ...
+          ...         <tahsis edilen kaynak kullanılıyor>
+          ...
+      finally:
+          <kaynak geri bırakılıyor>
 
+Burada kaynak tahsis edildikten sonra bir exception oluşursa bu exception dış 
+bir try bloğu tarafından ele alınıyorsa artık bu kaynağın geri bırakılma olanağı 
+kalmayacaktır. Halbuki bu geri bırakma işlemini otomatize etmek için finally
+bloğundan faydalanılabilir.
 
+Burada kaynak tahsis edildikten sonra bir exception oluşsa da kaynağın geri 
+bırakılması finally bloğu sayesinde mümkün olmaktadır. Örneğin bir fonksiyon 
+içerisinde bir dosya açılmış olabilir. Ancak dosya kapatılmadan exception oluşabilir. 
+İşte dosya finally bloğunda kapatılırsa bir sorun oluşmaz:
 
+def foo():
+    f = None
+    try:
+        f = open('test.txt')
+        s = f.read()
+        #...
+        s = f.read()
+        #...
+    finally:
+        if f:
+            f.close()   
+------------------------------------------------------------------------------------
+"""
 
 
 
