@@ -35,6 +35,60 @@ class Time:
         self.second = second
         return print(self.hour, self.minute, self.second)
 
+        def __lt__(self, t):
+            if isinstance(t, int | float):
+                result = self._tseconds < t
+            elif isinstance(t, Time):
+                result = self._tseconds < t._tseconds
+            else:
+                raise TypeError('invalid type')
+            return result
+
+        def __le__(self, t):
+            if isinstance(t, int | float):
+                result = self._tseconds <= t
+            elif isinstance(t, Time):
+                result = self._tseconds <= t._tseconds
+            else:
+                raise TypeError('invalid type')
+            return result
+
+        def __gt__(self, t):
+            if isinstance(t, int|float):
+                result= self._tseconds > t
+            elif isinstance(t, Time):
+                result= self._tseconds > t._tseconds
+            else:
+                raise TypeError('invalid type')
+            return result
+
+        def __ge__(self, t):
+            if isinstance(t, int | float):
+                result = self._tseconds >= t
+            elif isinstance(t, Time):
+                result = self._tseconds >= t._tseconds
+            else:
+                raise TypeError('invalid type')
+            return result
+
+        def __eq__(self, t):
+            if isinstance(t, int | float):
+                result = self._tseconds == t
+            elif isinstance(t, Time):
+                result = self._tseconds == t._tseconds
+            else:
+                raise TypeError('invalid type')
+            return result
+
+        def __ne__(self, t):
+            if isinstance(t, int | float):
+                result = self._tseconds != t
+            elif isinstance(t, Time):
+                result = self._tseconds != t._tseconds
+            else:
+                raise TypeError('invalid type')
+            return result
+
 dc = Time(5,8,4)
 dc.__repr__()
 dc.__str__()
