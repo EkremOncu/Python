@@ -91,24 +91,51 @@ class Time:
     def __add__(self,t):
         if isinstance(t, int | float):
             result= self._tseconds + t
+            while result > 86399:   # 86399 -> 23:59:59'un saniyeye donusturulmus hali
+                result = result - 86399
         elif isinstance(t, Time):
             result = self._tseconds + t._tseconds
+            while result > 86399:
+                result = result - 86399
         else:
             raise TypeError('invalid type')
 
         return self._seconds_to_time(result)
-
     __radd__ = __add__
 
-dc = Time(5,8,4)
-ac = Time(4,2,3)
-"""
-dc.__repr__()
-dc.__str__()
-"""
+    def __sub__(self, t):
+        if isinstance(t, (int,float)):
+            result= self._tseconds - t
+            while result < 0:
+                result= 86399+result
+
+        elif isinstance(t, Time):
+            result= self._tseconds - t._tseconds
+            while result < 0:
+                result = 86399 + result
+        else:
+            raise TypeError('invalid type')
+
+        return self._seconds_to_time(result)
+    __rsub__ = __sub__
+
+dc = Time(21,2,3)
+ac = Time(10,2,3)
+
+print(dc<ac)
+print(dc>ac)
+print(dc==ac)
+print(dc!=ac)
+
+print('------------')
 print (dc._seconds_to_time(dc._tseconds))
+print('------------')
 
 dc._total_seconds()
 ac._total_seconds()
+print('------------')
 
 print(dc+ac, type(dc+ac))
+print(dc-ac, type(dc-ac))
+print(ac-dc, type(ac-dc))
+
