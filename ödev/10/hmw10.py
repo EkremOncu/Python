@@ -119,6 +119,12 @@ class Time:
         return self._seconds_to_time(result)
     __rsub__ = __sub__
 
+    def __int__(self,t):
+        return t
+
+    def __bool__(self):
+        return bool(self._tseconds)
+
 dc = Time(21,2,3)
 ac = Time(10,2,3)
 
@@ -139,3 +145,5 @@ print(dc+ac, type(dc+ac))
 print(dc-ac, type(dc-ac))
 print(ac-dc, type(ac-dc))
 
+print(dc.__int__(616))
+print(dc.__bool__())
