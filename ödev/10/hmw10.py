@@ -1,4 +1,4 @@
-# Solution 1
+# Solution 
 class Time:
     def __init__(self, hour=0, minute=0, second=0):
         self.hour = hour
@@ -120,13 +120,37 @@ class Time:
     __rsub__ = __sub__
 
     def __int__(self,t):
-        return t
+        return t._tseconds
 
     def __bool__(self):
         return bool(self._tseconds)
 
+    def __getitem__(self, index):
+        match index:
+            case 0:
+                return self.hour
+            case 1:
+                return self.minute
+            case 2:
+                return self.second
+            case _:
+                raise ValueError('Invalid index')
+
+    def __setitem__(self, index, value):
+        match index:
+            case 0:
+                self.hour = value
+            case 1:
+                self.minute = value
+            case 2:
+                self.second = value
+            case _:
+                raise ValueError('Invalid index')
+        self._tseconds =self.hour * 3600 + self.minute * 60 + self.second
+
 dc = Time(21,2,3)
 ac = Time(10,2,3)
+
 
 print(dc<ac)
 print(dc>ac)
@@ -144,6 +168,11 @@ print('------------')
 print(dc+ac, type(dc+ac))
 print(dc-ac, type(dc-ac))
 print(ac-dc, type(ac-dc))
+print('------------')
 
-print(dc.__int__(616))
 print(dc.__bool__())
+print(dc.__int__(dc))
+print('------------')
+dc[1] = 23
+print(dc[1])
+print(dc._tseconds)
