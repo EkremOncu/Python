@@ -4088,6 +4088,21 @@ değilse göreli yol ifadeleri denilmektedir. Örneğin:
 "a/b/c.txt"                     ---> Göreli yol ifadesi
 "test.txt"                      --> Göreli yol ifadesi
 "\a.txt"                        --> Mutlak yol ifadesi (Windows)
+
+Mutlak yol ifadeleri her zaman kök dizinden itibaren yer belirtmektedir. Göreli 
+yol ifadeleri ise prosesin "çalışma dizininden (current working directory)" 
+itibaren yer belirtir. İşletim sistemleri dünyasında çalışmakta olan programlara 
+"prosess (process)" denilmektedir. İşletim sistemleri her proses için bir çalışma 
+dizini (current working directory) tutmaktadır. İşte göreli yol ifadeleri bu 
+çalışma dizininden itibaren bir yer belirtir.
+
+Windows sistemlerinde yol ifadesine sürücü ismi de dahi edilebilir. Örneğin 
+"c:\temp\test.txt" gibi. Bu tür yol ifadelerine Microsoft "tam yol ifadeleri 
+(full path)" demektedir. Microsoft sistemlerinde mutlak bir yol ifadesinde sürücü 
+belirtilmezse bu durumda bu yol ifadesinin prosesin çalışma dizinine ilişkin 
+sürücüdeki bir yol ifadesi olduğu sonucu çıkartılır. Örneğin prosesimizin çalışma 
+dizini "F:\test\study" olun. Biz "\a\b\c.txt" biçiminde mutlak bir yol ifadesi 
+verirsek buradaki kök F sürücüsünün köküdür. 
 ------------------------------------------------------------------------------------
 """
 
