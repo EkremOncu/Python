@@ -4103,10 +4103,45 @@ belirtilmezse bu durumda bu yol ifadesinin prosesin çalışma dizinine ilişkin
 sürücüdeki bir yol ifadesi olduğu sonucu çıkartılır. Örneğin prosesimizin çalışma 
 dizini "F:\test\study" olun. Biz "\a\b\c.txt" biçiminde mutlak bir yol ifadesi 
 verirsek buradaki kök F sürücüsünün köküdür. 
+
+
+Windows, UNIX/Linux ve macOS sistemlerinde yol bileşenlerinde "." ve ".." 
+ifadeleri özel bir anlama gelmektedir. "." ifadesi "o andaki dizin" anlamına 
+".." ifadesi o andaki dizinin üst dizini anlamına gelmektedir. Örneğin:
+
+"/a/b/c/../test.txt"
+
+Bu yol ifadesi aşağıdakiyle eşdeğerdir:
+
+"/a/b/test.txt"
+
+Örneğin:
+
+"/a/b/./c.txt"
+
+Bu yoli fadesi de aşağıdaki yok ifadesi ile tamamen aynıdır:
+
+"/a/b/c.txt"
 ------------------------------------------------------------------------------------
 """
+"""
+------------------------------------------------------------------------------------
+Prosesin çalışma dizini "os" modülündeki getcwd fonksiyonu ile bir string biçiminde 
+elde edilebilir. Örneğin:
 
+import os
 
+cwd = os.getcwd()
+print(cwd)
+
+Python programının çalışma dizini default durumda neresidir? Spyder IDE'si hangi 
+program çalıştırılıyorsa o program dosyasının bulunduğu dizini programın default 
+çalışma dizini yapmaktadır. Zaten bu dizin aynı zamanda IDE'de sağ üst köşede 
+görüntülenmektedir. PyCharm IDE'si ise proje dizinini programın default çalışma 
+dizini yapmaktadır. Eğer biz bir Python programını komut satırından çalıştırıyorsak 
+programın default çalışma dizini o anda çalıştırmayı yaptığımız dizin olur. 
+------------------------------------------------------------------------------------
+"""
 
 
 
