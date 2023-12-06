@@ -4063,3 +4063,46 @@ File c:\dropbox\shared\kurslar\python\src\sample.py:10 in tar
 ValueError
 ------------------------------------------------------------------------------------
 """
+
+
+
+# --------------------------- Python'da Dosya işlemleri ---------------------------
+"""
+------------------------------------------------------------------------------------
+İçerisinde bilgilerin bulunduğu ikincil belleklerdeki bölgelere "dosya (file)" denilmektedir
+
+
+Bir dosyanın dizinler içerisindeki yerini belirten yazısal ifadelere "yol ifadesi (path)" 
+denilmektedir. Yol ifadelerinde dizin geçişlerinde Microsoft sistemlerinde "\" 
+karakteri, UNIX/Linux ve macOS sistemlerinde ise "/" karakteri kullanılmaktadır. 
+Microsoft sistemleri programlama söz konusu olduğunda UNIX/Linux uyumunu korumak 
+için dizin geçişlerinde "/" karakterini de kabul etmektedir. 
+
+Yol ifadeleri "mutlak (absolute)" ve "göreli (relative)" olmak üzere ikiye 
+ayrılmaktadır. Eğer bir yol ifadesinin ilk karakteri UNIX/Linux sistemlerinde 
+"/", Windows sistemlerinde "\" ise böyle yol ifadelerine mutlak yol ifadeleri, 
+değilse göreli yol ifadeleri denilmektedir. Örneğin:
+
+    
+"/home/kaan/study/test.txt"     ---> Mutlak yol ifadesi
+"a/b/c.txt"                     ---> Göreli yol ifadesi
+"test.txt"                      --> Göreli yol ifadesi
+"\a.txt"                        --> Mutlak yol ifadesi (Windows)
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
