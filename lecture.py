@@ -4156,14 +4156,44 @@ Burada prosesin çalışma dizini "c:\windows" biçiminde ayarlanmıştır.
 ------------------------------------------------------------------------------------
 """
 
+
 """
 ------------------------------------------------------------------------------------
 
+Bir dosya ile işlem yapmadan önce dosyanın açılması gerekir. İşlemler bitince de 
+dosya kapatılmalıdır. Eğer dosya kapatılmazsa program bittiğinde zaten otomatik 
+olarak dosya işletim sistemi tarafından kapatılır. Dosyanın açılması sırasında 
+işletim sistemi dosya ile ilgili bazı hazırlık işlemlerini yapmaktadır. Bir 
+dosya açılırken "açılacak dosya" yol ifadesiyle belirtilir.Aynı zamanda açık 
+sırasında programcı o dosya üzerinde hangi işlemleri yapacağını da belirtmektedir. 
+Buna dosyaının "açış modu" denilmektedir. 
 
+Python'da dosyalar built-in open fonksiyonu ile açılmaktadır. open fonksiyonunun 
+parametrik yapısı şöyledir:
 
+open(file, mode='r', buffering=- 1, encoding=None, errors=None, 
+     newline=None, closefd=True, opener=None)
+------------------------------------------------------------------------------------
+Fonksiyonun ilk iki parametresi çok önemlidir. Diğer parametrelere özel 
+durumlarda gereksinim duyulmaktadır. Fonksiyonun birinci parametresi açılacak 
+dosyasının yol ifadesini, ikinci parametresi açış modunu belirtmektedir.
 
+'r': Bu modda ancak var olan dosyalar açılabilir. Açılan dosyadan yalnızca okuma yapılabilir.
 
+'r+' :Bu modda yine var olan dosya açılabilir. Ancak dosyadan hem okuma hem de 
+dosyaya yazma yapılabilir.
 
+'w': Bu modda dosya yoksa yaratılır ve açılır, dosya varsa sıfırlanarak açılır 
+(yani dosyanın içerisindekiler silinir). Bu modda dosyaya yalnızca yazma yapılabilir.
+
+'w+': Bu modda dosya yoksa yaratılır ve açılır, dosya varsa sıfırlanarak açılır 
+(yani dosyanın içerisindekiler silinir). Bu modda dosyaya yalnızca yazma yapılabilir.
+
+'a': Bu modda eğer dosya yoksa yaratılır ve açılır, dosya varsa olan dosya açılır 
+(sıfırlanmaz). Ancak bu modda dosyaya her yazılan hep sona eklenir. Dosyanın 
+başka bir yerine bir şey yazmak mümkün değildir. Bu modda dosyadan okuma yapılamaz. 
+
+'a+': 'a' dan farkı dosyanın herhangi bir yerinden okuma yapılabilmesi. 
 ------------------------------------------------------------------------------------
 """
 
