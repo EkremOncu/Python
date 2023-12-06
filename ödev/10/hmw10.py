@@ -1,4 +1,4 @@
-# Solution 
+# Solution
 class Time:
     def __init__(self, hour=0, minute=0, second=0):
         self.hour = hour

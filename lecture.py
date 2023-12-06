@@ -4140,10 +4140,32 @@ program çalıştırılıyorsa o program dosyasının bulunduğu dizini program�
 görüntülenmektedir. PyCharm IDE'si ise proje dizinini programın default çalışma 
 dizini yapmaktadır. Eğer biz bir Python programını komut satırından çalıştırıyorsak 
 programın default çalışma dizini o anda çalıştırmayı yaptığımız dizin olur. 
+
+
+Bir program (yani proses) çalışırken onun çalışma dizini değiştirilebilmektedir. 
+Prosesin çalışma dizinini değiştirmek için "os" modülü içerisindeki chdir fonksiyonu 
+kullanılır. Eğer bu fonksiyonda geçersiz bir dizin girilirse FileNotFoundError 
+isimli exception oluşmaktadır. Örneğin:
+
+    
+import os
+
+os.chdir(r'c:\windows')
+
+Burada prosesin çalışma dizini "c:\windows" biçiminde ayarlanmıştır. 
 ------------------------------------------------------------------------------------
 """
 
+"""
+------------------------------------------------------------------------------------
 
+
+
+
+
+
+------------------------------------------------------------------------------------
+"""
 
 
 
