@@ -4156,7 +4156,6 @@ Burada prosesin çalışma dizini "c:\windows" biçiminde ayarlanmıştır.
 ------------------------------------------------------------------------------------
 """
 
-
 """
 ------------------------------------------------------------------------------------
 
@@ -4194,16 +4193,64 @@ dosyaya yazma yapılabilir.
 başka bir yerine bir şey yazmak mümkün değildir. Bu modda dosyadan okuma yapılamaz. 
 
 'a+': 'a' dan farkı dosyanın herhangi bir yerinden okuma yapılabilmesi. 
+
+!!! Açış modlarındaki '+' karakteri "read/write" anlamına gelmektedir.
+
+Genel olarak dosyaların gereksinimi karşılayacak en dar modda açılması tavsiye 
+edilmektedir.
 ------------------------------------------------------------------------------------
 """
+"""
+------------------------------------------------------------------------------------
+Dosya başarılı bir biçimde açılmışsa open fonksiyonu bir "dosya nesnesine 
+(file object)" geri döner. Artık programcı işlemleri bu geri döndürülen sınıf 
+nesnesinin metotlarıyla yapar. Örneğin:
 
+f = open('test.txt', 'r')
 
+Dosya işlemlerinde exception çok karşılaşılabilecek bir durumdur. Eğer programınızın 
+çökmesini istemiyorsanız dosya işlemlerini exception kontrolü içerisinde yapabilirsiniz. 
+Örneğin:
 
+try:
+    f = open('test.txt', 'w')
+    ...
+except OSError as e:
+    print(e)
+------------------------------------------------------------------------------------
+"""
+"""
+------------------------------------------------------------------------------------
+Yukarıda da belirttiğimiz gibi dosyayı açıp kullandıktan sonra artık o dosyayla 
+ilgili işlem yapmayacaksak dosyayı kapatmalıyız. Aslında çöp toplayıcı dosya 
+nesnesini toplarken de __del__ metodunda zaten close işlemi uygulanmaktadır. 
+Ancak programcının dosyayı ilgili dosya nesnesinin close metoduyla kapatması uygun 
+olur. close metodunun parametresi yoktur. Örneğin:
 
+try:
+    f = open('test.txt', 'r')
+    ...
+    f.close()
+except OSError as e:
+    print(e)
 
+Dosya işlemi yaparken başka bir exception oluşup akış dış bir try bloğunun except 
+bloğuna geçebiliyorsa kapatmanın finally bloğunda yapılması uygun olur. Tabii 
+open içerisinde exception oluşursa yine finally bloğu çalıştırılacağı için 
+açılmamış dosya close edilmeye çalışılmamalıdır. Bu işlem şöyle yapılabilir:
 
-
-
+f = None
+try:
+    f = open('test.txt', 'r')
+    ... ===> bu kısımda exception oluşup akış bir yere gidecekse dosya kapatılarak gitmelidir
+    f.close()
+except OSError as e:
+    print(e)
+finally:
+    if f:  ===> open içerisinde exception oluşursa dosya açılmadığı için kapatılmamalıdır
+        f.close()  
+------------------------------------------------------------------------------------
+"""
 
 
 
