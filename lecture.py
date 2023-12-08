@@ -4292,13 +4292,75 @@ Dosyayı "w" modunda ya da "w+" modunda açtığımızı varsayalım. Dosya yoks
 yaratılacak ve açılacak, dosya varsa sıfırlanacak ve açılacaktır:                    
 ------------------------------------------------------------------------------------    
 
+Bir dosyanın istenilen bir yerinden okuma yapmak için ya da i,stenilen bir yerine 
+yazma yapmak için önce dosya göstericisinin uygun biçimde konumlandırılması gerekir. 
+Programlama dillerinde dosya göstericisini konumlandıran programlar ya da metotlar
+bulunmaktadır. 
 
+İşletim sistemleri her dosya açıldığında o açışa ilişkin ayrı bir dosya 
+göstericisi oluşturmaktadır. Aynı dosyayı iki kere açtığımızda iki farklı dosya 
+nesnesi elde ederiz. Dolayısıyla iki farklı dosya göstericisi söz konusu olur.
+------------------------------------------------------------------------------------
+"""
 
+"""
+------------------------------------------------------------------------------------
+Dosyalar "text" ve "binary" olmak üzere ikiye ayrılmaktadır. (Aslında işletim 
+sistemi böyle bir ayrım yapmamaktadır. Ancak bazı programlama dilleri işlemleri 
+kolaylaştırmak için bu ayrımı yaparlar.) İçerisinde yalnızca yazıların bulunduğu 
+dosyalara "text" dosyalar, içerisinde yazıların dışında başka bilgilerin de 
+bulunduğu dosyalara "binary" dosyalar denilmektedir. Örneğin bir Python kaynak 
+dosyası, bir notepad dosyası text dosyadır. Ancak örneğin bir jpeg dosyası, bir 
+exe dosyası binary dosyadır. Text dosyaların içerisinde yalnızca yazılar 
+bulunmaktadır. Örneğin bir html dosyası onu bilmeyenlere tuhaf gelebilir. 
+Ancak html dosyaları aslında yazı tutmaktadır ve dolayısıyla bu dosyalar text 
+dosyalardır. 
 
+Dosyalar Python'da text ya da binary modda açılabilmektedir. Yukarıda açıklanan 
+default açış modları text moddur. Binary modda açış yapmak için açış modunun 
+sonuna 'b' harfi getirilir. Örneğin:
 
+f = open('text.txt', 'r')       # text modda açılıyor
+
+Fakat örneğin:
+
+f = open('test.jpg', 'rb')      # binary modda açılıyor
+
+# r+ --> r+b
+
+Bir dosyayı text modda açtığımızda ondan yazı okuruz, ona yazı yazarız. Ancak 
+binary modda açtığmızda ondan byte'lar okuyup byte'lar yazarız.
+------------------------------------------------------------------------------------
+"""
+
+# read metodu
+"""
+------------------------------------------------------------------------------------
+Dosya nesnesine ilişkin sınıfın read metodu dosya göstericisinin gösterdiği 
+yerden n byte ya da n karakter okumak için kullanılır. ASCII yazılarda ve ASCII 
+karakterlerinin kullanıldığı UTF-8 yazılarda yazının her bir karakteri 1 byte'tır. 
+Eğer dosya text modda açılmışsa read metodu n karakter okur ve bize onu bir str 
+nesnesi olarak verir. Eğer dosya binary modda açılmışsa read metodu n byte okur 
+ve bize onu bytes nesnesi olarak verir. 
+
+read metodu ile dosya göstericisinin gösterdiği yerden dosya sonuna kadar olan 
+karakter ya da byte sayısından daha fazla okuma yapmak istenirse bu durum normal 
+karşılanmaktadır. Bu durumda okunabilen kadar karakter ya da byte okunur. Dosya 
+göstericisi EOF konumuna gelir. Eğer dosya göstericisi EOF durumundaysa read 
+metodu hiçbir karakter ya da byte okuyamaz. Bu durumda dosya text modda açılmışsa 
+boş string, binary modda açılmışsa boş bytes nesnesi elde edilir. Eğer okuma 
+sırasında bir IO hatası oluşursa exception fırlatılmaktadır.
+
+read fonksiyonu text modda okuma yaparken default olarak "utf-8" encoding'ini 
+kullanmaktadır. Bu encoding'te İngilizce karakterler 1 byte, Türkçe karakterler 
+2 byte yer kaplamaktadır. (Diğer bazı ülkelerin karakterleri 2 byte'tan da daha 
+fazla yer kaplayabilmektedir.)
 
 ------------------------------------------------------------------------------------
 """
+
+
+
 
 
 
