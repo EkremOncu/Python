@@ -415,7 +415,7 @@ rt = ass.endswith('...')
 """
 
 # ---- Leksikografik karsilastirma
-  
+"""
 resal = 'a' > 'B' # True, UNICODE tabloda once buyuk harfler sonra kucuk harfler gelmektedir
 #  b > a     -> True
 
@@ -426,7 +426,7 @@ a = 10
 b = 20
 c = 30
 #print(a,b,c, sep='xx')
-
+"""
 # -------------------------------- Format Metoduyla Formatli Yazim ----------------------------------------------
 """
 s = 'a = {0}, b = {1}, c = {2}'.format(a, b, c) # a = 10, b = 20, c = 30
@@ -4151,7 +4151,7 @@ isimli exception oluşmaktadır. Örneğin:
     
 import os
 
-os.chdir(r'C:\Users\Lenovo\Desktop\GitHub\Python')
+os.chdir(r'c:\windows')
 
 Burada prosesin çalışma dizini "c:\windows" biçiminde ayarlanmıştır. 
 ------------------------------------------------------------------------------------
@@ -4356,6 +4356,30 @@ kullanmaktadır. Bu encoding'te İngilizce karakterler 1 byte, Türkçe karakter
 2 byte yer kaplamaktadır. (Diğer bazı ülkelerin karakterleri 2 byte'tan da daha 
 fazla yer kaplayabilmektedir.)
 
+!!!  read(size= -1, /)
+
+f = None
+
+try:
+    f = open('sample.py', 'r')
+    s = f.read() 
+    print(s)
+except OSError as e:
+    print(e)
+finally:
+    if f:
+        f.close()
+
+
+Bir dosyanın içerisindekileri tek hamlede değil de bir döngü içerisinde okumak 
+isteyelim. Yani her defasında örneğin 1024 karakter okuya okuya dosyanın 
+tamamını okumak isteyelim. Bunu şöyle yapabiliriz:
+
+while True:
+    s = f.read(1024)
+    if s == '':
+        break
+    print(s, end='')
 ------------------------------------------------------------------------------------
 """
 
