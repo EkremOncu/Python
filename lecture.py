@@ -3999,7 +3999,7 @@ yakalanması durumunda aynı yakalamanın dışarıda da yapılması amacıyla k
 
 """
 ------------------------------------------------------------------------------------
-Python'ın standart sys modülünde exc_info isimli exception mekainizması ile ilgili 
+Python'ın standart sys modülünde exc_info isimli exception mekanizması ile ilgili 
 bir fonksiyon vardır. Bu fonksiyon bir except bloğu içerisinde çağrılmalıdır. 
 
 Bu fonksiyon bize üçlü bir demet verir. 
@@ -4036,8 +4036,9 @@ sys.exc_info fonksiyonundan elde edilen trace bilgisi bir bağlı liste biçimin
 Bu bağlı liste bize exception'ın oluştuğu noktaya kadarki fonksiyon akışlarını 
 vermektedir.
 
-Bir exception yakalanmadığında program çökerken bu trace bilgileri de ekrana basılmaktadır. Böylece programcı buradaki
-bilgileri izeleyerek çökmenin akıştaki yerini tespit edebilir. Aşağaıdaki programda oluşan exception ele alınmadığından
+Bir exception yakalanmadığında program çökerken bu trace bilgileri de ekrana 
+basılmaktadır. Böylece programcı buradaki bilgileri izleyerek çökmenin akıştaki 
+yerini tespit edebilir. Aşağadaki programda oluşan exception ele alınmadığından
 program çökecektir. Program çöktüğünde ekrana çıkan yazılara dikkat ediniz:
 
 Traceback (most recent call last):
@@ -4096,7 +4097,7 @@ itibaren yer belirtir. İşletim sistemleri dünyasında çalışmakta olan prog
 dizini (current working directory) tutmaktadır. İşte göreli yol ifadeleri bu 
 çalışma dizininden itibaren bir yer belirtir.
 
-Windows sistemlerinde yol ifadesine sürücü ismi de dahi edilebilir. Örneğin 
+Windows sistemlerinde yol ifadesine sürücü ismi de dahil edilebilir. Örneğin 
 "c:\temp\test.txt" gibi. Bu tür yol ifadelerine Microsoft "tam yol ifadeleri 
 (full path)" demektedir. Microsoft sistemlerinde mutlak bir yol ifadesinde sürücü 
 belirtilmezse bu durumda bu yol ifadesinin prosesin çalışma dizinine ilişkin 
@@ -4119,7 +4120,7 @@ Bu yol ifadesi aşağıdakiyle eşdeğerdir:
 
 "/a/b/./c.txt"
 
-Bu yoli fadesi de aşağıdaki yok ifadesi ile tamamen aynıdır:
+Bu yol ifadesi de aşağıdaki yol ifadesi ile tamamen aynıdır:
 
 "/a/b/c.txt"
 ------------------------------------------------------------------------------------
@@ -4150,7 +4151,7 @@ isimli exception oluşmaktadır. Örneğin:
     
 import os
 
-os.chdir(r'c:\windows')
+os.chdir(r'C:\Users\Lenovo\Desktop\GitHub\Python')
 
 Burada prosesin çalışma dizini "c:\windows" biçiminde ayarlanmıştır. 
 ------------------------------------------------------------------------------------
@@ -4170,7 +4171,7 @@ Buna dosyaının "açış modu" denilmektedir.
 Python'da dosyalar built-in open fonksiyonu ile açılmaktadır. open fonksiyonunun 
 parametrik yapısı şöyledir:
 
-open(file, mode='r', buffering=- 1, encoding=None, errors=None, 
+open(file, mode='r', buffering= -1, encoding=None, errors=None, 
      newline=None, closefd=True, opener=None)
 ------------------------------------------------------------------------------------
 Fonksiyonun ilk iki parametresi çok önemlidir. Diğer parametrelere özel 
@@ -4185,8 +4186,8 @@ dosyaya yazma yapılabilir.
 'w': Bu modda dosya yoksa yaratılır ve açılır, dosya varsa sıfırlanarak açılır 
 (yani dosyanın içerisindekiler silinir). Bu modda dosyaya yalnızca yazma yapılabilir.
 
-'w+': Bu modda dosya yoksa yaratılır ve açılır, dosya varsa sıfırlanarak açılır 
-(yani dosyanın içerisindekiler silinir). Bu modda dosyaya yalnızca yazma yapılabilir.
+'w+': Bu modda yine dosya yoksa yaratılır ve açılır, dosya varsa sıfırlanarak 
+açılır. Ancak dosyadan okuma ve dosyaya yazma yapılabilir. 
 
 'a': Bu modda eğer dosya yoksa yaratılır ve açılır, dosya varsa olan dosya açılır 
 (sıfırlanmaz). Ancak bu modda dosyaya her yazılan hep sona eklenir. Dosyanın 
@@ -4213,7 +4214,7 @@ Dosya işlemlerinde exception çok karşılaşılabilecek bir durumdur. Eğer pr
 Örneğin:
 
 try:
-    f = open('test.txt', 'w')
+    f = open('test.txt', 'r')
     ...
 except OSError as e:
     print(e)
