@@ -4253,6 +4253,73 @@ finally:
 ------------------------------------------------------------------------------------
 """
 
+# Dosya Göstericisi (File Pointer)
+
+"""
+------------------------------------------------------------------------------------
+İşletim sistemi bir dosyadaki her bir byte'a ilk byte 0 olmak üzere ardışıl bir 
+pozisyon numarası vermektedir. Buna "ilgili byte'ın offset'i" ya da "offset numarası" 
+denilmektedir. Dosya işlemleri adeta kalemin ucu görevini yapan "dosya göstericisi 
+(file pointer)" denilen bir offset'ten itibaren yapılmaktadır. Dosya göstericisi 
+bir offset belirtir. Okuma ve yazma işlemleri o offset'ten itibaren yapılır. 
+Dosya açıldığında dosya göstericisi 0'ıncı offset'tedir. Yani dosyaının başındadır. 
+Okuma ve yazma yapıldığında okunan ya da yazılan byte miktarı kadar dosya 
+göstericisi otomatik ilerletilmektedir. Örneğin:
+
+0 1 2 3 4 5 6 
+x x x x x x x
+^
+DG
+
+------------------------------------------------------------------------------------
+0 1 2 3 4 5 6 7 
+x x x x x x x
+              ^
+             DG (EOF durumu)
+    
+İşte dosya göstericisinin dosyanın son byte'ından sonraki byte'ı göstermesi 
+durumunda "EOF (End of File) durumu" denilmektedir. EOF durumundan okuma yapamayız. 
+Ancak EOF durumunda açış modu da uygunsa dosyaya yazma yapılabilmektedir. Bu 
+durumda, yazılanlar dosyaya eklenmektedir. Örneğin yukarıdaki durumda 3 byte 
+dosyaya yazmak isteyelim. Şöyle bir durum oluşacaktır:
+
+0 1 2 3 4 5 6 7 8 9 10
+x x x x x x x y y y
+                    ^
+                    DG (EOF durumu)
+
+Dosyayı "w" modunda ya da "w+" modunda açtığımızı varsayalım. Dosya yoksa 
+yaratılacak ve açılacak, dosya varsa sıfırlanacak ve açılacaktır:                    
+------------------------------------------------------------------------------------    
+
+
+
+
+
+
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
