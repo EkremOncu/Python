@@ -4381,10 +4381,63 @@ while True:
         break
     print(s, end='')
 ------------------------------------------------------------------------------------
+Aşağıda dosya hangi modda açılırsa read metodunun ne geri döndüreceğini bir 
+tablo halinde verilmistir:
+
+Dosya türü          Açış Modu           read Metodunun Geri Dönüş Değeri
+
+text                text                str
+text                binary              bytes
+binary              binary              bytes
+binary              text                str ama anlamsız
+------------------------------------------------------------------------------------
+Aşağıda bir pdf dosyasından 10 byte okuma örneği verilmiştir. Tabii pdf gibi 
+jpg gibi bmp gibi binary dosyaları okuyup birtakım faydalı işlemleri yapabilmemiz 
+için bizim bu dosyalara ilişkin dosya formatları hakkında bilgi sahibi olmamız 
+gerekir. 
+
+f = open('../doc/python.pdf', 'rb')
+b = f.read(10)
+print(b)
+f.close()
+------------------------------------------------------------------------------------
 """
 
+# write metodu
+"""
+------------------------------------------------------------------------------------
+Bir dosyaya yazma yapmak için write metodu kullanılmaktadır. write metodunun tek 
+bir parametresi vardır. Dosya text modda açılmışsa write metodu bir string argüman 
+alır, dosya binary modda açılmışsa bir bytes nesnesini argüman olarak alır. Tabi 
+dosyaya yazma yapılabilmesi için açış modunun uygun olması gerekir.  Örneğin:
+
+f = open('test.txt', 'w')
+f.write('this is a test'
+f.close()
+
+Dosyaya yazma yapıldığında dosya göstericisinin gösteridği offset'te zaten 
+birtakım bilgiler varsa write onları ezerek yazma yapmaktadır. Dosya işlemlerinde 
+"insert etme" diye bir işlem yoktur. Dosyaya ekleme ancak sona yapılabilmektedir.
+
+!!! write(b, /)
+------------------------------------------------------------------------------------
+Bir text dosyada aslında satır (line) kavramı yoktur. Satır kavramı dosyaya \n 
+karakterinin yazılmasıyla sağlanmaktadır. Örneğin:
+
+f.write('ali\nveli')
+
+Burada dosyadaki tüm karakterler aslında yan yanadır. Ancak dosya editöre 
+çekildiğinde editör \n (LF) karakterini görünce imleci aşağı satırın başına 
+geçirdiği için "sanki dosya satırlardan oluşuyormuş gibi" bir görüntü elde 
+edilmektedir.
+------------------------------------------------------------------------------------
 
 
+
+
+
+------------------------------------------------------------------------------------
+"""
 
 
 
