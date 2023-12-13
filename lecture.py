@@ -4412,7 +4412,7 @@ alır, dosya binary modda açılmışsa bir bytes nesnesini argüman olarak alı
 dosyaya yazma yapılabilmesi için açış modunun uygun olması gerekir.  Örneğin:
 
 f = open('test.txt', 'w')
-f.write('this is a test'
+f.write('this is a test')
 f.close()
 
 Dosyaya yazma yapıldığında dosya göstericisinin gösteridği offset'te zaten 
@@ -4431,11 +4431,12 @@ Burada dosyadaki tüm karakterler aslında yan yanadır. Ancak dosya editöre
 geçirdiği için "sanki dosya satırlardan oluşuyormuş gibi" bir görüntü elde 
 edilmektedir.
 ------------------------------------------------------------------------------------
-
-
-
-
-
+Dosyalar ister text olsun ister binary olsun ardışıl byte topluluklarından 
+oluşmaktadır. Dolayısıyla bir dosyanın arasına bir şey insert etmek ya da dosyanın 
+arasından bir şeyler silmek otomatik yapılabilecek işlemler değildir. Bir dosyanın 
+sonuna eklemeancak EOF ötesine yazma yapmakla mümkün olur. Bir dosyanın belirli 
+bölümüne bir şeyler insert etmek zor bir işemdir. Bu tür işlemlerin başka bir 
+dosya kullanılarak o dosya üzerinde yapılması uygun olur. 
 ------------------------------------------------------------------------------------
 """
 
