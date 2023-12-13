@@ -4440,8 +4440,34 @@ dosya kullanılarak o dosya üzerinde yapılması uygun olur.
 ------------------------------------------------------------------------------------
 """
 
+"""
+------------------------------------------------------------------------------------
+Dosya nesnesine ilişkin sınıfın readline isimli metodu da vardır. Bu metot dosya 
+göstericisinin gösterdiği yerden satır sonuna kadar ('\n' karakteri de dahil 
+olmak üzere) karakterleri okur ve o satır yazısıyla geri döner. Eğer dosya sonuna 
+gelinirse metot boş string'le geri dönmektedir. Bu durumda biz bir text dosyayı 
+readline metotlarını çağırarak da satır satır aşağıdaki gibi okuyabiliriz:
 
+f = open('test.txt', 'r')
 
+while True:
+    s = f.readline()
+    if s == '':
+        break
+    print(s, end='')
+
+f.close()
+    
+Tabii bu işlem yine Walrus operatörü ile daha pratik yapılabilir:
+
+f = open('test.txt', 'r')
+
+while (s := f.readline()) != '':
+    print(s, end='')
+
+f.close()
+------------------------------------------------------------------------------------
+"""
 
 
 
