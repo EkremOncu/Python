@@ -4469,10 +4469,45 @@ f.close()
 ------------------------------------------------------------------------------------
 """
 
+# Dosya Gösterisinin Konumlandırılması
+"""
+------------------------------------------------------------------------------------
+Bazen dosyanın içerisinde bir yerlerden okuma yapmak ya da içerisinde bir yerlere 
+yazma yapmak istenebilir. Bunun için önce dosya göstericisinin istenilen yere 
+konumlandırılması gerekir. Konumlandırma için seek metodu kullanılmaktadır. 
+seek metodunun iki parametresi vardır:
+
+    seek(offset, origin)
+
+seek metodunun birinci parametre offset belirtir. İkinci parametresi ise 
+konumlandırmanın nereden itibaren yapılacağını anlatan orijin belirtmektedr. 
+İkinci parametre 0, 1 ya da 2 değerini alır. Bu değerler için sıraıyla os modülündeki 
+SEEK_SET, SEEK_CUR ve SEEK_END sembolik sabitleri de kullanılabilmektedir. 0 
+konumlandırmanın baştan itibaren yapılacağını, 1 konumlandırmanın o anda dosya 
+göstericisinin gösterdiği yerden itibaren yapılacağını, 2 ise konumlandırmanın 
+EOF pozisyonundan itibaren yapılacağını belirtir.
+
+Benzer biçimde text modda EOF'a göre konumlandırmada da negatif offset 
+kullanılamamaktadır. Ancak binary modda istenilen offset'e göre istenildiği biçimde 
+konumlandırma yapılabilmektedir. 
 
 
+- f.seek(100, 0) ya da f.seek(100) burada konumlandırma dosyanın başından 
+itibaren 100'üncü offset'e yapılır.
+    
+- f.seek(-1, 1) burada konumlandırma dosya göstericisi neredeyse onun bir gerisine 
+yapılır. Ancak text modda bu çağrı exception oluşturacaktır.
 
+- f.seek(0, 2) burada konumlandırma EOF pozisyonuna yapılır. 
 
+- f.seek(-1, 2) burada konumlandırma son byte'a yapılır. Ancak text modda bu 
+çağrı exception oluşturacaktır.
+
+- f.seek(0, 1)  burada konumlandırma bulunulan offset'e yapılır. Bulunulan 
+offset'e konumlandırma tuhaf ve saçma gibi geliyorsa da okumdan yazmaya, 
+yazmadan okumaya geçişti yapılması gerekmektedir. 
+------------------------------------------------------------------------------------
+"""
 
 
 
