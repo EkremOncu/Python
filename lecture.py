@@ -4540,9 +4540,34 @@ f.close()
 """
 
 
+# Karakter Kümeleri ve Karakter Kodlamaları
+"""
+------------------------------------------------------------------------------------
+Biz dosyaları text dosyalar ve binary dosyalar olmak üzere ikiye ayırmıştık. Ancak 
+text dosyalar da içerisindeki karakterlerin kodlanma biçimine göre farklılıklar 
+gösterebilmektedir. Text dosyalarda karakterler belli bir karakter tablosuna göre 
+kodlanmaktadır. Aslında karakterler de birer sayı gibi tutulmaktadır. Bilgisayarın 
+belleğinde yalnızca sayılar (ikilik sistemde)tutulmaktadır. Dolayısıyla aslında 
+bir yazı bir sayı dizilimi gibidir. Yazının her bir elemanına programlamada 
+"karakter (character)" denilmektedir. Bilgisayarların ilk günlerinden bu yana 
+çeşitli kurumlar ve şirketler tarafından çeşitli karakter tabloları geliştirilmiştir. 
+Bu karakter tablolarında sembollerim numaralandırmaları birbirinden farklı 
+olabilmektedir. 
 
+Bir karakter tablosu oluşturulurken dört kavram kullanılmaktadır:
 
+- Karakter Repertuarı (Character Repertoire): Bir karakter tablosundaki karakterlerin 
+kümesine denilmektedir.
 
+- Sembol (Glyph): Karakter tablosundaki karakterlerin görüntüsüne yani şekline denilmektedir.
+
+- Kod Numarası (Code Point): Karakter tablosu içerisindeki karakterlere tek tek 
+0'dan başlanarak numaralar verilmiştir. Bu numaralara İngilizce "code point" denilmektedir.
+
+- Karakter Kodlaması (Character Encoding): Karakter tablosundaki bir code point'in 
+ikilik sisteme yani byte formatına dönüştürülme biçimidir. 
+------------------------------------------------------------------------------------
+"""
 
 
 
