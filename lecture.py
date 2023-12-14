@@ -4507,6 +4507,36 @@ yapılır. Ancak text modda bu çağrı exception oluşturacaktır.
 offset'e konumlandırma tuhaf ve saçma gibi geliyorsa da okumdan yazmaya, 
 yazmadan okumaya geçişti yapılması gerekmektedir. 
 ------------------------------------------------------------------------------------
+
+Aşağıdaki örnekte bir text dosyanın 20'inci offset'inden itibaren 10 karakter 
+okunmuştur.
+
+f = open('test.txt', 'r')
+
+f.seek(20, 0)
+s = f.read(10)
+print(s)
+f.close()
+------------------------------------------------------------------------------------
+
+f = open('test.txt', 'r+')
+
+f.seek(0, 2)
+f.write('ankara')
+
+f.close()
+------------------------------------------------------------------------------------
+Dosya nesnesine ilişkin sınıfın tell isimli metodu dosya göstericisinin baştan 
+itibaren konumunu geri döndürmektedir.Örneğin bir dosyanın uzunluğunu aşağıdaki 
+gibi elde edebiliriz:
+
+f = open('test.txt', 'r+')
+f.seek(0, 2)
+
+size = f.tell()
+print(size)
+f.close()
+------------------------------------------------------------------------------------
 """
 
 
