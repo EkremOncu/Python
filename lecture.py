@@ -4611,11 +4611,138 @@ kullanılmaktadır. with deyiminin genel biçimi şöyledir:
 with <ifade> [ as <değişken_ismi>]:
     <suite>
 ------------------------------------------------------------------------------------
+Burada ifade as anahtar sözcüğünün yanındaki değişkene atanır ve suit çalıştırılır. 
+Örneğin:
 
+with open('test.txt') as f:
+    s = f.read()
+    print(s)
+    
+Burada open fonksiyonunun geri dönüş değeri f değişkenine atanıp ilgili suit 
+çalıştırılmaktadır. with deyiminde as kısmı olmak zorunda değildir. Yani with 
+deyimi şöyle de kullanılabilir:
 
+with <ifade>:
+    <suite>
 
+Örneğin:
 
+f = open('test.txt')
+with f:
+    s = f.read()
+    print(s)
 
+------------------------------------------------------------------------------------
+with benzeri deyimler diğer nesme yönelimli programlama dillerinin bazılarında da 
+bulunmaktadır. Örneğin bu deyim C#'ta karşımıza using deyimi biçiminde çıkmaktadır.
+
+Bir ifadenin with deyimi ile kullanılabilmesi için o ifadenin türünün 
+"bağlam yönetim protokolüne (context management protocol)" uygun olması gerekir.
+
+------------------------------------------------------------------------------------
+Bir sınıfın bağlam yönetim protokolüne uygun olması için sınıfta __enter__ ve 
+__exit__ isimli iki metodun bulunuyor olması gerekir. __enter__ metodunun yalnızca 
+self parametresi vardır. Ancak __exit__ metodunun self dışında üç parametresi 
+daha bulunur. Bu parametreler istenildiği gibi isimlendirilebilir. Ancak 
+programcılar genellikle bunları xc_type, exc_value, traceback biçiminde 
+isimlendirirler. Örneğin:
+
+class Sample:
+    def __enter__(self):
+        pass
+    def __exit__(self, xc_type, exc_value, traceback):
+        pass
+
+with Sample() as s:
+    pass
+------------------------------------------------------------------------------------
+
+with deyimi kabaca şöyle çalışmaktadır: Önce with anahtar sözcüğünün yanındaki 
+ifade yapılır. Sonra bu nesne ile __enter__ metodu çağrılır, __enter__ metodunun 
+geri dönüş değeri as değişkenine atanır. Akış with deyiminden hangi yolla çıkarsa 
+çıksın (exception dahil olmak üzere) with deyiminin yanındaki nesne ile 
+__exit__ metodu çağrılır. Örneğin:
+
+class Sample:
+    def __init__(self):
+        print('__init__')
+    def __enter__(self):
+        print('__enter__')
+    def __exit__(self, xc_type, exc_value, traceback):
+        print('__exit__')
+
+with Sample() as s:
+    print('suite')    
+print('ends')
+
+Burada ekrana şu yazılar çıkacaktır:
+
+__init__
+__enter__
+suite
+__exit__
+ends
+
+------------------------------------------------------------------------------------
+with deyimi bir sınıf nesnesi yaratılırken yapılan bazı tahsisatların otomatik 
+bırakılmasını mümkün hale getirmek için düşünülmüştür. Tabii bu tür kaynaklar 
+genellikle Python dünyasının dışında tahsis edilen "unmanaged" denilen kaynaklardır. 
+Fakat herhangi bir kaynak bu deyimle otomatik bırakılabilir. Örneğin:
+
+with open('test.txt') as f:
+    s = f.read()
+    print(s)
+
+Burada open fonksiyonun geri döndürdüğü dosya nesnesine ilişkin sınıf 
+"bağlam yönetim protokolünü" desteklemektedir. Bu nedenle with deyiminden çıkılırken 
+yorumlayıcı tarafından adeta f.__exit__(...) biçiminde sınıfın __exit__ metodu 
+çağrılacaktır. İşte bu metotta sınıfı yazanlar dosyayı zaten kapatmışlardır. O 
+halde biz open fonksiyonunu bu biçimde kullanırsak with deyiminden çıkılırken dosya 
+otomatik kapatılacaktır. Bizim ayrıca dosyayı close ile kapatmamıza gerek kalmayacaktır. 
+------------------------------------------------------------------------------------
+
+with deyimi try-finally gibi düşünülmelidir. with deyimi ile exception ele 
+alınmamaktadır. Yalnızca otomatik boşaltım mekanizması oluşturulmaktadır. Exception 
+ele alınmak isteniyorsa ayrıca try deyimi uygulamalıdır. Örneğin:
+
+class Sample:
+     def __init__(self):
+         print('kaynak tahsis ediliyor')
+         
+     def __enter__(self):
+         print('__enter__ called')
+     
+     def __exit__(self, xc_type, exc_value, traceback):
+         print('kaynak boşaltılıyor') 
+     
+def foo():
+    print('bir')
+    with Sample() as s:
+        print('s suit içerisinde kullanılıyor ve exception oluşuyor')
+        raise ValueError()
+    print('iki')
+    
+def main():
+    try:
+        foo()
+    except:
+        print('exception yakalandı')
+         
+main()
+
+Yukarıdaki kod çalıştırıldığnda ekrana aşağıdaki yazılar basılacaktır:
+
+ bir
+ kaynak tahsis ediliyor
+ __enter__ called
+ s suit içerisinde kullanılıyor ve exception oluşuyor
+ kaynak boşaltılıyor
+ exception yakalandı
+
+Programcı bağlam yönetim protokülüne uygun bir sınıf yazarken gerekli boşaltım 
+işlemlerini __exit__ metodu içerisinde yapmalıdır.
+
+------------------------------------------------------------------------------------
 """
 
 
