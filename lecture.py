@@ -4566,8 +4566,32 @@ kümesine denilmektedir.
 
 - Karakter Kodlaması (Character Encoding): Karakter tablosundaki bir code point'in 
 ikilik sisteme yani byte formatına dönüştürülme biçimidir. 
+
+
+UTF-8 encoding'inde Türkçe karakterler 2 byte yer kaplamaktadır. Örneğin:
+
+   "ağrı dağı"
+
+bu yazı 1 + 2 + 1 + 2 + 1 + 1 + 1 + 2 + 2 = 13 byte yer kaplar.
+
+
+Python'da bir dosya text modda open fonksiyonuyla açılırken open fonksiyonun 
+encoding parametresi ile encoding belirtilebilmektedir. Örneğin:
+
+f = open('test.txt', 'r', encoding='utf-8')
 ------------------------------------------------------------------------------------
 """
+
+
+
+
+
+
+
+
+
+
+
 
 
 
