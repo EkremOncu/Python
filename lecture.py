@@ -4579,13 +4579,44 @@ Python'da bir dosya text modda open fonksiyonuyla açılırken open fonksiyonun
 encoding parametresi ile encoding belirtilebilmektedir. Örneğin:
 
 f = open('test.txt', 'r', encoding='utf-8')
+
+Default encoding standart locale modülündeki getpreferredencoding 
+fonksiyonuyla ya da 3.11 ile eklenen getencoding fonksiyonu ile elde edilebilmektedir.
 ------------------------------------------------------------------------------------
 """
 
+# With Deyimi
+"""
+------------------------------------------------------------------------------------
+Bir exception oluştuğunda exception başka bir yerde ele alınıyor olabilir. Ancak 
+bu tür durumlarda exception'ın oluştuğu noktadan önce bir kaynak tahsis edilmişse 
+akış başka bir yere gitmeden o kaynağın geri bırakılması gerekmektedir. Biz bunun 
+için daha önce try deyiminin finally bölümünü kullanmıştır. Örneğin:
+
+f = None
+try:
+    f = open(...)
+    ...
+    ... <burada bir except,on oluşup akış başka bir try bloğunun except bloğuna 
+    aktarılmış olsun>
+    
+finally:
+    if f:
+        f.close()    # finally bölümü her zaman çalıştırılacağı için dosya her 
+                    zaman kapatılacaktır
+
+İşte genel olarak with deyimi bu tür durumlarda kolay bir yazım sağlamak için 
+kullanılmaktadır. with deyiminin genel biçimi şöyledir:
+------------------------------------------------------------------------------------    
+with <ifade> [ as <değişken_ismi>]:
+    <suite>
+------------------------------------------------------------------------------------
 
 
 
 
+
+"""
 
 
 
