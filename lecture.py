@@ -4744,9 +4744,33 @@ işlemlerini __exit__ metodu içerisinde yapmalıdır.
 
 ------------------------------------------------------------------------------------
 """
+"""
+------------------------------------------------------------------------------------
+class FileWrapper:
+    def __init__(self, *args, **kwargs):
+        self.f = open(*args, **kwargs)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, xc_type, exc_value, traceback):
+        self.f.close()
+
+    def read(self, *args, **kwargs):
+        return self.f.read(*args, **kwargs)
+
+    def write(self, *args, **kwargs):
+        return self.f.write(*args, **kwargs)
+
+    def seek(self, *args, **kwargs):
+        return self.f.seek(*args, **kwargs)
 
 
-
+with FileWrapper('test.txt', 'r', encoding='cp1254') as fw:
+    s = fw.read()
+    print(s)
+------------------------------------------------------------------------------------
+"""
 
 
 
