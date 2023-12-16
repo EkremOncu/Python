@@ -4754,6 +4754,7 @@ class FileWrapper:
         return self
 
     def __exit__(self, xc_type, exc_value, traceback):
+        print('--- Dosya kapatılıyor ---')
         self.f.close()
 
     def read(self, *args, **kwargs):
@@ -4771,6 +4772,40 @@ with FileWrapper('test.txt', 'r', encoding='cp1254') as fw:
     print(s)
 ------------------------------------------------------------------------------------
 """
+"""
+------------------------------------------------------------------------------------
+Aslında with deyiminde birden fazla ifade de kullanılabilmektedir. Yani örneğin:
+
+with ifade1 as değişken1, ifade2 as değşken2, ifade3 as değişken3:
+    <suit>
+
+Bu biçimdeki gibi bir with deyimi geçerlidir. Birden fazla ifadenin bulunduğu 
+with deyimleri "iç içe" gibi ele alınmaktadır. Yani yukarıdaki with deyiminin 
+eşdeğeri  şöyledir:
+
+with ifade1 as değişken1:
+    with ifade2 as değişken2:
+        with ifade3 değişken3:
+            <suite>
+
+Dolayısıla örneğin:
+
+with ifade1 as değişken1, ifade2 as değşken2, ifade3 as değişken3:
+    <suit>
+
+Bu biçimdeki with deyiminde ifadelere ilişkin sınıfların __enter__ metotları soldan 
+sağa çağrılacaktır. __exit__ metotları da ters sırada sağdan sola çağrılacaktır. 
+------------------------------------------------------------------------------------
+"""
+
+# ---------------------- Dolaşılabilir Sınıfların Yazılması ----------------------
+
+
+
+
+
+
+
 
 
 
