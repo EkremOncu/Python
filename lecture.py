@@ -4821,6 +4821,48 @@ bu dolaşım nesnesiyle yapılmaktadır. Bu durumda iki sınıf söz konusu olma
 
 1) Dolaşılabilir (iterable) sınıf 
 2) Dolaşım (iterator) sınıfı
+    
+
+Yukarıda da belirttiğimiz gibi bir sınıfın dolaşılabilir olması için __iter__ metoduna 
+sahip olması gerekir. Ancak sınıfın dolaşım sınıfı olması için __next__ metoduna 
+sahip olması gerekmektedir. __next__ metodunun da self dışında bir parametresi 
+yoktur.
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Aslında Python Language Reference dokümanlarına göre dolaşım sınıfınlarının yalnızca
+__next__ metoduna değil aynı zamanda __iter__ metoduna da sahip olması gerekmektedir. 
+Bunun nedenini izleyen paragraflarda anlayacaksınız. Genellikle dolaşım sınıflarının
+__next__ metotları self ile geri döndürülür.
+
+Aşağıda ise dolaşılabilir sınıf ile dolaşım sınıfı aynı sınıf yapılmıştır:
+
+class SampleIterable:
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        pass
+
+Burada SampleIterable sınıfı hem dolaşılabilir bir sınıftır hem de dolaşım sınıfıdır. 
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Aşağıdaki gibi bir for döngüsü olsun:
+
+for x in iterable:
+    <suite>
+
+Bu döngünün tam eşdeğeri aslında şöyledir:
+
+iterator = iterable.__iter__()
+try:
+    while True:
+        x = iterator.__next__()
+        <suite>
+except StopIteration:
+    pass
+
+!!! for döngüsünün eşdeğeri (Önemli, ezbere bil)
+------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
 """
 
