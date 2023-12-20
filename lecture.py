@@ -4864,6 +4864,55 @@ except StopIteration:
 !!! for döngüsünün eşdeğeri (Önemli, ezbere bil)
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
+Buradaki eşdeğer kodun sözel açıklaması şöyle yapılabilir. Python yorumlayıcısı 
+önce dolaşılabilir nesne ile __iter__ metodunu çağırır ve ondan dolaşım nesnesini 
+elde eder. Sonra sürekli olarak dolaşım nesnesi ile __next__ metodu çağrılmaktadır. 
+Her __next__ çağrısı bir değer verir ve o değer döngü değişkenine yerleştirilerek 
+suit çalıştırılır. Bu döngüden çıkış StopIteration exception'ı ile yapılmaktadır. 
+Başka bir deyişle programcı dolaşım sınıfının __next__ metodu ile vereceklerini 
+verir. Artık verecek bir şeyi kalmayınca StopIteration exception'ını fırlatır. 
+
+Aşağıdaki örnekte Counter isimli sınıf __init__ metodunda bir stop değeri almıştır. 
+Bu sınıf türünden nesne her dolaşıldığında 0'dan bu stop değerine kadar tamsayılar 
+elde edilecektir:
+
+class Counter:
+    def __init__(self, stop):
+        self.stop = stop
+    
+    def __iter__(self):
+        self.count = 0
+        return self
+    
+    def __next__(self):
+        if self.count == self.stop:
+            raise StopIteration()
+        self.count += 1
+        return self.count - 1
+
+Burada her __next__ çağrıldığında nesnenin count özniteliğinin içerisindeki 
+değerle geri dönülmüştür. Eğer bu count değeri stop değerine ulaşmışsa dolaşımın 
+sonlandırılması için StopIteration exception'ı raise edilmiştir. Örneğin:
+
+c = Counter(10)
+
+for x in c:
+    print(x)
+
+Bu kodun eşdeğeri şöyledir:
+
+c = Counter(10)
+
+iterator = c.__iter__()
+try:
+    while True:
+        x = iterator.__next__()
+        print(x)
+except StopIteration:
+    pass
+
+Burada count örnek özniteliğinin __iter__ metodu içerisinde sıfırlandığına dikkat 
+ediniz. Böylece her dolaşımda __iter__metodu çağrılacağı için dolaşım baştan başlayacaktır
 """
 
 
