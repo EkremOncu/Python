@@ -4799,7 +4799,30 @@ sağa çağrılacaktır. __exit__ metotları da ters sırada sağdan sola çağr
 """
 
 # ---------------------- Dolaşılabilir Sınıfların Yazılması ----------------------
+"""
+------------------------------------------------------------------------------------
+Bir nesne "dolaşılabilir (iterable)" ise onu her defasında yeniden dolaşabiliriz.
+Bir nesne "dolaşım (iterator)" nesnesi ise onu bir kez dolatığımızda bitirmiş oluruz. 
+İkinci kez dolaşamayız. Python'un zip gibi, map gibi, enumerate gibi metotları bize 
+dolaşılabilir bir nesne değil bir dolaşım nesnesi vermektedir.
 
+Bir sınıfın dolaşılabilir olması için sınıfın içerisinde __iter__ isimli bir 
+metodun bulunuyor olması gerekir. __iter__metodunun self parametresi dışında 
+başka bir parametresi yoktur. Öneğin:
+
+class Sample:
+    def __iter__(self):
+        pass
+
+Burada artık Sample dolaşılabilir (iterable) bir sınıftır. __iter__ metodunun bir 
+"dolaşım (iterator)" nesnesiyle geri döndürülmesi gerekmektedir. Bu durumda 
+dolaşılabilir bir sınıf bize bir dolaşım nesnesi vermelidir. Asıl dolaşım işlemi 
+bu dolaşım nesnesiyle yapılmaktadır. Bu durumda iki sınıf söz konusu olmaktadır:
+
+1) Dolaşılabilir (iterable) sınıf 
+2) Dolaşım (iterator) sınıfı
+------------------------------------------------------------------------------------
+"""
 
 
 
