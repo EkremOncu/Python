@@ -4977,9 +4977,53 @@ a = list(RandomIterable(0, 100, 10))
 print(a)
 ------------------------------------------------------------------------------------
 """    
+"""
+------------------------------------------------------------------------------------
+import math
 
+class myrange:
+    
+    def __init__(self, start, stop = None, step = 1):
+        if stop is None:
+            self.stop = start
+            self.start = 0
+        else:
+            self.start = start
+            self.stop = stop
+            
+        self.step = step
+        
+    def __iter__(self):
+        self.i = self.start
+        return self
+    
+    def __next__(self):
+       if self.i >= self.stop:
+           raise StopIteration()
+       self.i += self.step
+       return self.i - self.step
+   
+    def __len__(self):
+       return math.ceil((self.stop - self.start) / self.step)
+   
+    def __repr__(self):
+       return f'myrange({self.start}, {self.stop}, {self.step})'
 
+mr = myrange(10, 20, 2)
+    
+for x in mr:
+    print(x)
 
+print('------------')
+
+for x in mr:
+    print(x)
+
+print('------------')
+
+print(len(mr))          
+------------------------------------------------------------------------------------
+"""
 
 
 
