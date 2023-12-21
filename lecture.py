@@ -4802,7 +4802,7 @@ sağa çağrılacaktır. __exit__ metotları da ters sırada sağdan sola çağr
 """
 ------------------------------------------------------------------------------------
 Bir nesne "dolaşılabilir (iterable)" ise onu her defasında yeniden dolaşabiliriz.
-Bir nesne "dolaşım (iterator)" nesnesi ise onu bir kez dolatığımızda bitirmiş oluruz. 
+Bir nesne "dolaşım (iterator)" nesnesi ise onu bir kez dolaştığımızda bitirmiş oluruz. 
 İkinci kez dolaşamayız. Python'un zip gibi, map gibi, enumerate gibi metotları bize 
 dolaşılabilir bir nesne değil bir dolaşım nesnesi vermektedir.
 
@@ -4822,7 +4822,6 @@ bu dolaşım nesnesiyle yapılmaktadır. Bu durumda iki sınıf söz konusu olma
 1) Dolaşılabilir (iterable) sınıf 
 2) Dolaşım (iterator) sınıfı
     
-
 Yukarıda da belirttiğimiz gibi bir sınıfın dolaşılabilir olması için __iter__ metoduna 
 sahip olması gerekir. Ancak sınıfın dolaşım sınıfı olması için __next__ metoduna 
 sahip olması gerekmektedir. __next__ metodunun da self dışında bir parametresi 
@@ -4911,8 +4910,10 @@ try:
 except StopIteration:
     pass
 
+!!!!
 Burada count örnek özniteliğinin __iter__ metodu içerisinde sıfırlandığına dikkat 
 ediniz. Böylece her dolaşımda __iter__metodu çağrılacağı için dolaşım baştan başlayacaktır
+!!!
 """
 
 
