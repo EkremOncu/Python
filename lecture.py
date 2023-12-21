@@ -1052,18 +1052,18 @@ result = random.choice(a)
 print(result)
 print()
 
-# random.sample( sequence container ya da küme , int) -> Ayni degerleri dondurmez
+# random.sample (sequence container ya da küme , int) -> Ayni degerleri dondurmez
 a = ('ali', 'veli', 'selami', 'ayşe', 'fatma')
 result = random.sample(a, 3)
 print(result)
 print()
 
-column = random.sample(range(1, 50), 6) # iadesiz cekim
+column = random.sample(range(1, 50), 6)                 # iadesiz cekim
 print(column)
 print()
 
 names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
-result = random.choices(names, k=8)     # iadeli cekim
+result = random.choices(names, k=8)                     # iadeli cekim
 print(result)
 print()
 
@@ -4914,11 +4914,69 @@ except StopIteration:
 Burada count örnek özniteliğinin __iter__ metodu içerisinde sıfırlandığına dikkat 
 ediniz. Böylece her dolaşımda __iter__metodu çağrılacağı için dolaşım baştan başlayacaktır
 !!!
-"""
 
+------------------------------------------------------------------------------------
+names = ['ali', 'veli', 'selami', 'ayşe', 'fatma']
 
+for name in names:
+    print(name)
 
+print('----------------')
 
+iterator = names.__iter__()
+try:
+    while True:
+        name = iterator.__next__()
+        print(name)
+except StopIteration:
+    pass
+------------------------------------------------------------------------------------
+
+class Args:
+    def __init__(self, *args):
+        self.args = args
+        
+    def __iter__(self):
+        self.i = 0
+        return self
+    
+    def __next__(self):
+        if self.i == len(self.args):
+            raise StopIteration()
+        self.i += 1
+        return self.args[self.i-1]
+    
+args = Args('ali', 'veli', 123, True)
+
+for x in args:
+    print(x)
+------------------------------------------------------------------------------------
+İki değer arasında rastgele n tane değer veren dolaşılabilir bir sınıf örneğini 
+aşağıdaki gibi yazabiliriz. Bu örnekte sınıfın __next__ metodu random modülündeki 
+randint fonksiyonunu kullanarak rastgele değer üretmektedir. 
+
+import random
+
+class RandomIterable:
+    def __init__(self, beg, end, n):
+        self.beg = beg
+        self.end = end
+        self.n = n
+        
+    def __iter__(self):
+        self.i = 0
+        return self
+    
+    def __next__(self):
+        if self.i == self.n:
+            raise StopIteration()
+        self.i += 1
+        return random.randint(self.beg, self.end)
+        
+a = list(RandomIterable(0, 100, 10))
+print(a)
+------------------------------------------------------------------------------------
+"""    
 
 
 
