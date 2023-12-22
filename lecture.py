@@ -5047,14 +5047,65 @@ for index, name in me:
 for index, name in me:
     print(index, name)    
 ------------------------------------------------------------------------------------
+Yukarıdaki örnekte olduğu gibi bazen manuel bir biçimde __next__ metodunun çağrılması 
+gerekebilir. Örneğin elimzde dolaşılabilir bir nesne olsun. Biz bu nesneyi for 
+döngüsü ile dolaşmak isteyelim. Ancak ilk elemanı pas geçmek isteyelim. Ya da 
+elimizde yine bir dolaşılabilir nesne olsun. Biz bu nesnenin elemanlarını bir 
+list nesnesine yerleştirelim. Ancak ilk elemanı pas geçmek isteyelim. Dolaşım 
+nesnelerinin de dolaşılabilir nesneler gibi davrandığını anımsayınız.
+
+a = [10, 20, 30, 40, 50, 60]
+
+iterator = a.__iter__()
+valt= iterator.__next__()     # ilk elemanı pas geçmek için
+print(valt)
+print('--------------')
+
+for x in iterator:
+    print(x)
+------------------------------------------------------------------------------------
+Örneğin dolaşılabilir nbir nesnenin en büyük elemanını bulan bir fonksiyon yazmak 
+isteyelim. Bilindiği bu fonksiyon aslında built-in biçimde max ismiyle bulunmaktadır. 
+Biz en büyük elemanı bulurken ilk elemanın en büyük olduğunu kabul edip sonraki 
+elemanlarla karşılaştırırız. Bu tür durumlarda manule __next__ işlemi gerekebilmektedir. 
+Aşağıdaki örnekte böyle bir mymax fonksiyonu yazılmıştır. 
+
+import random
+class RandomIterable:
+    def __init__(self, beg, end, n):
+        self.beg = beg
+        self.end = end
+        self.n = n
+        
+    def __iter__(self):
+        self.i = 0
+        return self
+    
+    def __next__(self):
+        if self.i == self.n:
+            raise StopIteration()
+        self.i += 1
+        
+        return random.randint(self.beg, self.end)
+       
+def mymax(iterable):
+    iterator = iterable.__iter__()
+    
+    maxval = iterator.__next__()
+    
+    for x in iterator:
+        print(x, end=' ')
+        if x > maxval:
+            maxval = x
+    print()
+    return maxval
+
+ri = RandomIterable(0, 100, 10)
+result = mymax(ri)
+
+print(result)
+------------------------------------------------------------------------------------
 """
-
-
-
-
-
-
-
 
 
 
