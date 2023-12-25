@@ -4292,7 +4292,7 @@ Dosyayı "w" modunda ya da "w+" modunda açtığımızı varsayalım. Dosya yoks
 yaratılacak ve açılacak, dosya varsa sıfırlanacak ve açılacaktır:                    
 ------------------------------------------------------------------------------------    
 
-Bir dosyanın istenilen bir yerinden okuma yapmak için ya da i,stenilen bir yerine 
+Bir dosyanın istenilen bir yerinden okuma yapmak için ya da istenilen bir yerine 
 yazma yapmak için önce dosya göstericisinin uygun biçimde konumlandırılması gerekir. 
 Programlama dillerinde dosya göstericisini konumlandıran programlar ya da metotlar
 bulunmaktadır. 
