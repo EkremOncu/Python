@@ -1,7 +1,5 @@
-with open('teste.txt', 'w+', encoding='utf-8') as f:
-    f.write("LeBron James(goat)\nGabe Vincent(Heat culture and injured)\nAustin Reeves(I'm him)\nRui Hachimura(Japanese)\nAnthony Davis Defensive player of the year")
-    f.seek(0)
-    s= f.read()
+with open('teste.txt', 'w+', encoding='utf-8') as pe:
+    pe.write("LeBron James(goat)\nGabe Vincent(Heat culture and injured)\nAustin Reeves(I'm him)\nRui Hachimura(Japanese)\nAnthony Davis Defensive player of the year")    
 print()
 
 # Solution 1
@@ -72,4 +70,38 @@ print(lcount,wcount,ccount)
 """
 
 # Solution 4
+"""
+def get_file(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        s = f.read()
+        print(s)
+        print()
+        f.seek(0, 2)
+        size = f.tell()
+        print(size)
+
+get_file('teste.txt')
+"""
+# Solution 5
+"""
+????????????????????????????
+q = open('testecopy.txt', 'w+b')
+with open('teste.txt', 'rb') as f:
+    while True:
+            s= f.read(1024)
+            t= q.write('s')
+            if s == '':
+                break
+            print(t, end='')
+????????????????????????????
+"""            
+ # Solution 6           
+
+
+
+
+
+
+
+
 
