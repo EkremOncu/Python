@@ -5064,7 +5064,7 @@ print('--------------')
 for x in iterator:
     print(x)
 ------------------------------------------------------------------------------------
-Örneğin dolaşılabilir nbir nesnenin en büyük elemanını bulan bir fonksiyon yazmak 
+Örneğin dolaşılabilir bir nesnenin en büyük elemanını bulan bir fonksiyon yazmak 
 isteyelim. Bilindiği bu fonksiyon aslında built-in biçimde max ismiyle bulunmaktadır. 
 Biz en büyük elemanı bulurken ilk elemanın en büyük olduğunu kabul edip sonraki 
 elemanlarla karşılaştırırız. Bu tür durumlarda manule __next__ işlemi gerekebilmektedir. 
@@ -5100,7 +5100,7 @@ def mymax(iterable):
     print()
     return maxval
 
-ri = RandomIterable(0, 100, 10)
+ri = RandomIterable(0, 100, 6)
 result = mymax(ri)
 
 print(result)
