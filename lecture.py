@@ -5105,8 +5105,121 @@ result = mymax(ri)
 
 print(result)
 ------------------------------------------------------------------------------------
+Python standart kütüphanesinde iter ve next isimli iki built-in fonksiyon bulunmaktadır. Bu fonksiyonlar aslında parametresiyle 
+verilen nesne üzerinde __iter__ ve __next__ metotlarını çağırmaktadır. Başka bir 
+deyişle iterable.__iter__() çağırısı ile iter(iterable) çağrısı eşdeğerdir. 
+Benzer biçimde iterator.__next__() çağrısı ile next(iterator) çağrısı da eşdeğerdir. 
+Yani bu fonksiyonların aşağıdaki gibi yazılmış olduğunu varsayabilirsiniz: 
+
+def iter(i):
+    return i.__iter__()
+
+def next(i):
+    return i.__next__()
+
+Aslında burada eşğderlik tam olarak böyle değildir. Bu konuda çok küçük ayrıntılar 
+vardır. Biz bunların üzerinde durmayacağız.
+
+a = [10, 20, 30, 40, 50]
+
+iterator = iter(a)                  # a.__iter__()
+
+try:
+    while True:
+        val = next(iterator)        # iterator.__next__()
+        print(val)      
+except StopIteration:
+    pass
+------------------------------------------------------------------------------------
 """
 
+# Tersten Dolaşım
+"""
+------------------------------------------------------------------------------------
+reversed foksiyonu bizden dolaşılabilir bir nesneyi alır, bize tersten dolaşıma izin 
+veren yeni bir dolaşım nesnesi verir. Yani kullanımı şöyledir:
+
+a = [10, 20, 30, 40, 50]
+
+ri = reversed(a)
+
+for x in ri:
+    print(x)
+
+print()
+
+for x in ri:                # bu dolaşımdan bir şey elde edilmeyecek
+    print(x, end=' ')   
 
 
+------------------------------------------------------------------------------------
+Ancak her dolaşılabilir nesne reversed fonksiyonuyla tersten dolaşılamamaktadır. Nesnenin reversed fonksiyonuyla tersten
+dolaşılabilmesi için o sınıfı yazanların bunu sağlamaları gerekir. İşte aslında reversed fonksiyonu ilgili dolaşılabilir
+nesne üzerinde __reversed__ isimli metodu çağırmaktadır. Sınıf yazan programcı da eğer tersten dolaşıma izin verecekse bu 
+__reversed__ metodunu yazar ve bu metottan tersten dolaşım yapabilecek bir itertor nesnesi ile geri döner. Başka bir deyişle
+aslında reversed(iterable) çağrısı ile itreable.__reversed__ çağrısı bazı ayrıntılar dışında eşdeğerdir. reversed built-in
+fonksiyonunun şöyle yazılmış olduğunu varsayabilirsiniz:
+    
+def reversed(iterable):
+    return iterable.__reversed__()
+
+Python'ın temel veri yapılarını gerçekleştiren sınıflarından hangileri tersten 
+dolaşılabilmektedir?
+
+!!!
+ list sınıfı, tuple sınıfı ve str sınıfı tersten dolaşılabilir sınıflardır
+ 3.7 ve sonrasında dict sınıfı da Tersten dolaşılabilir hale getirilmiştir. 
+ 
+ map gibi, filter gibi enumerate gibi fonksiyonların verdiği sınıf nesneleri 
+ de tersten dolaşılabilir değildir.
+!!!
+------------------------------------------------------------------------------------
+import math
+
+class SqrtIterable:
+    def __init__(self, n):
+        self.n = n
+        
+    def __iter__(self):
+        self.i = 0
+        return self
+    
+    def __next__(self):
+        if self.i == self.n:
+            raise StopIteration()    
+        self.i += 1
+        
+        return math.sqrt(self.i - 1)
+    
+    def __reversed__(self):
+        return ReverseSqrtIterator(self) # SqrtIterable sınıfı türünden nesnenin 
+                                        # kendisini geçirdik, ana nesneyi geçirdik.
+    # Burada sadece n'ide geçirebilirdik, birden fazla parapametrelerde gerekiyorsa
+    # direkt buradaki gibi ana nesne geçirilmeli.
+    
+class ReverseSqrtIterator:
+    def __init__(self, si):
+        self.si = si
+        self.i = self.si.n - 1
+        
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.i < 0:
+            raise StopIteration()
+        self.i -= 1
+        
+        return math.sqrt(self.i + 1)
+    
+r = SqrtIterable(5)
+
+for x in r:
+    print(x)
+print('-------------')
+
+for x in reversed(r):
+    print(x)    
+------------------------------------------------------------------------------------
+"""
 
