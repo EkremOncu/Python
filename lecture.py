@@ -5105,11 +5105,12 @@ result = mymax(ri)
 
 print(result)
 ------------------------------------------------------------------------------------
-Python standart kütüphanesinde iter ve next isimli iki built-in fonksiyon bulunmaktadır. Bu fonksiyonlar aslında parametresiyle 
-verilen nesne üzerinde __iter__ ve __next__ metotlarını çağırmaktadır. Başka bir 
-deyişle iterable.__iter__() çağırısı ile iter(iterable) çağrısı eşdeğerdir. 
-Benzer biçimde iterator.__next__() çağrısı ile next(iterator) çağrısı da eşdeğerdir. 
-Yani bu fonksiyonların aşağıdaki gibi yazılmış olduğunu varsayabilirsiniz: 
+Python standart kütüphanesinde iter ve next isimli iki built-in fonksiyon bulunmaktadır. 
+Bu fonksiyonlar aslında parametresiyle verilen nesne üzerinde __iter__ ve __next__ 
+metotlarını çağırmaktadır. Başka bir deyişle iterable.__iter__() çağırısı ile 
+iter(iterable) çağrısı eşdeğerdir. Benzer biçimde iterator.__next__() çağrısı ile 
+next(iterator) çağrısı da eşdeğerdir. Yani bu fonksiyonların aşağıdaki gibi yazılmış 
+olduğunu varsayabilirsiniz: 
 
 def iter(i):
     return i.__iter__()
@@ -5137,7 +5138,7 @@ except StopIteration:
 """
 ------------------------------------------------------------------------------------
 reversed foksiyonu bizden dolaşılabilir bir nesneyi alır, bize tersten dolaşıma izin 
-veren yeni bir dolaşım nesnesi verir. Yani kullanımı şöyledir:
+veren yeni bir !!! dolaşım !!! nesnesi verir. Yani kullanımı şöyledir:
 
 a = [10, 20, 30, 40, 50]
 
@@ -5153,12 +5154,15 @@ for x in ri:                # bu dolaşımdan bir şey elde edilmeyecek
 
 
 ------------------------------------------------------------------------------------
-Ancak her dolaşılabilir nesne reversed fonksiyonuyla tersten dolaşılamamaktadır. Nesnenin reversed fonksiyonuyla tersten
-dolaşılabilmesi için o sınıfı yazanların bunu sağlamaları gerekir. İşte aslında reversed fonksiyonu ilgili dolaşılabilir
-nesne üzerinde __reversed__ isimli metodu çağırmaktadır. Sınıf yazan programcı da eğer tersten dolaşıma izin verecekse bu 
-__reversed__ metodunu yazar ve bu metottan tersten dolaşım yapabilecek bir itertor nesnesi ile geri döner. Başka bir deyişle
-aslında reversed(iterable) çağrısı ile itreable.__reversed__ çağrısı bazı ayrıntılar dışında eşdeğerdir. reversed built-in
-fonksiyonunun şöyle yazılmış olduğunu varsayabilirsiniz:
+Ancak her dolaşılabilir nesne reversed fonksiyonuyla tersten dolaşılamamaktadır. 
+Nesnenin reversed fonksiyonuyla tersten dolaşılabilmesi için o sınıfı yazanların 
+bunu sağlamaları gerekir. İşte aslında reversed fonksiyonu ilgili dolaşılabilir
+nesne üzerinde __reversed__ isimli metodu çağırmaktadır. Sınıf yazan programcı da 
+eğer tersten dolaşıma izin verecekse bu __reversed__ metodunu yazar ve bu metottan 
+tersten dolaşım yapabilecek bir itertor nesnesi ile geri döner. Başka bir deyişle
+aslında reversed(iterable) çağrısı ile itreable.__reversed__() çağrısı bazı ayrıntılar 
+dışında eşdeğerdir. reversed built-in fonksiyonunun şöyle yazılmış olduğunu 
+varsayabilirsiniz:
     
 def reversed(iterable):
     return iterable.__reversed__()
@@ -5221,5 +5225,85 @@ print('-------------')
 for x in reversed(r):
     print(x)    
 ------------------------------------------------------------------------------------
+
+Built-in map fonksiyonu aşağıdaki gibi basit bir biçimde yazılabilir. Bu örnekte 
+biz mymap sınıfının __next__ metodunda StopIteration uygulamadık. Çünkü zaten 
+aldığımız dolaşılabilir nesne üzerinde __next__ işlemi yaptığımızda StopIteration
+oluşacaktır.
+    
+class mymap:
+    def __init__(self, f, iterable):
+        self.f = f
+        self.iterator = iter(iterable)
+        
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        val = next(self.iterator)
+        return self.f(val)
+        
+a = [3, 6, 2, 8, 9]
+
+def square(val):
+    return val * val
+  
+for x in  mymap(square, a):
+    print(x, end=' ')
+------------------------------------------------------------------------------------    
+"""
+
+# Filter built-in Fonksiyonu
+"""
+------------------------------------------------------------------------------------    
+Python Standart Kütüphanesinde filter isimli built-in bir fonksiyon da vardır. Bu 
+fonksiyon tıpkı map fonksiyonunda olduğu gibi bir fonksiyonu ve dolaşılabilir 
+nesneyi parametre olarak alır ve bize bir dolaşım nesnesi verir. (Tabii filter
+aslında bir sınıf biçiminde yazılmıştır. Ancak anlatımlarda bir fonksiyonmuş gibi 
+ele alınmaktadır.) filter fonksiyonun verdiği dolaşım nesnesi dolaşıldığında şunlar 
+olmaktadır: filter fonksiyonuna verilen dolaşılabilir nesnenin elemanları filter 
+fonksiyonuna verilen fonksiyona tek tek sokulur, true değerini veren elemanlar 
+dolaşım sürecinde elde edilir. 
+
+a = [34, 12, 15, 9, 26, 41]
+
+def foo(val):
+    return val % 2 == 0
+  
+for x in  filter(foo, a):
+    print(x, end=' ')
+
+------------------------------------------------------------------------------------
+names = ['ali', 'veli', 'selami', 'ayşe', 'fatma', 'sibel']
+
+def f(s):
+    return 'a' in s
+
+for name in filter(f, names):
+    print(name, end=' ')
+
+------------------------------------------------------------------------------------    
+class myfilter:
+    def __init__(self, f, iterable):
+        self.f = f
+        self.iterator = iter(iterable)
+        
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        while True:
+            val = next(self.iterator)
+            if f(val):
+                return val
+
+names = ['ali', 'veli', 'selami', 'ayşe', 'fatma', 'sibel']
+
+def f(s):
+    return 'a' in s
+
+for name in myfilter(f, names):
+    print(name, end=' ')
+------------------------------------------------------------------------------------ 
 """
 
