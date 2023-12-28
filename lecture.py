@@ -5307,3 +5307,120 @@ for name in myfilter(f, names):
 ------------------------------------------------------------------------------------ 
 """
 
+
+
+# ---------------- GENERATOR (Üretici Fonksiyonlar, sınıflar) ----------------
+"""
+------------------------------------------------------------------------------------
+Üretici fonksiyonlara (generators) özellikle yorumlayıcılarla çalışılan dillerde 
+karşılaşılmaktadır. Ancak derleyici temelli bazı dillerede de özellikle son 
+yıllarda üretici fonksiyonlar özelliği eklenmiştir. 
+
+Python'da bir fonksiyonda en az bir tane yield isimli deyim kullanılırsa artık o 
+fonksiyona "üretici fonksiyon (geenerator)" denilmektedir. Örneğin:
+
+def foo():
+    print('one')
+    yield 1
+    print('two')
+    yield 2
+    print('three')
+    yield 3
+    print('ends')
+
+print(type(foo))        # <class 'function'>
+
+g = foo()
+
+print(type(g))          # <class 'generator'>
+
+    
+Burada foo fonksiyonu bir üretici fonksiyondur.
+
+yield (ürün vermek) deyiminin genel biçimi şöyledir -> yield [ifade]
+
+Bir üretici fonksiyonun türü normal bir fonksiyondur. Ancak üretici fonksiyon 
+çağrıldığında bir "üretici nesne (generator object)" elde edilmektedir. Bu üretici 
+nesneye Python Language Reference dokümanlarında "generator iterator" da denilmektedir. 
+Örneğin:
+ 
+g = foo()
+
+Burada g bir üretici nesnedir. Yani bir üretici fonksiyon çağrıldığında fonksiyonun 
+kodları çalıştırılmamaktadır. Bu çağrı ifadesi ismine "üretici nesne (generator object)" 
+denilen bir nesne vermektedir. Üretici fonksiyonlar normal bir fonksiyon gibidir. 
+Üretici nesneler ise "generator" isimli bir sınıf türünden nesnelerdir.         
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Üretici nesneler birer dolaşım (iterator) nesnesidir dolayısıyla da dolaşılabilir 
+nesnelerdir. Yani biz bir üretici nesneyi for döngüsüyle dolaşabiliriz. İstersek 
+next metodunu sürekli çağırarak da (__iter__ metodunu çağırmadan) da dolaşabiliriz. 
+Bir üretici nesne dolaşılmak istendiğinde (next yapıldığında) üretici fonksiyonun 
+kodları çalıştırılır ve yield deyiminin olduğu yerde çalışma geçici olarak durur. 
+yield deyiminin yanındaki ifadenin değeri next işleminden elde edilen değer olur.
+Üretici fonksiyon bittiğinde (akış üretici fonksiyonun sonuna geldiğinde
+ya da üretici fonksiyonda return kullanıldığında) StopIteration oluşturulmaktadır. 
+Yani üretici nesnenin dolaşımı üretici fonksiyon bittiğinde sona ermektedir.
+
+def foo():
+        print('one')
+        yield 1
+        print('two')
+        yield 2
+        print('three')
+        yield 3
+        print('ends')
+
+g = foo()
+
+val = next(g)
+print(f'next return value: {val}')
+
+val = next(g)
+print(f'next return value: {val}')
+
+val = next(g)
+print(f'next return value: {val}')
+
+val = next(g)
+print(f'next return value: {val}')
+
+Bu dolaşımda akış her yield deyiminde durduğunda o yield deyiminin yanındaki 
+ifadenin değeri x'e atanacaktır. Ekranda şunları göreceksiniz:
+
+ya da direkt for döngüsü ile de dolaşılabilinir
+
+def foo():
+        print('one')
+        yield 1
+        print('two')
+        yield 2
+        print('three')
+        yield 3
+        print('ends')
+
+g = foo()
+for x in g:
+    print(f'x: {x}')
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
