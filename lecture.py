@@ -5317,7 +5317,7 @@ karşılaşılmaktadır. Ancak derleyici temelli bazı dillerede de özellikle s
 yıllarda üretici fonksiyonlar özelliği eklenmiştir. 
 
 Python'da bir fonksiyonda en az bir tane yield isimli deyim kullanılırsa artık o 
-fonksiyona "üretici fonksiyon (geenerator)" denilmektedir. Örneğin:
+fonksiyona "üretici fonksiyon (generator)" denilmektedir. Örneğin:
 
 def foo():
     print('one')
@@ -5386,7 +5386,7 @@ val = next(g)
 print(f'next return value: {val}')
 
 Bu dolaşımda akış her yield deyiminde durduğunda o yield deyiminin yanındaki 
-ifadenin değeri x'e atanacaktır. Ekranda şunları göreceksiniz:
+ifadenin değeri x'e atanacaktır.
 
 ya da direkt for döngüsü ile de dolaşılabilinir
 
@@ -5403,11 +5403,92 @@ g = foo()
 for x in g:
     print(f'x: {x}')
 ------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Üretici fonksiyonlar sayesinde biz dolaşılabilir nesneleri çok daha kolay oluşturabiliriz. Örneğin:
+
+def sqrt_iterable(n):
+    for i in range(n):
+        yield math.sqrt(i)
+
+for x in sqrt_iterable(10):
+    print(x)
+    
+Burada üretici nesne dolaşıldığında her yinelemede 0'dan itibaren n değerine kadar 
+(n değeri dahil değil) sayıların karekökleri elde edilmektedir. Biz bu işlemi yapan 
+dolaşılabilir sınıfı daha önce yazmıştık. Aşağıda aynı işlemi yapan dolaşılabilir 
+sınıf ile üretici fonksiyon bir arada verilmiştir. İkisini karşılaştırarak yazım 
+üretici fonksiyonların yazım kolaylığına dikkat ediniz.
+
+import math
+
+class SqrtIterable:
+    def __init__(self, n):
+        self.n = n
+        
+    def __iter__(self):
+        self.i = 0
+        return self
+        
+    def __next__(self):
+        if self.i == self.n:
+            raise StopIteration
+        self.i += 1
+        
+        return math.sqrt(self.i - 1)
+            
+for x in SqrtIterable(10):
+    print(x)
+
+
+print('------------------')
+
+
+def sqrt_iterable(n):
+    for i in range(n):
+        yield math.sqrt(i)
+
+for x in sqrt_iterable(10):
+    print(x)
+
+print('------------------')
+  
+a = list(sqrt_iterable(10))
+print(a)
+
+------------------------------------------------------------------------------------
+Biz daha önce range fonksiyonunu dolaşılabilir bir sınıf olarak yazmıştık. Standart 
+kütüphanedeki range fonksiyonu da aslında dolaşılabilir bir sınıftır. Ancak istersek 
+bu range işlemini yapan dolaşılabilir nesneyi bir üretici fonksiyon kullanarak da 
+yazabiliriz. Tabii range fonksiyonunu üretici fonksiyon olarak yazdığımızda artık 
+üretici nesneyle [] operatörünü kullanamayız. Aşağıda range fonksiyonunun temel 
+işlevini yapan üretici bir fonksiyon verilmiştir.
+
+def myrange(start, stop = None, step = 1):
+    if stop == None:
+        stop = start
+        start = 0
+    
+    i = start
+    while i < stop:
+        yield i
+        i += step
+
+
+for x in myrange(10):
+    print(x, end=' ')
+
+print()
+
+for x in myrange(10, 20, 2):
+    print(x, end=' ')
+    
+print()
+
+for x in myrange(10, 20):
+    print(x, end=' ')
+
+------------------------------------------------------------------------------------
 """
-
-
-
-
 
 
 
