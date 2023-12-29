@@ -5306,8 +5306,40 @@ for name in myfilter(f, names):
     print(name, end=' ')
 ------------------------------------------------------------------------------------ 
 """
+# Dolaşılabilir nesnelere neden gereksinim duyarız?
+"""
+------------------------------------------------------------------------------------ 
+Pekiyi dolaşılabilir nesnelere neden gereksinim duyarız? Örneğin 0'dan n'e kadar 
+sayıların kareköklerini elde eden ve bunu bize bir liste olarak veren (neticede 
+liste de dolaşılabilir bir nesnedir) fonksiyon ile aynı işlem için oluşturulan 
+dolaşılabilir sınıf arasında ne fark vardır? Biz bu işlemi bir içlem içeren bir 
+fonksiyonla da aşağıdaki gibi yapabilirdik:
 
+def get_sqrts(n):
+    return [math.sqrt(i) for i in range(n)]
 
+a = get_sqrts(100000)            
+for x in a:
+    print(x, end=' ')
+
+İşte sonucu bir liste biçiminde veren fonksiyonlar sonucu baştan oluşturup bir 
+listeye yerleştirmek zorundadırlar. Eğer bizim amacımız bu değerler üzerinde işlem 
+yapmaksa bütün değerlerin işin başında listeye yerleştirilmesine ve onların bellekte 
+yer kaplamasına gerek yoktur. Dolaşılabilir nesneler değerleri dolaşım sırasında 
+vermektedir. Böylece değerlerin baştan liste gibi bir nesnede depolanmasına gerek 
+kalmamaktadır.
+
+Örneğin diskimizdeki tüm dosyalar üzerinde işlemler yapmak isteyelim. Yani kökten 
+başlayarak her dizine tek tek geçip tüm dosyaları elde etmek isteyelim. Bu çok 
+yorucu ve uzun zaman alan bir işlemdir. Diskimizde binlerce dosya bulunuyor olabilir. 
+Bunlarının hepsinin elde edilmesi ve bize bir liste olarak verilmesi oldukça zordur. 
+Oysa biz istediğimzde bize kalınan yerden devam edilerek dosyalar verilse bu işlem 
+çok daha uygun olur. İşte dolaşılabilir nesneler bir işi adım adım yapmak için 
+tercih edilmektedir. Eğer dizin ağacını dolaşan bir fonksiyonu dolaşılabilir bir 
+nesne yoluyla gerçekleştirmezsek hem bizim tüm dosyaları bir listede saklamamız 
+gerekir hem de bu işlem çok uzun zaman alabilir.
+------------------------------------------------------------------------------------ 
+"""
 
 # ---------------- GENERATOR (Üretici Fonksiyonlar, sınıflar) ----------------
 """
@@ -5488,10 +5520,53 @@ for x in myrange(10, 20):
     print(x, end=' ')
 
 ------------------------------------------------------------------------------------
+import math
+
+def get_primes(n):
+    def isprime(val):
+        if val % 2 == 0:
+            return val == 2
+        sqrt_val = int(math.sqrt(val))
+        for i in range(3, sqrt_val + 1, 2):
+            if val % i == 0:
+                return False
+        return True
+    
+    if n < 2:
+        raise ValueError('argument must greater or equal 2')
+    
+    for i in range(2, n):
+        if isprime(i):
+            yield i
+            
+for x in get_primes(100):
+    print(x, end=' ')
+------------------------------------------------------------------------------------
 """
 
+# Dolaşılabilir sınıflar mı yoksa üretici fonksiyonlar mı, neden
+"""
+------------------------------------------------------------------------------------
+
+Peki dolaşılabilir bir nesne elde edebilmek için dolaşılabilir sınıflar mı 
+yoksa üretici fonksiyonlar mı tercih edilmelidir? İşte bu tercih içinde bulunulan 
+duruma göre değişebilmektedir:
+
+- Dolaşılabilir sınıflar her __next__ metodunda bize yeni değeri verirler. Oysa 
+üretici fonksiyonlar her yield işleminde bize değer verirler. Üretici fonksiyonların 
+durudulması ve o noktadan çalışma devam ettirilmesi daha uzun zaman almaktadır. 
+Oysa dolaşılabilir sınıflarda değerler __next__ çağrısı ile daha hızlı edilmektedir. 
+Yani dolaşılabilir sınıflar üretici fonksiyonlara göre daha hızlı olma eğilimindedir.
 
 
+- Üretici fonksiyonları yazmak çok daha kolaydır. Çünkü herhangi bir fonksiyon 
+hemen üretici fonksiyon haline getirilebilir. Oysa dolaşılabilir sınıfları yazmak 
+daha zordur. Dolaşılabilir sınıflarda akış durdurulmadığı için her __next__ metodunda 
+durumsal bilginin saklanarak o noktadan devam ettirilmesi gerekmektedir. Bu da daha
+fazla çaba anlamına gelir. Üretici fonksiyonlar çok daha pratik yazılabilmektedir. 
+
+------------------------------------------------------------------------------------
+"""
 
 
 
