@@ -5566,10 +5566,49 @@ durumsal bilginin saklanarak o noktadan devam ettirilmesi gerekmektedir. Bu da d
 fazla çaba anlamına gelir. Üretici fonksiyonlar çok daha pratik yazılabilmektedir. 
 
 ------------------------------------------------------------------------------------
+class myenumerate1:
+    def __init__(self, iterable, start = 0):
+        self.iterator = iterable.__iter__()
+        self.i = start
+        
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        self.i += 1
+        return self.i - 1, self.iterator.__next__()
+
+def myenumerate2(iterable, start = 0):
+    i = start
+    for val in iterable:
+        yield i, val
+        i += 1
+    
+a = [10, 20, 30, 40, 50]
+
+for index, val in myenumerate1(a):
+    print(index, val)
+    
+print('--------------------')
+
+for index, val in myenumerate2(a):
+    print(index, val)
+
+------------------------------------------------------------------------------------
+a = [3, 6, 2, 8, 4, 9]
+
+def square(val):
+    return val * val
+
+def mymap(f, iterable):
+    for x in iterable:
+        yield f(x)
+
+for x in mymap(square, a):
+    print(x, end=' ')  
+    
+------------------------------------------------------------------------------------
 """
-
-
-
 
 
 
