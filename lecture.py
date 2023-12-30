@@ -696,7 +696,7 @@ else:
     print('no real root!')
 """
 
-# Neden Fonksiyon Kullanilir?
+# Neden- Fonksiyon Kullanilir?
 """
 Peki biz neden fonksiyon yazmak isteriz? iste fonksiyonlar olusturmanin gerekceleri şunlardir:
 1) Fonksiyonlar "yeniden kullanilabilirligi (reusability)" saglarlar.
@@ -5306,7 +5306,7 @@ for name in myfilter(f, names):
     print(name, end=' ')
 ------------------------------------------------------------------------------------ 
 """
-# Dolaşılabilir nesnelere neden gereksinim duyarız?
+# Dolaşılabilir nesnelere neden- gereksinim duyarız?
 """
 ------------------------------------------------------------------------------------ 
 Pekiyi dolaşılabilir nesnelere neden gereksinim duyarız? Örneğin 0'dan n'e kadar 
@@ -5491,7 +5491,7 @@ print(a)
 Biz daha önce range fonksiyonunu dolaşılabilir bir sınıf olarak yazmıştık. Standart 
 kütüphanedeki range fonksiyonu da aslında dolaşılabilir bir sınıftır. Ancak istersek 
 bu range işlemini yapan dolaşılabilir nesneyi bir üretici fonksiyon kullanarak da 
-yazabiliriz. Tabii range fonksiyonunu üretici fonksiyon olarak yazdığımızda artık 
+yazabiliriz. Tabi range fonksiyonunu üretici fonksiyon olarak yazdığımızda artık 
 üretici nesneyle [] operatörünü kullanamayız. Aşağıda range fonksiyonunun temel 
 işlevini yapan üretici bir fonksiyon verilmiştir.
 
@@ -5544,7 +5544,7 @@ for x in get_primes(100):
 ------------------------------------------------------------------------------------
 """
 
-# Dolaşılabilir sınıflar mı yoksa üretici fonksiyonlar mı, neden
+# Dolaşılabilir sınıflar mı yoksa üretici fonksiyonlar mı, neden-
 """
 ------------------------------------------------------------------------------------
 
