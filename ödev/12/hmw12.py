@@ -73,3 +73,93 @@ for index, x in enumerate(mycycle(a)):
 """
 
 # Solution 3
+"""
+???????????????????????????????????????????????????????????????????????????????
+class Myislice:
+    def __init__(self, iterable, start, stop=None, step=1):
+        self.iterable = iterable
+        self.iterator = self.iterable.__iter__()
+        self.step = step
+        self.stop = stop
+        self.i = 0
+
+        if self.stop == None:
+            self.stop = start
+            self.start = 0
+        else:
+            self.start = start
+            self.stop = stop
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.start == 0:
+            for _ in self.iterator:
+                self.i += 1
+            self.stop = self.i
+
+            if self.start == self.stop:
+                raise StopIteration()
+            self.start += self.step
+            return self.start - self.step
+
+        else:
+            if self.start == self.stop:
+                raise StopIteration()
+
+            self.start += self.step
+            return self.start - self.step
+
+import itertools
+for c in Myislice('12aas',20):
+    print(c,end=' ')
+
+???????????????????????????????????????????????????????????????????????????????
+"""
+
+# Solution 4
+"""
+class Myrepeat:
+    def __init__(self, val, times= None):
+        self.val = val
+        self.times = times
+        self.i = 0
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.times == None:
+            while True:
+                return self.val
+
+        elif self.i < self.times:
+                self.i +=1
+                return self.val
+        else:
+            raise StopIteration
+
+g = Myrepeat(10,5)
+for x in g:
+    print(x, end=' ')
+print()
+
+
+def myrepeat(val, times=None):
+    if not times is None:
+        for i in range(times):
+            yield val
+    else:
+        while True:
+           yield val
+
+g = myrepeat(10,5)
+for x in g:
+    print(x, end=' ')
+
+"""
+
+
+
+
+
