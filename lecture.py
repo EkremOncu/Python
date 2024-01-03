@@ -5730,6 +5730,42 @@ print(*(i for i in range(100) if i % 7 == 0))
 """
 
 
+# ---------------- Lambda ifadeler (lambda expresssions) ----------------
+"""
+------------------------------------------------------------------------------------
+Bir fonksiyonun bir ifade içerisinde tanımlanarak o ifade içerisinde kullanılmasına 
+programlama dillerinde "lambda ifadeleri (lambda expressions)" denilmektedir. 
+Aslında lambda ifadeleri eskiden fonksiyonel dillerde karşımıza çıkan yapılardı. 
+Python'daki lambda ifadeleri bu dillerdekilere gör oldukça kısıtlı ve minimalist 
+bir yapıdadır. Lambda ifadelerinin genel biçimi şöyledir:
+
+!!!!!    
+lambda [parametre_listesi]: <ifade>
+!!!!!
+
+Örneğin:
+
+f = lambda a: a * a
+result = f(10)
+print(result)
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+lambda ifadeleri aslında bir fonksiyon oluşturmaktadır. lambda anahtar sözcüğünün 
+yanındaki değişken listesi fonksiyonun parametreleridir. Burada fonksiyon 
+tanımlamasında olduğu gibi (...) atomları kullanılmaz. İki nokta üst üste atomunun 
+yanında bir ifadenin olması gerekir. Bu ifade de aslında fonksiyonun geri dönüş 
+değerini belirtir. Burada return anahtar sözcüğü kullanılmaz. Zaten bu ifade return 
+ifadesi anlamına gelmektedir. lambda ifadelerinden elde edilen değer bir fonksiyon 
+nesnesinin adresidir. Dolayısıyla biz onu bir değişkene atarsak o değişken fonksiyon 
+nesnesini gösterecektir. Bu da tamamen fonksiyon ile aynı etkinin yaratılması 
+anlamına gelir
+
+f = lambda a: a * a
+type(f) # <class 'function'>
+------------------------------------------------------------------------------------
+"""
+
+
 
 
 
