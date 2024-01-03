@@ -5664,12 +5664,70 @@ a = list(g)
 
  g = some_name()
 ------------------------------------------------------------------------------------
+Pekiyi üretici ifade de aslında üretici fonksiyon belirttiğine göre arada ne 
+fark vardır?
+
+İşte üretici ifadeler "ifade (expression)" tanımına uymaktadır. Dolayısıyla başka 
+ifadelerin içerisinde kullanılabilirler. Örneğin:
+
+import statistics
+
+result = statistics.mean((i * i for i in range(10)))
+
+print(result)        
+
+Biz burada üetici ifadeyi doğrudan fonksiyon çağırma işleminde argüman olarak 
+kullandık. Halbuki aynı işlemi üretici fonksiyonlarla yapmak isteseydik daha zor 
+olacaktı:
+
+def some_name():
+    for i in range(10):
+        yield i * i
+    
+result = statistics.mean(some_name())
+print(result)
+------------------------------------------------------------------------------------
+
+Üretici ifadeler eğer bir fonksiyon ya da metot çağrılırken argüman olarak 
+kullanılıyorsa ve çağrım işleminde başka da bir argüman bulundurulmuyorsa üretici 
+ifadelerdeki dıştaki parantezler hiç kullanılmayabilir. Örneğin:
+ 
+import statistics
+
+result = statistics.mean((i * i for i in range(10)))
+
+Yukarıdaki çağrımda dıştaki parantezler hiç kullanılmayabilirdi:
+
+result = statistics.mean(i * i for i in range(10))
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Peki üretici ifadeler bize ne fayda sağlamaktadır? İşte üretici ifadeler aslında 
+dolaşılabilir nesneleri oluşturmanın en kolay yollarından biridir. Daha önce de 
+belirttiğimiz gibi dolaşılabilir nesneler içlemlerle de benzer sentaks ile
+oluşturulabilmektedir. Ancak içlemler liste, küme ya da sözlük nesnesi yaratmaktadır. 
+Bazı işlemlerde elemanlar bu nesnelerin içerisinde gereksiz bir biçimde yer 
+kaplayabilmektedir. Örneğin:
+
+result = statistics.mean([i * i for i in range(1000000)])
+
+Burada ortalama elde edildikten sonra oluşturulan buı liste nesnesi zaten yok 
+edilmektedir. Halbuki bunun boşuna 1000000 elemandan oluşan bir liste yaratmış 
+olduk. Aynı işlemi üretici ifadelerle daha etkin biçimde gerçekleştirebiliriz:
+
+result = statistics.mean((i * i for i in range(1000000)))
+
+Artık burada 1000000 eleman gereksiz bir biçimde yer kaplamamaktadır.
+------------------------------------------------------------------------------------
+
+Aşağıdaki örnekte print fonksiyonuna dolaşılabilir bir üretici ifade *'lı bir 
+biçimde verilmiştir. Bu durumda bu üretici ifade dolaşılıp elde edilen değerler 
+ekrana yazdırılacaktır. 
+
+print((i for i in range(100) if i % 7 == 0)) 
+print()
+print(*(i for i in range(100) if i % 7 == 0)) 
+------------------------------------------------------------------------------------
 """
-
-
-
-
-
 
 
 
