@@ -5611,6 +5611,67 @@ for x in mymap(square, a):
 """
 
 
+# ---------------- üretici ifadeler (generator expresssions) ----------------
+"""
+------------------------------------------------------------------------------------
+Anımsanacağı gibi liste içlemleri, küme içlemleri ve sözlük içlemleri vardı ancak 
+demet içlemleri biçiminde bir içlem yoktu. Bunun ana nedeni demetlerin 
+değiştirilebilir nesneler olmamasıdır. Ancak demet içlemi sentaksı Python'da 
+bulunmaktadır fakat başka bir anlama gelmektedir.  Demet içlemi sentaksına Python
+'da "üretici ifadeler (generator expresssions)" denilmektedir. Örneğin:
+
+a = [1, 2, 3, 4, 5]
+
+b = [x * x for x in a]      # listte içlemi
+print(b)
+
+g = (x * x for x in a)      # üretici ifade (generator expression)
+
+Bir üretici ifade aslında üretici bir fonksiyonun basit bir yazım biçimidir. 
+Üretici ifade bize aslında bir üretici nesne vermektedir. Yani:
+
+g = (ifade for değişken in dolaşılabilir_nesne)
+
+İşleminin eşdeğeri şöyedir:
+
+def some_generator_name():
+    for x in dolaşılabilir_nesne:
+        yield ifade
+
+g = some_generator_name()
+
+Üretici ifadelerin doğrudan üretici nesne verdiğine dikkat ediniz. Halbuki üretici 
+fonksiyonlardan üretici nesne elde edebilmek için onların çağrılması gerekmektedir. 
+Örneğin:
+
+g = (i * i for i in range(10))
+type(g) # <class 'generator'>
+
+a = list(g)
+>>> a
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+------------------------------------------------------------------------------------
+Örneğin aşağıdaki gibi bir üretici ifade olsun:
+
+ g = (i * i for i in range(10))
+
+ Bunun üretici fonksiyon karşılığı şöyle oluşturulabilir:
+
+ def some_name():
+     for i in range(10):
+         yield i * i
+
+ g = some_name()
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
 
 
 
