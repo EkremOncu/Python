@@ -5762,9 +5762,132 @@ anlamına gelir
 
 f = lambda a: a * a
 type(f) # <class 'function'>
+
+işleminin eşdeğeri şöyledir:
+
+def f(a):
+    return a * a
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+a = [12, 23, 14, 81, 64, 72, 17, 48]
+
+for x in filter(lambda val: val % 2 == 0, a):
+    print(x, end=' ')
+    
+Burada biz listenin koşulu sağlayan elemanlarını elde etmiş olduk. 
+
+Lambda ifadelerindeki ':' atomundan sonraki ifadede içinde bulunulan fonksiyonun 
+yerel değişkenleri ve global değişkenler kullanılabilir.  Yani lambda ifadeleri 
+bir fonksiyonun içerisinde kullanılmışsa adeta bir iç fonksiyon (nested funstion) 
+gibi işlem görmektedir. Örneğin:
+
+def foo(val):
+    for x in map(lambda a: a * val, [1, 2, 3, 4, 5]):
+        print(x, end=' ')
+    print()
+                
+foo(5)
+foo(10)
+
+Bu durumda yukarıdaki kodun eşdeğeri şöyledir:
+
+def foo(val):
+    def f(a):
+        return a * val
+    for x in map(f, [1, 2, 3, 4, 5]):
+        print(x, end=' ')
+    print()
+                
+foo(5)
+foo(10)
+------------------------------------------------------------------------------------    
+a = [3, 6, 1, 8, 9, 2, 4, 7]
+
+    for x in map(lambda val: 1 if val % 2 == 0 else 0, a):
+        print(x, end=' ')
+------------------------------------------------------------------------------------
+Lambda ifadeleri fonksiyon belirttiğine göre hiç ara değişken kullanılmadan fonksiyon 
+çağırma operatör ile çağrılabilir. Ancak tabii dıştan bir parantez zorunludur. 
+Örneğin:
+
+result = (lambda a, b: a if a > b else b)(10, 20)
+
+print(result)       # 20
+
 ------------------------------------------------------------------------------------
 """
 
+# ---------------- Sıfıfların __getattr__ metodları ----------------
+"""
+------------------------------------------------------------------------------------
+Sınıfların eleman erişiminde kullanılan __getattr__ isimli bir metodu vardır. Bir 
+sınıf türünden değişkenle o sınıfın  OLMAYAN  bir örnek özniteliğine ya da bir 
+metoduna erişildiğinde yorumlayıcı tarafından sınıfın __getattr__ metodu 
+çağrılmaktadır. __getattr__ metodunun self parametresi dışında erişilmek istenen 
+elemanın ismini alan bir name parametresi (ismi name olmak zorunda değildir) de 
+vardır. __getattr__ metodunun geri dönüş değeri erişim sonucunda elde edilen değerdir. 
+Örneğin:
+
+class Sample:
+    def __getattr__(self, name):
+        print(name)
+        return 0
+        
+s = Sample()        # Spyder IDE'sinden kaynaklı yanlış çıktı veriyor bazen, 
+                    # Ipython'dan dolayı 
+x = s.val    
+print(x)        # val
+                # 0    
+
+
+
+Normal olarak eğer sınıfta __getattr__ metodu yoksa biz sınıfın olmayan bir 
+elemanına erişmeye çalıştığımızda AttributeError isimli exception oluşur.  
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+class Sample:
+    def __init__(self):
+        self.a = 10
+
+    def __getattr__(self, name):
+        print(f'__getattr__ called: {name}')
+        return 0
+
+s = Sample()
+
+print(s.a)
+print()
+print()
+
+print(s.x)
+print()
+print()
+
+print(s.y)
+print()
+print()
+
+result = s.x + s.y
+print(result)
+------------------------------------------------------------------------------------
+Tabii nesne ile olmayan bir örnek özniteliğine değer atama işlemi zaten o örnek 
+özniteliğinin yaratılmasına yol açtığı için bu durumda __getattr__ metodu 
+çağrılmamaktadır. Örneğin:
+
+class Sample:
+    def __init__(self):
+        self.a = 10
+
+    def __getattr__(self, name):
+        print(f'__getattr__ called: {name}')
+        return 0
+
+s = Sample()
+
+s.x = 100       # burada __getattr__ çağrılmayacak
+print(s.x)      # burada da __getattr__ çağrılmayacak, çünü artık x örnek özniteliği var
+------------------------------------------------------------------------------------
+"""
 
 
 
