@@ -5887,13 +5887,75 @@ s = Sample()
 s.x = 100       # burada __getattr__ çağrılmayacak
 print(s.x)      # burada da __getattr__ çağrılmayacak, çünü artık x örnek özniteliği var
 ------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Sınıfın __getattr__ metodu "property" kavramını oluşturmak amacıyla ve başka birtakım 
+amaçlarla kullanılabilmektedir. Nesne yönelimli programlama dillerinin bir bölümünde 
+var olan "property" kavramı metotların adeta birer örnek özniteliği gibi kullanılmasını 
+sağlayan bir mekanizmadır. Yani bu kavram sayesinde programcı nesnenin bir örnek 
+özniteliğine eriştiğindeaslında arka planda bir metot çağrılmaktadır. C++ ve Java 
+gibi dillerde property kavramı yoktur. Fakat örneğin C#'ta vardır. Python'da 
+property'ler __getattr__ metodu yoluyla ya da property isimli dekoratör yoluyla 
+oluşturulabilmektedir. 
+
+import math
+
+class Circle:
+    def __init__(self, radius, x, y):
+        self.radius = radius
+        self.x = x
+        self.y = y
+
+    def __getattr__(self, name):
+        if name == 'area':
+            return math.pi * self.radius ** 2
+        raise AttributeError(f"Circle object has no attribute '{name}'")
+
+    def __repr__(self):
+        return f'radius: {self.radius}, center: ({self.x},{self.y})'
+
+c = Circle(10, 3, 4)
+print(c)
+
+print(c.area)
+print(c.xxxxxxxx)       # exception oluşacak
+
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Peki property kavramına neden gereksinim duyulmaktadır? Bunu basit bir örnekle 
+açıklayabiliriz. Biz __getattr__ metodu ile property oluşturmadan aynı işlemi 
+sınıfa area isimli örnek özniteliğini yerleştirerek yaptığımızı düşünelim:
+
+import math
+
+class Circle:
+    def __init__(self, radius, x, y):
+        self.radius = radius
+        self.x = x
+        self.y = y
+        self.area =  math.pi * radius ** 2
+
+    def __repr__(self):
+        return f'radius: {self.radius}, center: ({self.x},{self.y})'
+
+c = Circle(10, 3, 4)
+print(c)
+print(c.area)
+
+Burada sınıfı kullanan programcı dışarıdan radius örnek özniteliğini değiştirirse 
+area bilgisi değiştirilmeyecektir. Örneğin:
+
+c = Circle(10, 3, 4)
+print(c.area)
+c.radius = 20
+print(c.area)
+
+Halbuki biz area örnek özniteliğine erişildiğinde bir metodun çağrılmasını saplarsak 
+bu metot o andaki radius değerini kullanacağı için sorun olmayacaktır. İşte sınıfın 
+birbirleriyle ilişkili veri elemanları varsa onların arasındaki koordinasyon
+property'lerle sağlanabilmektedir. C++ ve Java gibi dillerde property kavramı 
+olmadığı için bu tür işlemler getter/setter metotlarıyla yapılmaktadır. 
+------------------------------------------------------------------------------------
 """
-
-
-
-
-
-
 
 
 
