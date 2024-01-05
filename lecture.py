@@ -5959,3 +5959,101 @@ olmadığı için bu tür işlemler getter/setter metotlarıyla yapılmaktadır.
 
 
 
+"""
+------------------------------------------------------------------------------------
+__getattribute__ metodu bir sınıf türünden değişken ile sınıfın bir elemanına 
+erişilirken eleman olsa da olmasa da çağrılmaktadır. Halbuki __getattr__ metodunun 
+eleman yoksa çağrıldığını anımsayınız. Tabii nesnenin olmayan bir elemanına değer 
+atandığında __getattribute__ metoduçağrılmamaktadır. Çünkü olmayan elemana değer 
+atama işlemi aslında onun yaratılmasına yol açmaktadır. Tabii yine tıpkı __getattr__ 
+metodunda olduğu gibi eleman olsa da olmasa da __getattribute__ metodunun geri 
+dönüş değeri erişimden elde edilmektedir. 
+
+class Sample:
+    def __getattribute__(self, name):
+        print(f'__getattr__ called: {name}')
+        return 0
+
+    def _foo(self):
+        print('foo')
+
+s = Sample()
+s.x = 10        # __getattribute__ çağrılmayacak
+print(s.x)      # __getattribute__çağrılacak, !!!! ekrana 0 basılacak !!!!
+print(s.y)      # __getattribute__ çağrılacak, ekrana 0 basılacak
+val= s.z        # __getattribute__ çağrılacak
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Peki sınıfın hem __getattr__ hem de __getattribute__ metotları varsa ne olur? İşte 
+bu durumda __getattr__ hiç devreye girmez. Olan elemana erişimde zaten __getattr__ 
+devreye girmeyecektir. Olmayan elemana erişimde de __getattr__ devreye girmez. 
+Yani bu durumda __getattr__ metodunu yazmanın bir anlamı kalmaz.
+------------------------------------------------------------------------------------
+"""
+
+
+#  ---------------- __setattr__  ----------------
+"""
+------------------------------------------------------------------------------------
+Sınıfların __setattr__ metotları bir sınıf nesnesi ile nesnenin olan ya da olmayan
+elemanlarına değer atandığı durumda çağrılmaktadır. Bu anlamda __setattr__ adeta 
+__getattribute__ metodunun set yapan biçimi gibidir. Ayrıca bir __setattribute__ 
+metodu bulunmamaktadır. __setattr__ metodunun self parametresi dışında iki 
+parametresi daha vardır. Bunlardan ilki atama yapılmak istenen elemanın ismini 
+belirtir. İkincisi ise o elemana atanmak istenen değeri belirtmektedir. Yani 
+__setattr__ metodunun parametrik yapısı şöyle olmalıdır:
+
+    
+def __setttr__(self, nanme, value):
+    pass
+
+Örneğin:
+
+class Sample:
+    def __init__(self):
+        self.a = 10             # dikkat! yine __setattr__ çağrılacak
+        
+    def __setattr__(self, name, value):
+        print(name, value)
+    
+s = Sample()
+
+s.a = 20        # dikkat! _setattr__ çağrılacak
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+__setattr__ metodu çağrıldığında artık elemana atama yapılmamaktadır. Elemana atama 
+yapılmak isteniyorsa bunu programcının __setattr__ metodu içerisinde yapması 
+gerekmektedir. Tabii __setattr__ içerisinde nesnenin bir örnek özniteliğine atama 
+yapılırsa yine "özyineleme (resursion)" oluşur. Bunun oluşması istenmiyorsa atama 
+izleyen paragraflarda açıklayacağımız nesnenin __dict__ elemanı yoluyla ya da 
+object sınıfının __setattr__ metodu yoluyla yapılmalıdır. Örneğin:
+
+class Sample:
+    def __init__(self):
+        self._x = 0
+
+    def __getattr__(self, name):
+        if name == 'x':
+            return self._x
+
+        raise AttributeError(f"Sample object has no attribute '{name}'")
+
+    def __setattr__(self, name, value):
+       if name == 'x':
+           object.__setattr__(self, '_x', value)
+       else:
+           object.__setattr__(self, name, value)
+
+s = Sample()
+print(s.x)
+s.x = 10
+print(s.x)
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
