@@ -6050,6 +6050,127 @@ s.x = 10
 print(s.x)
 ------------------------------------------------------------------------------------
 """
+"""
+------------------------------------------------------------------------------------
+Ancak property kullanımının dşiğer bir amacı da (birinci amaçtan daha aşağı bir 
+amaç değildir) "veri elemanlarının gizlenmesi (data hiding)" prensibinin uygulanmasını 
+sağlamaktır. Veri elemanlarının gizlenmesi NYPT'nin önemli prensiplerinden biridir. 
+------------------------------------------------------------------------------------
+"""
+
+
+#  ---------------------- data hiding  ----------------------
+"""
+------------------------------------------------------------------------------------
+Veri elemanlarının gizlenmesi (data hiding) veri elemanlarının dışarıdan kullanımını 
+engelleyip onlara kodlar yoluyla erişimi mümkün hale getirmek anlamına gelmektedir. 
+Python'da dışarıdan erişilmesini istemediğimiz öniteliklerin başına '_' ve '__' 
+ekliyorduk. Tabii bu ekleme erişimi engellemiyordu. Yalnızca dışarıya bir "erişme" 
+biçiminde mesaj veriyordu. Halbuki C++, Java ve C# gibi diğer dillerde dışarıdan 
+erişimin tamamen engellenmesi için sınıflarda "private" bulundurulmuştur. 
+
+
+NYPT'de sınıfın örnek öznitelikleri (veri elemanları) iç işleyişe ilişkin olma 
+eğilimindedir. Özniteliklere dışarıdan erişilmesini engellemenin ve onlara kodlar 
+yoluyla erişilmesine izin verilmesinin dört temel neden vardır:
+    
+    1) Örnek özniteliklerine dışarıdan erişilirse onlar üzerinde yapılacak 
+    değişikliklerden onları kullanan kodlar etkilenir.     
+
+    2) Sınıfın bir örnek özniteliğine programcı geçersiz değerler atayabilir.  
+    Bu da tamamen sınıfın hatalı çalışmasına yol açabilir. 
+
+    3) Sınıfın birbirleriyle ilişkili örnek öznitelikleri olabilir. Yani bunlardan 
+    birine değer atandığında diğerlerinin de değiştirilmesi gerekebilir. İşte bu 
+    tür işlemlerin kodla yapılması bu karmaşık ilişkinin arka planda doğru bir 
+    biçimde oluşturulmasını sağlayabilmektedir.
+    
+    4) Bazen nesnenin bir özniteliğinden değer alırken ya da ona değer yerleştirirken 
+    aynı zamanda başka bir işlemin de yapılması gerekebilmektedir. İşte örnek 
+    özniteliklerine doğrudan değil kodla erişilirse arka planda bu işlemler 
+    yapılabilmektedir.
+    
+    
+Propert'ler aslında yukarıda da örneklerini verdiğimiz gibi sınııfn __getattr__ 
+ve __setattr__ metotları yoluyla oluşturulabilmektedir. Ancak bu yöntem biraz 
+zahmetlidir. Python'da property oluşturulmasını kolaylaştırmak için property
+    isminde bir dekoratör sınıf bulundurulmuştur.     
+------------------------------------------------------------------------------------
+"""
+"""
+------------------------------------------------------------------------------------
+Python'da property kullanımı aslında property isimli bir dekoratör sınıf yoluyla 
+kolay bir biçimde yapılabilmektedir. property sınıfı built-in bir sınıftır. 
+Sınıfın __init__ metodunun parametrik yapısı şöyledir:
+
+property(fget=None, fset=None, fdel=None, doc=None)
+
+Bunu sınıfsal olarak aşağıdaki gibi de gösterebiliriz:
+
+class property:
+    def __init__(self, fget = None, fset = None, fdel = None, doc = None)  :
+        pass
+
+    
+class Sample:
+    def _get_x(self):
+        pass
+
+    def _set_x(self, value):
+        pass
+
+    x = property(_get_x, _set_x)
+
+Burada artık adeta nesnenin x isimli bir örnek özniteliği varmış gibi bir durum 
+oluşturulmuştur. Örneğin:
+
+s = Sample()
+
+s.x = 10            # _set_x metodu çağrılır
+print(s.x)          # _get_x metodu çağrılacak    
+------------------------------------------------------------------------------------
+
+Şimdi de daha önce __getattr__ ve __setattr__ kullanarak yapmış olduğumuz Circle 
+sınıfın area property'sini bu yöntemle gerçekleştirelim:
+
+import math
+
+class Circle:
+    def __init__(self, radius, x, y):
+        self._radius = radius
+        self._x = x
+        self._y = y
+
+    def __repr__(self):
+        return f'radius: {self._radius}, center: ({self._x},{self._y}), area: {self.area}'
+
+    def _get_area(self):
+        return math.pi * self._radius ** 2
+
+    def _set_area(self, value):
+        self._radius = math.sqrt(value / math.pi)
+
+    area = property(_get_area, _set_area)
+
+c = Circle(3, 10, 12)
+print(c)
+
+c.radius = 20
+print(c)
+
+c.area = 10
+print(c)
+
+Burada Circle sınıfına area isimli bir property eklenmiştir. Bu property bir örnek 
+özniteliği gibi kullanılmaktadır. Ancak aslında bu property kullanıldığında sınıfın 
+_get_area ve _set_area metotları çalıştırılmaktadır. 
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
 
 
 
