@@ -161,44 +161,5 @@ for x in g:
 """
 
 
-class Myislice:
-    def __init__(self, iterable, start, stop=None, step=1):
-        self.iterable = iterable
-        self.iterator = self.iterable.__iter__()
-        self.step = step
-        self.stop = stop
-        self.i = 0
-
-        if self.stop == None:
-            self.stop = start
-            self.start = 0
-        else:
-            self.start = start
-            self.stop = stop
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.start == 0:
-            for _ in self.iterator:
-                self.i += 1
-            self.stop = self.i
-
-            if self.start == self.stop:
-                raise StopIteration()
-            self.start += self.step
-            return self.start - self.step
-
-        else:
-            if self.start == self.stop:
-                raise StopIteration()
-
-            self.start += self.step
-            return self.start - self.step
-
-import itertools
-for c in Myislice(itertools.cycle('ABC'),20):
-    print(c,end=' ')
 
 
