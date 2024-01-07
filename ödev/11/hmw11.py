@@ -1,5 +1,5 @@
 with open('teste.txt', 'w+', encoding='utf-8') as pe:
-    pe.write("LeBron James(goat)\nGabe Vincent(Heat culture and injured)\nAustin Reeves(I'm him)\nRui Hachimura(Japanese)\nAnthony Davis Defensive player of the year")    
+    pe.write("LeBron James(goat)\nGabe Vincent(Heat culture and injured)\nAustin Reeves(I'm him)\nRui Hachimura(Japanese)\nAnthony Davis Defensive player of the year")
 print()
 
 # Solution 1
@@ -12,14 +12,15 @@ def mygrep(path,text):
         print()
         
     res= s.split('\n')
-    found= [index for index, item in enumerate(res) if text in item]
     
+    found= [index for index, item in enumerate(res) if text in item]
     if found:
         for i in range(len(found)):
             print(f"<{found[i]}>: {res[found[i]]}")
 
 mygrep('teste.txt','him')
 """
+
 # Solution 2
 """
 def disp_last_lines(path,n):
@@ -35,8 +36,9 @@ def disp_last_lines(path,n):
     for i in range(len(found)-1,len(found)-n-1,-1):
         print(f'{res[i]}')    
        
-disp_last_lines('teste.txt', 3)
+disp_last_lines('teste.txt', 2)
 """
+
 # Solution 3
 """
 def get_count(path):
@@ -44,7 +46,7 @@ def get_count(path):
         s = f.read()
         print(s)
         print()
-
+        asa = f.tell()
     res= s.split('\n')
     lcount= len(res)
 
@@ -60,9 +62,10 @@ def get_count(path):
     a= a.replace(')', ' ')
     a= a.replace("'", ' ')
     a= a.split(' ')
-    wcount= len(a)
 
-    return lcount,wcount,ccount
+    wcount= len(a)  # or  asa - len(res) + 1
+
+    return lcount,wcount,ccount,
 
 
 lcount,wcount,ccount= get_count('teste.txt')
@@ -82,20 +85,33 @@ def get_file(path):
 
 get_file('teste.txt')
 """
+
 # Solution 5
 """
-????????????????????????????
-q = open('testecopy.txt', 'w+b')
-with open('teste.txt', 'rb') as f:
-    while True:
-            s= f.read(1024)
-            t= q.write('s')
-            if s == '':
-                break
-            print(t, end='')
-????????????????????????????
-"""            
- # Solution 6           
+def copy_file(source_path, dest_path):
+    
+    q = open(dest_path, 'w+')
+
+    with open(source_path, 'r') as f:
+        while True:
+                s = f.read(1024)
+                q.write(s)
+                if s == '':
+                    break
+                print(s, end='')
+
+    print()
+    print("----------------")
+
+    q.seek(0)
+    po = q.read()
+    print(po)
+
+    q.close()
+
+copy_file ('teste.txt', 'testecopy.txt')
+"""
+# Solution 6
 
 
 
