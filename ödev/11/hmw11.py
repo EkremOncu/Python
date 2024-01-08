@@ -111,13 +111,42 @@ def copy_file(source_path, dest_path):
 
 copy_file ('teste.txt', 'testecopy.txt')
 """
-# Solution 6
+# Solution 6   # eksik
+"""
+def read_csv(path, sep=',', skiprows=0, converter={}):
+    with open(path,'r') as f:
+        s= f.read()
+
+        les = s.split(sep)
+
+        s= s.replace('\n', sep)
+        res = s.split(sep)
+
+        flag = False
+        s = 0
+        for i in les:
+            flag = '\n' in i
+            s += 1
+            if flag:
+                break
+
+        matris = [[] for _ in range(len(res) // s)]
+
+        q = 0
+        for i in range(len(matris)):
+            for _ in range(s):
+                matris[i].append(res[q])
+                q += 1
+
+        del matris[0:skiprows]
+
+    return matris
 
 
+result = read_csv("C:/Users/Lenovo/Desktop/FB.csv", ';', 1)
 
-
-
-
-
-
-
+print(result)
+print()
+for satir in result:
+    print(satir)
+"""
