@@ -112,7 +112,7 @@ def copy_file(source_path, dest_path):
 copy_file ('teste.txt', 'testecopy.txt')
 """
 # Solution 6   # eksik
-"""
+
 def read_csv(path, sep=',', skiprows=0, converter={}):
     with open(path,'r') as f:
         s= f.read()
@@ -143,10 +143,10 @@ def read_csv(path, sep=',', skiprows=0, converter={}):
     return matris
 
 
-result = read_csv("C:/Users/Lenovo/Desktop/FB.csv", ';', 1)
+result = read_csv("FB.csv", ';', 1)
 
 print(result)
 print()
 for satir in result:
     print(satir)
-"""
+
