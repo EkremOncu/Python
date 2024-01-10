@@ -6068,33 +6068,11 @@ Python'da dışarıdan erişilmesini istemediğimiz öniteliklerin başına '_' 
 ekliyorduk. Tabii bu ekleme erişimi engellemiyordu. Yalnızca dışarıya bir "erişme" 
 biçiminde mesaj veriyordu. Halbuki C++, Java ve C# gibi diğer dillerde dışarıdan 
 erişimin tamamen engellenmesi için sınıflarda "private" bulundurulmuştur. 
-
-
-NYPT'de sınıfın örnek öznitelikleri (veri elemanları) iç işleyişe ilişkin olma 
-eğilimindedir. Özniteliklere dışarıdan erişilmesini engellemenin ve onlara kodlar 
-yoluyla erişilmesine izin verilmesinin dört temel neden vardır:
-    
-    1) Örnek özniteliklerine dışarıdan erişilirse onlar üzerinde yapılacak 
-    değişikliklerden onları kullanan kodlar etkilenir.     
-
-    2) Sınıfın bir örnek özniteliğine programcı geçersiz değerler atayabilir.  
-    Bu da tamamen sınıfın hatalı çalışmasına yol açabilir. 
-
-    3) Sınıfın birbirleriyle ilişkili örnek öznitelikleri olabilir. Yani bunlardan 
-    birine değer atandığında diğerlerinin de değiştirilmesi gerekebilir. İşte bu 
-    tür işlemlerin kodla yapılması bu karmaşık ilişkinin arka planda doğru bir 
-    biçimde oluşturulmasını sağlayabilmektedir.
-    
-    4) Bazen nesnenin bir özniteliğinden değer alırken ya da ona değer yerleştirirken 
-    aynı zamanda başka bir işlemin de yapılması gerekebilmektedir. İşte örnek 
-    özniteliklerine doğrudan değil kodla erişilirse arka planda bu işlemler 
-    yapılabilmektedir.
-    
     
 Propert'ler aslında yukarıda da örneklerini verdiğimiz gibi sınııfn __getattr__ 
 ve __setattr__ metotları yoluyla oluşturulabilmektedir. Ancak bu yöntem biraz 
 zahmetlidir. Python'da property oluşturulmasını kolaylaştırmak için property
-    isminde bir dekoratör sınıf bulundurulmuştur.     
+isminde bir dekoratör sınıf bulundurulmuştur.     
 ------------------------------------------------------------------------------------
 """
 """
@@ -6164,6 +6142,141 @@ print(c)
 Burada Circle sınıfına area isimli bir property eklenmiştir. Bu property bir örnek 
 özniteliği gibi kullanılmaktadır. Ancak aslında bu property kullanıldığında sınıfın 
 _get_area ve _set_area metotları çalıştırılmaktadır. 
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Tabii property'lerin read/write olması gerekmez. Örneğin "read-only" property'ler 
+söz konusu olabilmektedir. Read-only property demek yalnızca get yapılan ama set 
+yapılamayan property demektir.
+
+Aşağıdaki örnekte Date sınıfına tarih bilgisinin gün, ay ve yıl bileşenlerinin 
+elde edildiği day, month ve year property'leri eklenmiştir. Bu property'lerin 
+read-only olduğuna dikkat ediniz. 
+
+class Date:
+    def __init__(self, day, month, year):
+        self._day = day
+        self._month = month
+        self._year = year
+        
+    def _get_day(self):
+        return self._day
+    
+    def _get_month(self):
+        return self._month
+    
+    def _get_year(self):
+        return self._year
+        
+    day = property(_get_day)
+    month = property(_get_month)
+    year = property(_get_year)
+    
+d = Date(9, 1, 2024)
+
+print(d.day, d.month, d.year)
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+property sınıfının __init__ metodunun üçüncü parametresi (başka bir deyişle property 
+fonksiyonunun üçüncü parametresi) ilgili örnek özniteliğini del deyimi ile silmeye 
+çalıştığımızda çağrılacak metodu belirtmektedir. Örneğin:
+
+class Sample:
+    def __init__(self, a):
+        self._a = a
+        
+    def _get_a(self):
+        return self._a
+    
+    def _set_a(self, value):
+        self._a = value
+        
+    def _del_a(self):
+        print('deleting self._a')
+        del self._a
+        
+    a = property(_get_a, _set_a, _del_a)
+    
+s = Sample(10)
+
+print(s.a)
+
+s.a = 20
+print(s.a)
+
+del s.a
+
+property için delete metodunun yazılmasına seyrek bir biçimde gereksinim duyulmaktadır. 
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+
+Aslında property'ler dekoratör sentaksıyla çok daha kolay bir biçimde oluşturulabilmektedir. Örneğin:
+
+class Sample:
+    def __init__(self, a):
+        self._a = a
+        
+    @property
+    def a(self):
+        return self._a
+
+Anımsanacağı gibi burada @property dekoratörünün eşdeğeri şöyledir:
+
+class Sample:
+    def __init__(self, a):
+        self._a = a
+        
+    def a(self):
+        return self._a
+
+    a = property(a)
+
+Yani biz yine property fonksiyonuna a metodunu verip property ismi olarak a ismini 
+oluşturmuş olmaktayız. Bu sentaks property oluşturmak için oldukça kolaydır. Tabi 
+burada biz yalnızca örnek özniteliğini 'get' ettik.
+
+class Date:
+    def __init__(self, day, month, year):
+        self._day= day
+        self._month = month
+        self._year = year
+        
+    @property
+    def day(self):
+        return self._day
+    
+    @property
+    def month(self):
+        return self._month
+    
+    @property
+    def year(self):
+        return self._year
+    
+d = Date(9, 1, 2024)
+
+print(d.day, d.month, d.year)
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Peki dekoratör yoluyla setter metodu nasıl yazılmaktadır? İşte setter metodu için 
+dekoratör fonksiyonu görevini property sınıfının setter metodu yapmaktadır. 
+Programcı önce property dekoratörü ile getter metodunu oluşturur. Sonra da getter 
+ismini kullanarak property sınıfının setter metodunu dekoratör yapar.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ------------------------------------------------------------------------------------
 """
 
