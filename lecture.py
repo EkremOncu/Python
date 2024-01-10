@@ -6262,21 +6262,51 @@ dekoratör fonksiyonu görevini property sınıfının setter metodu yapmaktadı
 Programcı önce property dekoratörü ile getter metodunu oluşturur. Sonra da getter 
 ismini kullanarak property sınıfının setter metodunu dekoratör yapar.
 
+class Date:
+    def __init__(self, day, month, year):
+        self._day= day
+        self._month = month
+        self._year = year
+        
+    @property
+    def day(self):
+        return self._day
+    
+    @day.setter
+    def day(self, value):
+        self._day = value
+        
+    # day = day.setter(day)
+    
+    @property
+    def month(self):
+        return self._month
+    
+    @month.setter
+    def month(self, value):
+        self._month = value
+        
+    # month = month.setter(month)
+    
+    @property
+    def year(self):
+        return self._year
+    
+    @year.setter
+    def year(self, value):
+        self._year = value
+        
+    # year = year.setter(year)
+    
+d = Date(9, 1, 2024)
 
+print(d.day, d.month, d.year)
 
+d.day = 10
+d.month = 12
+d.year = 2003
 
-
-
-
-
-
-
-
-
-
-
-
-
+print(d.day, d.month, d.year)
 ------------------------------------------------------------------------------------
 """
 
