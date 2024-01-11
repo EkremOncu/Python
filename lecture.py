@@ -6310,7 +6310,111 @@ print(d.day, d.month, d.year)
 ------------------------------------------------------------------------------------
 """
 
+#  ---------------- Sınıfların __new__ metotları  ----------------
+"""
+------------------------------------------------------------------------------------
+Sınıfların diğer bir özel metodu ise __new__ isimli metottur. Biz bir sınıf türünden 
+nesne yarattığımızda aslında bu nesne iki aşamada kullanıma hazır hale getirilmektedir:
 
+1) Önce ilgili sınıfın __new__ isimli static metodu çağrılır. Bu işlem sonucunda 
+nesnenin bellekte tahsis edilmesi sağlanır. 
+
+2) Nesne için bellekte yer tahsis edildikten sonra onun örnek özniteliklerinin 
+yaratılması ve birtakım gerekli ilk işlemlerin yapılması için sınıfın __init__ 
+metodu çağrılır. 
+
+Örneğin:
+
+s = Sample()
+
+Burada aslında yorumlayıcı önce Sample sınıfının __new__ isimli static metodunu 
+çağrır, daha sonra __init__ metodunu çağırır. __new__ metodunun amacı tahsisat 
+yapmak, __init__ ise amacı nesneye ilkdeğerlerini vermektir. 
+
+Aslında nesne için tahsisat object sınıfının __new__ static metodu ile yapılmaktadır. 
+Yani programcı kendi sınıfı için __new__ static metodunu yazmış olsa bile aslında 
+asıl tahsisatın yine object sınıfının __new__ metoduyla yapılmasını sağlamalıdır. 
+O halde programcı aslında "tahsisatı yapmak için değil, yalnızca araya girmek için" 
+bu __new__ static metodunu yazmak ister. 
+------------------------------------------------------------------------------------
+Programcılar sınıfları için __new__ metodunu genellikle yazmazlar. __new_ metodunun 
+yazılmasına seyrek olarak gereksinim duyulmaktadır.Yukarıda da belirttiğimiz gibi 
+__new__ metodu static bir metottur ve bu metodun bir parametresi olmak zorundadır. 
+Bu parametre yaratılmak istenen sınıfın bilgilerini belirten o sınıfa ilişkin type 
+nesnesini almaktadır. __new__ metodu tahsis edilen nesne ile geri dönmelidir. Tabi 
+yukarıda belirttiğimiz gibi asıl tahsisat object sınıfının __new__ metodu ile 
+yapıldığı için programcının kendi sınıfı için yazdığı __new__ metodunun object 
+sınıfının __new__ metodunun geri dönüş değeri ile geri dönmesi gerekir. Bu durumda 
+sınıfın __new__ metodu tipik olarak şöyle yazlmalıdır:
+
+@staticmethod
+def __new__(cls):
+    # araya girme işlemi
+    return object.__new__(cls)
+
+Görüldüğü gibi programcı tahsisatı kendisi yapmamaktadır. Tahisat object sınıfının 
+__new__ metodu tarafından yapılmaktadır. Programcı yalnızca bu mekanizmada araya 
+girmektedir.     
+
+Pekiyi biz sınıfımız için __new__ metodunu yazmadığımızda ne olmaktadır? Bu durumda 
+taban sınıfın yani object sınıfının __new__ metodu çağrılacaktır. Zaten tahsisat 
+da bu object sınıfının __new__ metodu tarafından yapılmaktadır.
+------------------------------------------------------------------------------------
+Ancak burada ince bir nokta üzerinde durmak istiyoruz. Bizim __new__ metodunu 
+yazdığımız sınıfın taban sınıfı da __new__ metodunu araya girme amaçlı yazmış 
+olabilir. Bu durumda bizim doğrudan object sınıfının __new__ metodunu çağırmak 
+yerine taban sınıfın __new__ metodnu çağırmamız daha uygun olur. Yani __new__ 
+metodu aslında aşağıdaki gibi yazılmalıdır:
+
+@staticmethod
+def __new__(cls):
+    # araya girme işlemi
+    return super().__new__(cls)
+
+Biz burada taban sınıfın __new__ metodunu çağırmış olduk. Aynı işlemi taban sınıflar 
+da yapacağına göre yine tahsisat object sınıfının __new__ metodu tarafından 
+yapılmış olacaktır.
+
+Örnek:
+
+class A:
+    def __init__(self):
+        print('A.__init__')
+        
+    @staticmethod
+    def __new__(cls):
+        print('A.__new__')
+        return super().__new__(cls)
+
+class B(A):
+    def __init__(self):
+        super().__init__()
+        print('B.__init__')
+        
+    @staticmethod
+    def __new__(cls):
+        print('B.__new__')
+        return super().__new__(cls)
+    
+s = B()
+
+B.__new__
+A.__new__
+A.__init__
+B.__init__
+------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------
+"""
 
 
 
