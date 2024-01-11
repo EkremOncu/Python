@@ -6440,12 +6440,42 @@ class type:
         return instance                                         # 4
 
 
+   
+Burada önemli noktaları tek tek belirtelim:
+
+1) Bir sınıf türünden nesne yaratılmak istendiğinde aslında type sınıfının __call__ 
+metodu çağrılmaktadır. Nesneyi yaratırken kullandığımız tüm isimsiz ve isimli 
+argümanlar bu __call__ metoduna geçirilmektedir.(*args, **kwargs sayesinde) 
+
+2) type sınıfının __call__ metodunda ilgili sınıfın static __new__ metodu çağrılmaktadır. 
+Tahsisat bu çağrı ile yapılmaktadır. __new__ metoduna nesneyi yaratırken geçirilen 
+argümanların da geçirildiğine dikkat ediniz. O halde aslında __new__ metodunun 
+nesneyi yaratırken kullanılan argümanların hepsini alabilecek biçimde yazılması 
+gerekir. Örneğin:
+
+@staticmethod
+def __new__(cls, *args, **kwargs):
+    # araya giren kod
+    return super().__new__(cls)
 
 
+3) İlgisi sınıfın __new__ metodunun çağrılması sonucunda tahsis edilen nesne ilgili 
+sınıf türündense bu kez aynı arümanlarla o sınıfın __init__ metodu çağrılmaktadır. 
+Başka bir deyişle eğer __new__ metodundan elde edilen nesne başka bir sınıf türünden
+olursa ilgili sınıfın __init__ metodu çağrılmamaktadır. 
 
 
+4) Nihayet __call__ metodu tahsis edilen nesnenin adresiyle geri dönmektedir. 
+------------------------------------------------------------------------------------
+  Örneğin:
+       
+s = Sample(10, 20)
 
-
+Burada aslında type sınıfının __call__ metodu çağrılmaktadır. type sınıfının 
+__call__ metodu Sample sınıfının __new__ metodunu çağırır. Eğer __new__ metodunun 
+geri dönüş değeri Sample sınıfı türündense (genellikle böyle olur) bu kez Sample 
+sınıfının __init__ metodu çağrılır. Nihayet tahsis edilen nesnenin adresi s 
+değişkenine atanacaktır.
 ------------------------------------------------------------------------------------
 """
 
