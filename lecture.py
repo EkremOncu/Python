@@ -2876,7 +2876,7 @@ a.__call__(...)
 
 Bu nedenle Python'da fonksiyon çağırma operatörü ile çağrılabilen nesnelere 
 "callable" nesneler denilmektedir. Bir fonksiyon "callable" bir nesnedir. 
-__call__ metodu buunan bir sınıf nesnesi de "callable" bir nesnedir.
+__call__ metodu bulunan bir sınıf nesnesi de "callable" bir nesnedir.
 ------------------------------------------------------------------------------------
 
 class Sample:
@@ -6403,8 +6403,41 @@ A.__new__
 A.__init__
 B.__init__
 ------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Sınıf nesnesinin tahsis edilmesi sürecinde bazı ayrıntılar vardır. Anımsanacağı 
+gibi bir sınıf türünden değişkenle fonksiyon çağırma operatörü kullanıldığında 
+sınıfın __call__ isimli metodu çağrılmaktaydı. Örneğin:
 
+class Sample:
+    def __call__(self):
+        print('__call__')
+        
+s = Sample()
 
+s()     # s.__call__()
+
+Yine anımsanacağı gibi bir sınıfın tanımlamasını gören yorumlayıcı önce type 
+sınıfı türünden bir nesne yaratıp sınıfın bilgilerini o nesneye yerleştiriyordu 
+ve o nesnenin adresini de sınıf ismine ilişkin değişkene atıyordu. Yani sınıf 
+isimleri aslında type sınıfı türünden bir nesneyi gösteren değişken biçimindeydi
+
+print (type(Sample))  # <class 'type'>
+
+Burada Sample değişkeni type sınıfı türündendir. Bir sınıf türünden nesneyi 
+fonksiyon çağırma operatörü ile yarattığımızı anımsayınız:
+
+s = Sample(...)
+
+O halde aslında bir sınıf nesnesi type sınıfının __call__ metodu ile yaratılmaktadır. 
+İşte type sınıfının __call__ metodu aşağıdaki gibi yazılmıştır:
+------------------------------------------------------------------------------------
+    
+class type:
+    def __call__(self, *args, **kwargs):                        # 1
+        instance = self.__new__(self, *args, **kwargs)          # 2
+        if isinstance(instance, self):
+            instance.__init__(*args, **kwargs)                  # 3
+        return instance                                         # 4
 
 
 
