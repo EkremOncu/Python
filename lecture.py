@@ -6004,7 +6004,7 @@ belirtir. İkincisi ise o elemana atanmak istenen değeri belirtmektedir. Yani
 __setattr__ metodunun parametrik yapısı şöyle olmalıdır:
 
     
-def __setttr__(self, nanme, value):
+def __setttr__(self, name, value):
     pass
 
 Örneğin:
@@ -6440,7 +6440,6 @@ class type:
         return instance                                         # 4
 
 
-   
 Burada önemli noktaları tek tek belirtelim:
 
 1) Bir sınıf türünden nesne yaratılmak istendiğinde aslında type sınıfının __call__ 
@@ -6478,12 +6477,77 @@ sınıfının __init__ metodu çağrılır. Nihayet tahsis edilen nesnenin adres
 değişkenine atanacaktır.
 ------------------------------------------------------------------------------------
 """
+"""
+------------------------------------------------------------------------------------
+type sınıfı ile object sınıfı arasında mantıksal bir ilişki yoktur. type sınıfı bir 
+"meta sınıf"tır. Yani bir sınıfın bilgilerini tutan sınıftır. Meta sözcüğü üst 
+kavram olarak kullanılmaktadır. Sınıf bilgi tutar, ancak sınıfın kendi bilgileri 
+de bir sınıf tarafından tutulmaktadır. İşte o type sınıfıdır. Bu durumda type meta 
+bir sınıftır. object sınıfı ise her sınıfın taban sınıfı görevinde olan nesne 
+yaratma işlemini yapan sınıftır. Kaldı ki type sınıfı da object sınıfından 
+türetilmiştir. 
+------------------------------------------------------------------------------------
+"""
+
+
+#  ---------------- Betimleyiciler (descriptors)  ----------------
+"""
+------------------------------------------------------------------------------------
+Betimleyiciler (descriptors) ya da betimleyici sınıflar (descriptor classes) Python'a 
+sonradan eklenmiştir. property sınıfı gibi birtakım sınıfların yazılabilmesi için 
+böyle bir kavrama ihtiyaç duyulmuştur. Bir sınıfın betimleyici sınıf olması için 
+o sınıfta __get__, __set__ ya da __delete__  metotlarının en bir tanesinin bulunuyor 
+olması gerekir. Genellikle betimleyici sınıflarda __get__ ve __set__ metotları 
+birlikte bulunurkar. Ancak bazı sınıflarda yalnızca __get__ metodu bulunuyor olabilir.
+
+__get__ metodunun self dışında iki parametresi olmalıdır. Bu parametrelee genellikle 
+instance ve owner biçiminde isimlendirilmektedir. Örneğin:
+
+def __get__(self, instance, owner):
+    pass
+------------------------------------------------------------------------------------
+
+__set__ metodunun da self dışında iki parametresi bulunur. Bu parametreler de 
+genellikle instance ve value biçiminde isimlendirilmektedir. Örneğin:
+
+def __set__(self, instance, value):
+    pass
+------------------------------------------------------------------------------------
+
+__delete__ metodunun ise self parametresi dışında tek bir parametresi olmalıdır. 
+Bu parametre de genellikle instance biçiminde isimlendirilmektedir. Örneğin:
+
+def __delete__(self, instance):
+    pass
+------------------------------------------------------------------------------------
+Betimleyici sınıflar başka sınıflarda kullanılsın diye oluştrulurlar. Betimleyici 
+sınıf türünden bir nesne yaratılır ve ilgili sınıfın bir sınıf değişkenine atanır. 
+Betimleyici sınıfların bu kullanım dışında başka anlamlı kullanımları yoktur. 
+Örneğin:
+
+class MyDescriptor:
+    def __get__(self, instance, owner):
+        pass
+    
+    def __set__(self, instance, value):
+        pass
+    
+    def __delete__(self, instance):
+        pass
+
+class Sample:
+    a = MyDescriptor()
+
+Burada a Sample sınıfının bir özniteliğidir yani bir sınıf değişkenidir. Bilindiği 
+gibi sınıf değişkenlerine normalde ismiyle erişilir. Ancak onlara ilgili sınıf 
+türünden değişkenlerle de erişebiliriz.
+------------------------------------------------------------------------------------
 
 
 
 
-
-
+------------------------------------------------------------------------------------
+"""
 
 
 
