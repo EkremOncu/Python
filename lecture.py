@@ -6538,16 +6538,13 @@ class MyDescriptor:
 class Sample:
     a = MyDescriptor()
 
-Burada a Sample sınıfının bir özniteliğidir yani bir sınıf değişkenidir. Bilindiği 
-gibi sınıf değişkenlerine normalde ismiyle erişilir. Ancak onlara ilgili sınıf 
-türünden değişkenlerle de erişebiliriz.
-------------------------------------------------------------------------------------
+Burada a Sample sınıfının bir özniteliğidir yani bir sınıf değişkenidir. 
 
-
-
-
+Bir betimleyici nesne (yani betimleyici sınıf türünden yaratılmış olan sınıf değişkeni) 
+adeta yerleştirildiği sınıfın bir örnek özniteliği gibi davranmaktadır
 ------------------------------------------------------------------------------------
 """
+
 
 
 
