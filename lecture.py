@@ -6544,6 +6544,62 @@ Bir betimleyici nesne (yani betimleyici sınıf türünden yaratılmış olan s�
 adeta yerleştirildiği sınıfın bir örnek özniteliği gibi davranmaktadır
 ------------------------------------------------------------------------------------
 """
+#  ---------------- Paketler (packages)  ----------------
+"""
+------------------------------------------------------------------------------------
+Python install edildiğinde onun bütün standart kütüphaneleri yerel makineye çekilmektedir. 
+Ancak programcılar başkaları tarafından yazılmış olan yüzlerce farklı kütüphaneyi 
+kullanabilmektedir. İşte bu üçüncü parti kütüphaneler Internet'te ismine İngilizce 
+"repository" denilen server'larda tutulmaktadır. Bir kütüphaneyi bu server'lardan 
+indirip yerel makinede kullanıma hazır hale getirmek için "pip (python installer program)" 
+denilen bir program kullanılmaktadır. pip programı tipik olarak komut satırından 
+şöyle kullanılır:
+
+pip install kütüphane_ismi
+
+
+pip programı bu üçüncü parti kütüphaneyi indirir ve onu kullanıma hazır hale getirir. 
+Mevcut bir paketi yerel makineden silmek için ise pip komutu şöyle kullanılmaktadır:
+
+pip uninstall kütüphane_ismi
+
+
+Yerel makinede kurulmuş olan üçünücü parti kütüphaneleri görebilmek için ise pip 
+komutu şöyle kullanılmaktadır:
+
+pip list kütüphane_ismi
+
+
+pip programı otomatik olarak ilgili kütüphanenin en son versiyonunu indirip kurmaktadır. 
+Kütüphanenin belli bir versiyonu == ile versiyon numarası belirtilerek kurulabilmektedir. 
+Örneğin:
+
+pip install kütüphane_ismi == versiyon_numarası
+    
+
+------------------------------------------------------------------------------------
+Paketler (packages), içerisinde birden fazla Python kaynak dosyası bulunan dizinlere 
+denilmektedir. Genellikle kütüphaneler tek bir kaynak dosya olarak yazılmazlar. 
+Birden fazla dosya biçiminde organize edilirler. İşte bir paket, içerisinde birden 
+fazla kaynak dosyadan oluşan bir dizini belirtmektedir. Örneğin pip programıyla 
+bir kütüphaneyi indirip kurmak istediğinizi düşünelim:
+
+pip install paket_ismi
+
+pip programı Internet'te üçüncü parti kütüphanelerin bulunduğu server'lara başvurur 
+oradan kütüphanenin içeriğini yerel makineye indirir ve kütüphaneyi oluşturan 
+Python dosyalarını bir dizine yerleştirir. Yerel makinedeki bu dizin Python için 
+birden fazla Python dosyasından oluşan bir pakettir. 
+------------------------------------------------------------------------------------
+"""
+
+
+
+
+
+
+
+
 
 
 
