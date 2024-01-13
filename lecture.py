@@ -6544,7 +6544,9 @@ Bir betimleyici nesne (yani betimleyici sınıf türünden yaratılmış olan s�
 adeta yerleştirildiği sınıfın bir örnek özniteliği gibi davranmaktadır
 ------------------------------------------------------------------------------------
 """
-#  ---------------- Paketler (packages)  ----------------
+
+
+#  ----------------------- Paketler (packages)  -----------------------
 """
 ------------------------------------------------------------------------------------
 Python install edildiğinde onun bütün standart kütüphaneleri yerel makineye çekilmektedir. 
@@ -6591,6 +6593,190 @@ oradan kütüphanenin içeriğini yerel makineye indirir ve kütüphaneyi oluşt
 Python dosyalarını bir dizine yerleştirir. Yerel makinedeki bu dizin Python için 
 birden fazla Python dosyasından oluşan bir pakettir. 
 ------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Python'da bir dizin'in bir paket olarak ele alınması için tek gereken şey o dizin'in 
+içinde "__init__.py" isimli bir dosyanın bulunyor olmasıdır. Paketler de tamamen 
+modüller gibi import edilmektedir. 
+
+Örneğin bulunduğumuz dizin'in altında mypackage isimli bir dizin yaratıp onun 
+içerisine "__init__.py" dosyasını yerleştirelim. Dosyanın içi boş olabilir. Biz 
+bir paketi nasıl bir dosyayı import ediyorsak dosya gibi import edebiliriz. 
+Yine import işlemi sırasında as cümleciği de kullanılabilir. Örneğin:
+
+import mypackage as mp
+
+
+Bir paket import edildiğinde paketin içerisindeki "__init__.py" dosyası otomatik 
+çalıştırılmaktadır. Örneğin mypackage isimli paketteki "__init__.py" dosyasının 
+içeriği şöyle olsun:
+
+# __init__.py
+
+print('__init__.py')
+
+Biz aşağıdaki gibi paketi import ettiğimizde bu dosyanın içindekiler çalıştırılacaktır:
+Ekrana '__init__.py' yazısı yazdırılacaktır.
+
+import mypackage
+
+Tabii paketi iki kere import edersek paket yalnızca ilk import edildiğinde 
+"__init__.py" dosyası çalıştırılır. 
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Şimdi mypackage dizini içerisine "__init__.p"y dosyasının yanı sıra "a.py" ve "b.py" 
+dosyalarını da yerleştirelim. Dosyaların içeriği şöyle olsun:
+
+# a.py
+
+print('this is mypackage.a module')
+def foo():
+    print('a.foo)
+
+          
+# b.py
+
+print('this is mypackage.b module')
+def bar():
+    print('b.bar')
+
+
+Paketler import edildiğinde tıpkı kaynak dosyalar gibi module nesneleri oluşturulmaktadır. 
+Paket isimleri de bu module nesnelerini gösteren değişken durumunda olurlar. Örneğin:
+
+import mypackage 
+
+print(type(mypackage))      # <class 'module'>
+------------------------------------------------------------------------------------
+
+Bir paketin içerisindeki spesifik bir dosya da import edilebilir. Örneğin:
+
+import mypackage.a
+
+Bu biçimde bir paketin içerisindeki dosyayı import etmeden önce paketin import 
+edilmesine gerek yoktur. Bu tür durumlarda zaten paketin kendisi de otomatik olarak 
+import edilmektedir. Yani yukarıdaki import işleminde sanki önce paketin kendisi 
+import edilmiş sonra da paketin içerisindeki dosya import edilmiş gibi bir etki 
+oluşacaktır. Dolayısıyla yine __init__.py dosyasının içeriği ve a.py dosyasının 
+içeriği çalıştırılacaktır. Yukarıdaki gibi bir paketin içerisindeki bir module import
+edildiğinde iki modül nesnesi oluşturulacaktır. Birinci module nesnesi mypackage 
+ismine atanacak, ikinci module nesnesi ise mypackage.a ismine atanacaktır. Örneğin:
+
+import mypackage.a
+import mypackage.b
+
+Burada ilk import işleminde paketin __init__.py dosyası çalıştırılır. Ancak ikinci 
+import işleminde artık çalıştırılmaz. Yani burada ekrana şunlar çıkacaktır:
+
+__init__.py
+this is mypackage.a module
+this is mypackage.b module 
+
+Bir paketteki bir dosyanın içerisindeki değişkenleri (örneğin fonksiyonları) 
+kullanabilmek için önce o paketin içerisindeki dosyanın import edilmesi gerekir. 
+Sonra paket_ismi.modül_ismi.değişken_ismi biçiminde paketteki modül içerisinde 
+bulunan değişken kullanılabilir. Örneğin:
+
+import mypackage.a
+import mypackage.b
+
+mypackage.a.foo()
+mypackage.b.bar()
+
+Yalnızca paketi import edip dosyayı import etmeden o dosyanın içerisindeki 
+değişkenleri kullanamayız. Örneğin:
+
+import mypackage
+
+mypackage.a.foo()       # error!
+mypackage.b.bar()       # error!
+
+Burada mypackage import edildiğinde a ve b modül isimleri oluşturulmamaktadır. 
+
+Tabii import deyimindeki as cümleciği ile paket içerisindeki modül ismini 
+kısaltabiliriz. Örneğin:
+
+import mypackage.a as a
+import mypackage.b as b
+
+a.foo()
+b.bar()
+------------------------------------------------------------------------------------
+
+Örneğin matplotlib paketinin içerisindeki pyplot kütüphanesini programcılar 
+genellikle aşağıdaki biçimde import ederek kullanılar:
+
+import matplotlib.pyplot as plt
+
+plt.plot([1,2,3,4], [8,5,6,7])
+
+Paketteki dosyanın içerisinde bulunan spesifik bir değişkeni form import deyimi 
+ile de import edebiliriz. Tabii bu durumda yine paketin __init__.py dosyası ve 
+paket içerisindeki dosyanın içerisindeki kodlar çalıştırılacaktır. Örneğin:
+
+from mypackage.a import foo
+from mypackage.b import bar
+
+foo()
+bar()
+
+Ekrana şu yazılar çıkacaktır:
+
+__init__.py
+this is mypackage.a module
+this is mypackage.b module
+foo
+bar
+------------------------------------------------------------------------------------
+
+Bir paketin __init__.py dosyasında paketin içerisindeki dosyalar import edilebilir. 
+Bu durumda biz o paketi import ettiğimizde o dosyaları da import etmiş gibi oluruz. 
+Örneğin mypackage dizininindeki __init__.py dosyası şöyle yazılmış 
+olsun:
+
+# __init__.py 
+
+print('__init__.py')
+
+import mypackage.a 
+import mypackage.b
+
+
+Şimdi biz paketi import edelim:
+
+import mypackage
+
+Artık paketin içerisindeki dosyaların içerisindeki değişkenleri paket ismi ve dosya 
+ismi belirterek kullanabiliriz. Örneğin:
+
+import mypackage
+
+mypackage.a.foo()
+mypackage.b.bar()
+
+Ancak __init__.py içerisinde o paketteki dosyalar import edilirken yine paket ismi 
+kullanılmak zorundadır. Yani import işlemi aşağıdaki gibi yapılamaz:
+
+# __init__. py
+
+print('__init__.py')
+
+import a                # error!
+import b                # error!
+------------------------------------------------------------------------------------   
+
+Örneğin numpy kütüphanesini import ettiğimizde onun __init__.py dosyasında paket 
+içerisindeki birtakım dosyalar zaten import edilmektedir. Biz de aşağıdaki gibi 
+işlemler yapabilmekteyiz:
+
+import numpy
+
+a = numpy.random.randint(0, 10, 100)
+print(a)
+
+Burada numpy bir PAKETTİR. random ise bir DOSYADIR. Bu random dosyasının import 
+işlemi paketin __init__ dosyasında yapıldığı için biz randint fonksiyonunu 
+numpy.random.randint biçiminde kullanabildik.
+------------------------------------------------------------------------------------   
 """
 
 
