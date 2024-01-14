@@ -1022,9 +1022,10 @@ print(type(x))
 # __init__ -> "dunder init" demekle biz "__init__" demiş olmaktayız.
 
 # if __name__ == '__main__':
-# biz yazdığımız programdaki fonksiyonların ve değişkenlerin import edilerek 
-# kullanılmasını istiyorsak ve aynı zamanda da onu bağımsız bir program 
-# gibi de çalıştırmak istiyorsak kullanilir
+# biz yazdığımız programdaki belirli fonksiyonların, değişkenlerin import edilerek
+# kullanılmasını istiyorsak ama belirli bir kısmı import edilen kod tarafından çalıştırılmamasını
+# istiyorsak Lakim  bağımsız bir program gibi çalıştırıldığında bu kodların çalıştırılmasını
+# istiyorsak kullanilir
 
 
 # ------------------------------- Rastgele Sayı Uretme ----------------------------------------------
