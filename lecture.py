@@ -6627,14 +6627,14 @@ Tabii paketi iki kere import edersek paket yalnızca ilk import edildiğinde
 Şimdi mypackage dizini içerisine "__init__.p"y dosyasının yanı sıra "a.py" ve "b.py" 
 dosyalarını da yerleştirelim. Dosyaların içeriği şöyle olsun:
 
-# a.py
+# a.py (modül)
 
 print('this is mypackage.a module')
 def foo():
     print('a.foo)
 
           
-# b.py
+# b.py (modül)
 
 print('this is mypackage.b module')
 def bar():
@@ -6765,6 +6765,50 @@ import a                # error!
 import b                # error!
 ------------------------------------------------------------------------------------   
 
+Bazen programcı paketin __init__.py dosyasında from import deyimi ile ilgili modülün 
+içerisideki değişkenleri paketin içerisine taşır. Böylece artık yalnızca paket ismi 
+ile o değişkenlere erişilebilir. Örneğin mypackage paketindeki __init__.py 
+dosyasının içeriği şöyle olsun:
+
+# mypackage.__init__.py
+
+print('__init__.py')
+
+from mypackage.a import foo
+from mypackage.b import *
+
+
+Şimdi biz bu paketi import ettiğimizde buradaki from import deyimleri çalıştırılacak
+
+
+import mypackage
+
+mypackage.foo()
+mypackage.bar()
+
+Artık foo ve bar değişkenlerine mypackage ismiyle eriştik. Ekranda şu yazılar görünecektir:
+
+__init__.py
+this is mypackage.a module
+this is mypackage.b module
+foo
+bar
+------------------------------------------------------------------------------------  
+ Burada kullandığımız teknik aslında çok yaygın kullanılmaktadır. Yani biz bir 
+paketi import ettiğimizde o paketin __init__.py dosyası içerisinde from import 
+deyimleriyle aslında o paketin ieçrisindeki modüllerin (dosyaların) içerisindeki 
+isimler paket isim alanına taşınmaktadır. Örneğin aslında pandas içerisinde yüzlerce 
+dosyanın olduğu bir pakettir. Ancak biz sanki bütün isimler pandas isim alanındaymış 
+gibi onları kullanırız. Örneğin:
+
+import pandas
+
+s = pandas.Series([1, 2, 3, 4, 5])
+print(s)
+
+Aslında Series sınıfı pandas paketinin içerisindeki bir dosyanın içerisinde bulunmaktadır. 
+Ancak from import deyimi ile pandas paket isim alanına taşınmıştır.
+------------------------------------------------------------------------------------  
 Örneğin numpy kütüphanesini import ettiğimizde onun __init__.py dosyasında paket 
 içerisindeki birtakım dosyalar zaten import edilmektedir. Biz de aşağıdaki gibi 
 işlemler yapabilmekteyiz:
@@ -6780,13 +6824,67 @@ numpy.random.randint biçiminde kullanabildik.
 ------------------------------------------------------------------------------------   
 """
 
+# iç içe paketler
+"""
+------------------------------------------------------------------------------------   
+İç içe paketler de oluşturulabilmektedir. Bir paketin içerisindeki pakete "alt paket 
+(subpackage)" de denilmektedir. Yani paketlerin içerisinde modüller (python dosyaları) 
+olabileceği gibi başka paketler de olabilmektedir. 
 
+Şimdi yukarıda oluşturmuş olduğumuz mypackage ismli paketin içerisinde util isimli 
+bir paket daha oluşturalım. util paketinin içerisinde de __init__.py dosyası ve 
+bir de "c.py" dosyası olsun. Bu dosyaların içeriği de şöyle olsun:
 
+# mypackage/util/__init__.py
 
+print('util.__init__.py')
 
+# mypackage/util/c.py
 
+print('this is mypackage.util.c module')
 
+def tar():
+    print('tar')
 
+Örneğimizdeki dizin yapısı şöyledir:
+
+mypackage
+    __init__.py
+    a.py
+    b.py
+    util
+        __init__.py
+        c.py
+
+Şimdi bu alt paket içeisindeki "c.py" dosyasını import edecek olalım:
+------------------------------------------------------------------------------------   
+import mypackage.util.c
+
+Burada her ne kadar biz c modülünü import etmek istiyorsak da aslında mypackage 
+ve util paketleri de import edilmektedir. Yani burada önce mypackage içerisindeki 
+__init__.py dosyası, sonra "mypackage/util" içerisindeki __init__.py dosyası 
+nihayet "mypackage/util içerisindeki "c.py" dosyası çalıştırılacaktır. 
+
+Aynı durum from import deyimi için de geçerlidir:
+
+from mypackage.util.c import tar
+
+Tabii biz dış paketin __init__.py dosyasında iç paketlerdeki isimleri de from 
+import deyimi ile dış paketin isim alanına taşıyabiliriz. Örneğin mypackage paketinin 
+__init__.py dosyası şöyle olsun:
+
+print('__init__.py')
+
+from mypackage.a import *
+from mypackage.b import *
+from mypackage.util.c import *
+
+Burada "a.py", "b.py" ve "c.py" dosyalarının ieçrisindeki isimlerin hepsi sanki 
+mypackage modülünün (paketinin) içerisindeymiş gibi kullanılabilecektir. 
+------------------------------------------------------------------------------------   
+
+------------------------------------------------------------------------------------   
+"""
 
 
 
