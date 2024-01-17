@@ -6881,10 +6881,82 @@ from mypackage.util.c import *
 
 Burada "a.py", "b.py" ve "c.py" dosyalarının ieçrisindeki isimlerin hepsi sanki 
 mypackage modülünün (paketinin) içerisindeymiş gibi kullanılabilecektir. 
-------------------------------------------------------------------------------------   
 
+
+aşağıdaki gibi de bir import işlemi yapamayız:
+
+import c    
+import util.c
+
+Şöyle import işlemi yapabiliriz:
+
+import mypackage.util.c
 ------------------------------------------------------------------------------------   
 """
+
+# __all__ global değişkeni
+"""
+------------------------------------------------------------------------------------   
+Modüllerin (yani .py dosyalarının) __all__ isminde özel bir global değişkenleri 
+vardır. Bu global değişken dolaşılabilir bir nesne biçiminde olmalıdır. Bu dolaşılabilir 
+nesne string elemanlarından oluşur. Ancak pratikte genellikle bu __all__ değişkeni 
+programcı tarafından bir liste biçiminde oluşturulmaktadır. İşte "from import" 
+deyimi ile *'lı import yapıldığında yalnızca modülün __all__ değişkeninde belirtilen 
+değişkenler dışarıya import edilir. Örneğin "x.py" isminde bir Python dosyamız 
+olsun ve bu dosyanın içeriği aşağıdaki gibi olsun:
+
+# x.py 
+
+def foo():
+    print('foo')
+    
+def bar():
+    print('bar')
+    
+def tar():
+    print('tar')
+    
+a = 10
+b = 20
+c = 30
+
+Normal olarak biz bu modülü *'lı import ettiğimizde foo, bar, tar, a, b, c 
+değişken isimlerinin hepsini kullanabiliriz.
+
+Şimdi x modülüne __all__ global değişkenini aşağıdaki gibi ekleyelim:
+
+__all__ = ['foo', 'bar', 'a', 'b']
+
+def foo():
+    print('foo')
+    
+def bar():
+    print('bar')
+    
+def tar():
+    print('tar')
+    
+a = 10
+b = 20
+c = 30
+
+Şimdi biz bu modülü *'lı bir biçimde import edersek yalnızca foo, bar, a ve b'yi 
+kullanabiliriz. 
+
+from x import *
+------------------------------------------------------------------------------------   
+"""
+
+
+#  -------------------- Döküman Yazıları (Document String)  --------------------
+
+
+
+
+
+
+
+
 
 
 
