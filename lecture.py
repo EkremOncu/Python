@@ -6949,6 +6949,51 @@ from x import *
 
 
 #  -------------------- Döküman Yazıları (Document String)  --------------------
+"""
+------------------------------------------------------------------------------------   
+Python dünyası diğer dillere ve framework'lere kıyasla nispeten zayıf dokümantasyon 
+içermektedir. Pek çok Python programcısı yazdığı fonksiyonların, sınıfların ve modüllerin 
+dokümantasyonlarını kodun içerisine gömmektedir. Bunu sağlamak için Python'da 
+"doküman yazıları (document strings)" denilen bir dil özelliği kullanılmaktadır. 
+Yani Python'da kodu yazan kişi aynı zamanda temel bir dokümantasyon da oluşturmaktadır.
+------------------------------------------------------------------------------------  
+ 
+Bir fonksiyon için doküman yazısı fonksiyonun hemen suit'inin başında 
+(yani ikinci satırında) bir string olarak belirtilir. Bu string tek tırnaklı ya 
+da üç tırnaklı olabilir. Bilindiği gibi üç tırnaklı string'ler birden fazla satır 
+üzerine yazılabilmektedir. Örneğin:
+
+def square(a):
+    (Üç tırnak) square fonksiyonu parametresiyle aldığı değerin karesine geri döner. (Üç tırnak)
+    return a * a
+
+Bir fonksiyonun doküman yazısı yorumlayıcı tarafından fonksiyon nesnesinin __doc__ 
+isimli değişkeninin içerisine yerleştirilmektedir. Dolayısıyla biz doküman yazısını 
+__doc__ değişkeni yoluyla elde edebiliriz.
+------------------------------------------------------------------------------------   
+
+Python'da bazen programcılar bir fonksiyon hakkında bir açıklama bulamayabilirler. 
+Bu tür durumlarda fonksiyonun __doc__  elemanına başvurulabilir.
+
+import math
+print(math.floor.__doc__)
+
+Python'da built-in help isimli fonksiyon bir değişkenin ismini alıp ona ilişkin 
+bilgileri ekrana yazdırmaktadır. Bu yazdırma sırasında doküman yazıları da 
+yazdırılmaktadır.
+
+import math
+
+help(math.floor)
+------------------------------------------------------------------------------------ 
+"""
+
+
+#  -------------------- Type Annotations (tür açıklamaları) --------------------
+
+
+
+
 
 
 
