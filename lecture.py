@@ -6990,8 +6990,61 @@ help(math.floor)
 
 
 #  -------------------- Type Annotations (tür açıklamaları) --------------------
+"""
+------------------------------------------------------------------------------------ 
+ Bu bölümde gittikçe daha fazla kullanılır hale gelmekte olan "tür açıklamaları 
+(type annotations)" konusu üzerinde duracağız. Python dinamik tür sistemine sahip 
+bir programlama dili olduğu için değişkenlerin, fonksiyon parametrelerinin, 
+fonksiyonların geri dönüş değerlerinin türleri değişebilmektedir. Dinamik tür 
+sistemine sahip programlama dillerinde en önemli sorunlardan biri tür kontrolünün 
+çalışma zamanı sırasında yapılabilmesidir. Örneğin bir fonksiyon yanlış türden bir 
+argümanla çağrıldığında problem kod çalışırken akış o noktaya geldiğinde ortaya 
+çıkmaktadır. Bu da kodu yazanın çok dikkatli olmasını gerektirmektedir. 
 
+İşte tür açıklamaları bir değişkenin niyet edilen türünün program çalışmadan önce 
+üçüncü parti araçlar tarafından kontrol edilmesini sağlamak amacıyla dile eklenmiştir. 
+Tür açıklamaları yorumlayıcı için bir direktif ya da kontrol sağlamamaktadır. 
+Yalnızca insanlar ve üçüncü parti statik analiz araçları için kontrol imkanları 
+sunmaktadır. Başka bir deyişle tür açıklamaları tamamen yorumlayıcı tarafından 
+görmezden gelinmektedir.
+------------------------------------------------------------------------------------ 
+  
+Aşağıdaki banner fonksiyonuna dikkat ediniz:
 
+def banner(s, ch='-'):
+    print(ch * len(s))
+    print(s)
+    print(ch * len(s))
+
+Bu fonksiyonun bir string ile çağrılması gerekir. Eğer bu fonksiyon bir string 
+ile çağrılmazsa muhtemelen bir exception oluşacaktır. Pekiyi dalgın bir programcı 
+bu fonksiyonu aşağıdaki gibi int bir değerle çağıramaz mı?
+
+banner(123)
+
+İşte bu durumda yukarıda da belirttiğimiz gibi kod çalışırken exception oluşacaktır 
+(çünkü int türü len fonksiyonuna sokulamaz). Eğer biz yukarıdaki fonksiyonu örneğin 
+bir listeyle çağırırsak exception oluşmaz ancak fonksiyon istediğimizi de yapmaz. 
+Aslında bu durum exception oluşmasından da kötüdür. 
+
+Pekiyi biz bir Python programında yukarıdaki gibi hataları nasıl tespit edebiliriz? 
+Bu tür hatalar yazılımın iyi bir biçimde test edilmesiyle büyük ölçüde düzeltilebilmektedir. 
+Örneğin "birim testleri (unit testing)" bu tür işlemlerin test edilmesi için 
+kullanılabilir. İşte tür uyumluluğu üçüncü parti statik analiz araçları tarafından da 
+belirli koşullar sağlanırsa tür açıklamaları sayesinde kontrol edilebilmektedir. 
+------------------------------------------------------------------------------------ 
+
+Tür kontrolü için kullanılan statik analiz araçlarının en yaygınları şunlardır: 
+mypy, Pytype, Pyright, Pyre. Biz kursumuzda mypy kullanacağız. mypy programını 
+şöyle kurabilirsiniz:
+
+pip install mypy
+
+Bu analiz araçlarının tür kontrollerini yapabilmesi için kodun "tür açıklamaları 
+(type annotations)" ile oluşturulmuş olması gerekir. Bu nedennle bizim tür 
+açıklamalarının nasıl oluşturulacağını bilmemiz gerekmektedir. 
+------------------------------------------------------------------------------------ 
+"""
 
 
 
