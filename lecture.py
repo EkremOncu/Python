@@ -7128,7 +7128,129 @@ C:\Study\Python>mypy sample.py
 sample.py:4: error: Argument 1 to "square" has incompatible type "float"; 
 expected "int" Found 1 error in 1 file (checked 1 source file)
 ------------------------------------------------------------------------------------ 
+
+mypy programı da versiyondan versiyona genişletilmektedir. Örneğin artık biz bir 
+değişkene ilk kez değer atayıp onu yarattığımızda mypy sanki o değişken için atanan 
+türe ilişkin tür açıklaması yapılmış gibi işlem uygulamaktadır. Örneğin:
+
+a = 10
+print(a)
+
+a = 3.14
+print(a)
+
+mypy sanki burada a için int açıklaması yapılmış gibi bir işlem uygulamaktadır. 
+Dolayısıyla a değişkenine daha sonra float bir değer atandığında bunu hata olarak 
+rapor etmektedir:
+
+sample.py:4: error: Incompatible types in assignment (expression has type "float",
+variable has type "int")  [assignment] Found 1 error in 1 file (checked 1 source 
+file)
+------------------------------------------------------------------------------------ 
+------------------------------------------------------------------------------------ 
+Biz bir değişkenin kendi sınıfımız türünden olmasını da sağlayabiliriz. Yani tür 
+açıklamalarında kendi sınıflarımızı da kullanabiliriz.
+
+class Sample:
+        pass
+
+def foo(a: Sample):
+    print(a)
+    
+s = Sample()
+
+foo(s)
+
+Burada foo fonksiyonu Sample sınıfı türünden parametre almaktadır. Biz onu başka 
+türden bir argümanla çağırırsak mypy hata verecektir. Tabii türemiş sınıf taban 
+sınıf gibi de kullanılabildiği için biz buradaki foo fonksiyonuna Sample sınıfından
+türetilmiş bir sınıf türünden değişken de geçebiliriz. Örneğin:
+
+class Sample:
+    pass
+
+class Mample(Sample):
+    pass
+
+def foo(a: Sample):
+    print(a)
+    
+m = Mample()
+
+foo(m)
+
+    Burada mypy herhangi bir hata mesajı vermeyecektir.
+------------------------------------------------------------------------------------ 
+
+Örneğin biz bir değişkenin list türünden olması gerektiğini benzer biçimde 
+açıklayabiliriz:
+
+def foo(a: list):
+    pass
+
+Burada a parametre değişkeni, elemanları herhangi bir biçimde olan bir list nesnesini 
+alabilir. Ancak istersek listenin elemanlarının belli bir türden olmasını da 
+sağlayabiliriz. Bunun için list isminden sonra köşeli parantezler içerisinde 
+ilgili tür ismi belirtilir. Örneğin:
+
+a: list[int]
+
+Burada a int elemanlardan oluşan bir liste olmalıdır.
+------------------------------------------------------------------------------------ 
+
+mypy gibi araçların "statik analiz araçları" olduğuna dikkat ediniz. Bu tür 
+statik kod analizi yapan araçlar programı çalıştırarak bir kontrol yapamadığı 
+için her türlü ihlali kontrol edememektedir. Örneğin:
+
+def foo(x):
+    x.append(1.2)
+
+a: list[int]
+
+a = [1, 2, 3, 4]
+
+foo(a)
+
+print(a)
+
+Burada foo fonksiyonunun a listesine ekleme yaptığını dolayısıyla kuralın ihlal 
+edildiğini mypy gibi statik analiz araçları genellikle tespit edememektedir. 
+------------------------------------------------------------------------------------ 
+
+Benzer biçimde set ve tuple sınıfları için de tür açıklamaları için kullanılabilmektedir. Örneğin:
+
+def foo(s: set):
+    pass
+
+Burada s set türünden olmalıdır. Örneğin:
+
+def bar(t: tuple):
+    pass
+
+Burada da t tuple türünden olmalıdır.
+------------------------------------------------------------------------------------ 
+
+Tabii tıpkı list örneğinde olduğu gibi aslında biz bu set ve tuple türlerinin 
+elemanları hakkında da açıklama yapabiliriz. Örneğin:
+
+def foo(s: set[int]):
+    pass
+
+Burada s int değerleri tutan bir küme olmalıdır. 
+------------------------------------------------------------------------------------ 
+Demetlerde elemanların türleri sırasıyla tek tek belirtilebilmektedir. Örneğin:
+
+def foo(t: tuple[int, str]):
+    pass
+
+Burada t parametre değişkenine iki elemanlı demetler aktarılmalıdır. Bu demetlerin 
+birinci elemanları int türden ikinci elemanları str türünden olmalıdır. Örneğin:
+
+foo((10, 'ankara'))
+------------------------------------------------------------------------------------ 
 """
+
+
 
 
 
