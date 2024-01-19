@@ -7017,7 +7017,7 @@ def banner(s, ch='-'):
     print(ch * len(s))
 
 Bu fonksiyonun bir string ile çağrılması gerekir. Eğer bu fonksiyon bir string 
-ile çağrılmazsa muhtemelen bir exception oluşacaktır. Pekiyi dalgın bir programcı 
+ile çağrılmazsa muhtemelen bir exception oluşacaktır. Peki dalgın bir programcı 
 bu fonksiyonu aşağıdaki gibi int bir değerle çağıramaz mı?
 
 banner(123)
@@ -7027,7 +7027,7 @@ banner(123)
 bir listeyle çağırırsak exception oluşmaz ancak fonksiyon istediğimizi de yapmaz. 
 Aslında bu durum exception oluşmasından da kötüdür. 
 
-Pekiyi biz bir Python programında yukarıdaki gibi hataları nasıl tespit edebiliriz? 
+Peki biz bir Python programında yukarıdaki gibi hataları nasıl tespit edebiliriz? 
 Bu tür hatalar yazılımın iyi bir biçimde test edilmesiyle büyük ölçüde düzeltilebilmektedir. 
 Örneğin "birim testleri (unit testing)" bu tür işlemlerin test edilmesi için 
 kullanılabilir. İşte tür uyumluluğu üçüncü parti statik analiz araçları tarafından da 
@@ -7044,7 +7044,92 @@ Bu analiz araçlarının tür kontrollerini yapabilmesi için kodun "tür açık
 (type annotations)" ile oluşturulmuş olması gerekir. Bu nedennle bizim tür 
 açıklamalarının nasıl oluşturulacağını bilmemiz gerekmektedir. 
 ------------------------------------------------------------------------------------ 
+
+Tür açıklamalarının genel biçimi şöyledir:
+
+<değişken_ismi>: <ifade> [= <ilkdeğer>]
+
+Aslında tür açıklamaları daha genel olarak düşünülmüştür. Yukarıdaki genel biçimde
+"ifade" yerine tür bilgisi yazılırsa (int, str, float gibi tür isimleri Python'da 
+birer ifadedir) tür açıklaması yapılmış olur. Aslında bu açıklamalar tür açıklaması 
+biçiminde olmak zorunda değildir. Ancak pratikte açıklamaların (annotations) en 
+yaygın kullanımı tür açıklamaları biçimindedir. Örneğin:
+
+a: int = 123
+b: float = 12.3
+
+a:int
+a = 123
+------------------------------------------------------------------------------------ 
+
+Yukarıda da belirttiğimiz gibi bir program çalıştırılırken Python yorumlayıcısı 
+tür açıklamalarını dikkate almaz. Bu tür açıklamaları üçüncü parti programlar 
+tarafından (örneğin mypy) dikkate alınmaktadır. Yukarıdaki "sample.py" dosyasını 
+mypy ile şöyle işleme sokabiliriz:
+
+mypy sample.py
+
+Spyder IDE'sindeki IPython içerisinden de şu biçimde işleme sokabiliriz:
+
+!mypy sample.py
+------------------------------------------------------------------------------------ 
+ 
+Tür açıklamaları IDE'lere entegre edilmiş araçlar tarafından da dikkate alınabilmektedir. 
+Örneğin PyCharm IDE'sinde "Code/Inspect Code" menüsü ile tür kontrolü yapılabilir. 
+Mypy aynı zamanda PyCharm IDE'sine bir plugin olarak eklenebilmektedir. Bunun için 
+"File/Settings/Plugins" sekmesine gelinit. Burada "mypy" seçilerek araç IDE'ye 
+dahil edilir. Visual Studio Code IDE'sine de bir plugin olarak mypy eklenebilmektedir. 
+Maalesef henüz tür kontrolü yapmak için Spyder IDE'sine entegre edilmiş bir araç 
+yoktur. 
+
+mypy programı başarısız olursa sıfır dışında bir exit kodu üretmektedir. 
+Başarı durumunda mypy programının exit kodu 0'dır. 
+------------------------------------------------------------------------------------ 
+
+Parametre değişkenlerine tür açıklaması yapılırken de aynı sentaks kullanılmaktadır. Örneğin:
+
+def banner(s: str, ch: str = '-'):
+    print(ch * len(s))
+    print(s)
+    print(ch * len(s))
+
+banner('ankara')
+banner(123)
+
+Bu programı mypy programına sokalım:
+
+C:\Study\Python>mypy sample.py
+sample.py:7: error: Argument 1 to "banner" has incompatible type "int"; expected 
+"str" Found 1 error in 1 file (checked 1 source file)
+
+Görüldüğü gibi mypy fonksiyonun yanlışlıkla int bir değerle çağrıldığını tespit 
+edip bize bildirebilmiştir.
+------------------------------------------------------------------------------------ 
+------------------------------------------------------------------------------------ 
+Fonksiyonun geri dönüş değeri hakkında açıklama oluşturmak için -> sembolü 
+kullanılmaktadır. Örneğin:
+
+def square(a: int) -> int:
+    return a * a
+
+Burada biz fonksiyonun parametresinin int türden, geri dönüş değerinin de int 
+türden olması gerektiğini belirtiyoruz. Şimdi "sample.py" programının aşağıdaki 
+gibi olduğunu kabul edelim:
+
+def square(a: int) -> int:
+    return a * a
+
+result = square(1.2)
+print(result)
+
+Programı mypy'a sokalım:
+
+C:\Study\Python>mypy sample.py
+sample.py:4: error: Argument 1 to "square" has incompatible type "float"; 
+expected "int" Found 1 error in 1 file (checked 1 source file)
+------------------------------------------------------------------------------------ 
 """
+
 
 
 
