@@ -7280,11 +7280,69 @@ d = {10: 'ali', 20: 'veli', 30: 'selami'}
 
 foo(d)
 ------------------------------------------------------------------------------------ 
+
+typing modülündeki Any sınıfı tür açıklamalarında "herhangi bir tür olabilir" 
+anlamına gelmektedir.
+
+from typing import Any
+
+def foo(d: dict[int, Any]):
+    pass
+
+Burada artık foo fonksiyonun parametresi sözlük olmalıdır. Ancak sözlüğün anahtarları 
+int olmak zorundayken değerleri herhangi bir türden olabilir. Örneğin aşağıdaki 
+çağrı tür açıklamalarına uygundur:
+
+foo({10: 'ali', 20: 100, 30: 2.3}) 
+
+------------------------------------------------------------------------------------ 
+
+import math
+
+def getroots(a: float, b: float, c: float) -> tuple[float, float]|None:
+    delta = b ** 2 - 4 * a * c
+    if delta < 0:
+        return None
+    
+    x1 = (-b + math.sqrt(delta)) / (2 * a)
+    x2 = (-b - math.sqrt(delta)) / (2 * a)
+    
+    return x1, x2
+
+result: tuple[float, float]|None = getroots(1, 0, -4)
+
+if result is None:
+    print('kök yok')
+else:
+    x1, x2 = result
+    print(f'x1 = {x1}, x2 = {x2}')
+
+------------------------------------------------------------------------------------ 
+------------------------------------------------------------------------------------ 
+typing modülündeki Optional ismi "ilgili türden ya da None (NoneType türünden)" 
+anlamına gelmektedir. Örneğin:
+
+from typing import Optional
+
+a: Optional[int]
+
+Burada biz a'ya int ya None atayabiliriz. Ancak başka bir türden değer atayamayız.
+
+
+from typing import Optional
+
+def foo(a: int) -> Optional[int]:
+    if a > 0:
+        return a
+    
+    return None
+
+result: Optional[int] = foo(10)
+print(result)
+
+Burada biz result değişkenine int türden ya da None atayabiliriz. 
+------------------------------------------------------------------------------------ 
 """
-
-
-
-
 
 
 
