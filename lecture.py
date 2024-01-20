@@ -7247,6 +7247,38 @@ Burada t parametre değişkenine iki elemanlı demetler aktarılmalıdır. Bu de
 birinci elemanları int türden ikinci elemanları str türünden olmalıdır. Örneğin:
 
 foo((10, 'ankara'))
+
+
+Demetler için şöyle bir sentaks da eklenmiştir. Eğer demetleri belirtirken yalnızca 
+tek tür belirtirsek ve sonra da ... (ellipsis) getirirsek bu durum ilk belirttiğimiz 
+türden olmak koşulu ile demetin istenildiği sayıda elemandan oluşabileceği 
+anlamına gelir. Örneğin:
+
+def foo(t: tuple[int, ...]):
+    pass
+
+!!! Köşeli parantez içerisinde birden fazla türden sonra ... kullanımının böyle 
+    bir anlamı yoktur. 
+------------------------------------------------------------------------------------ 
+------------------------------------------------------------------------------------ 
+Sözlüklerde de tür açıklamaları benzer biçimde dict sınıfı ile yapılabilmektedir. Örneğin:
+
+def foo(d: dict):
+    pass
+
+Bu durumda fonksiyonun d parametre değişkenine bir sözlük geçirilmelidir. Ancak 
+sitenirse yine köşeli parantezler içerisinde sözlüğün anahtar ve değer türleri 
+ayrı ayrı belirtilebilir. Örneğin:
+
+def foo(d: dict[int, str]):
+    pass
+
+Burada sözlüğün anahtarları int, değerleri ise str türünden olmalıdır. Aşağıdaki 
+çağrıda mypy bir hata rapor etmeyecektir:
+
+d = {10: 'ali', 20: 'veli', 30: 'selami'}
+
+foo(d)
 ------------------------------------------------------------------------------------ 
 """
 
