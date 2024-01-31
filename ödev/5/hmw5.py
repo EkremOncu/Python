@@ -194,7 +194,7 @@ disp_char_pattern('F')
 import math
 def newton_pi(k):
     pi = 0
-    for n in range(k):
+    for n in range(k+1):
         pi += (2**(n+1) * math.factorial(n) ** 2) / math.factorial(2*n+1)
     return pi
 
@@ -202,23 +202,20 @@ result = newton_pi(500)
 print(result)
 """
     
-# Solution 9-b ????????????????
+# Solution 9-b 
 """ 
 def somayaji_pi(n):
-    pi = 0
-    r = 3
-    t = 3
-    p = 5
-    s = 5
+    total = 3
+    base = 3
+    sign = 1
+    
     for _ in range(n):
-        pi += (4 / (t**3 -r)) - (4 / (p**3 -s))
-        t += 2
-        r += 2
-        p += 2
-        s += 2
-    pi = pi + 3
-    return pi
-
+        total += sign * (4 / (base**3 - base))
+        base += 2
+        sign = -sign
+        
+    return total
+        
 result = somayaji_pi(10)
 print(result)
 """
