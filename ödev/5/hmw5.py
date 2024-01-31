@@ -216,8 +216,12 @@ def somayaji_pi(n):
         
     return total
         
-result = somayaji_pi(10)
-print(result)
+while True:
+    n = int(input('n:'))
+    if n == 0:
+        break
+    pi = somayaji_pi(n)
+    print(pi)
 """
 
 # Solution 9-c
