@@ -33,9 +33,10 @@ print(l)
 """
 a = [[1, 2, 3], [4, 5], [6, 7, 8, 9], [10]]
 
+result= [[x[i] for x in a if len(x)>i] for i in range(max([len(row) for row in a]))]
 
-
-
+print(result)
+print('-------------')
 
 # Klasik Çözümü
 
@@ -54,8 +55,7 @@ for i in range(len(a)):
         if len(x) > i:    
             row.append(x[i])
     result.append(row)    
-        
-        
+print(result)        
 """
 
 
@@ -71,8 +71,9 @@ print(statistics.mean([statistics.mean(x) for x in itertools.combinations(a,2)])
 """
 s = 'bugün hava çok güzel'
 
-print([h for h in [k for k in s.split()]])
-"""
+result= ' '.join([ ''.join([c for c in w if c not in 'aeıiuüoö']) for w in s.split()])
+print(result)
+""".
     
     
         
