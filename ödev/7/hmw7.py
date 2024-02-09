@@ -18,6 +18,9 @@ a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 print ([list(sayi) for sayi in list (zip(*[ sayi for sayi in a] ))])
 
+
+# Klasik Çözümü
+
 l = [ [],[],[] ]
 
 for s in range(len(a)):
@@ -29,6 +32,30 @@ print(l)
 # Solution 4   ??????????    
 """
 a = [[1, 2, 3], [4, 5], [6, 7, 8, 9], [10]]
+
+
+
+
+
+# Klasik Çözümü
+
+maxcol = 0
+for row in a:
+    if len(row) > maxcol:
+        maxcol = len(row)
+print(maxcol)        
+print()
+
+result = []
+for i in range(len(a)):
+    row = []
+    
+    for x in a:
+        if len(x) > i:    
+            row.append(x[i])
+    result.append(row)    
+        
+        
 """
 
 
