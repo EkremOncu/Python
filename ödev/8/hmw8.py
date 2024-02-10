@@ -1,6 +1,6 @@
 # Solution 
 import sys
-
+import itertools
 g = {'A': {'B': 5, 'C': 7, 'D': 10},
      'B': {'A': 5, 'D': 4, 'E': 17, 'G': 20}, 
      'C': {'A': 7, 'D': 6, 'F':9}, 
@@ -26,3 +26,18 @@ def get_length(tour):
 result = get_length(['A', 'B', 'E', 'G'])
 
 print(result)
+print('-----')
+
+cities = ['B','C','D','E','F','G']
+
+min_len = sys.float_info.max  #  bir float türünün alabileceği en büyük pozitif sayı
+min_tour = []
+for t in itertools.permutations(cities, len(cities)):
+     tour = ('A',) + t + ('A',)
+     if (tlen := get_length(tour)) is None:
+          continue
+     if tlen < min_len:
+          min_len = tlen
+          min_tour = tour
+
+print(f'min tour: {min_tour}, min tour length: {min_len}')
