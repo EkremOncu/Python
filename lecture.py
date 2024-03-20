@@ -3336,7 +3336,7 @@ haline getirilmiştir. Bu sayede bazı tasarımlar daha özlü bir biçimde yap�
 Python'da dekoratörler fonksiyonlar, metotlara ve sınıflara uygulanabilmektedir. 
 Bir dekoratör bir fonksiyona ya da metoda uygulanmışsa bunlara "fonksiyon dekoratörleri", 
 bir sınıfa uygulanmışsa bunlara da "sınıf dekoratörleri" denilmektedir. Bir 
-fonksiyonu ya da sınıfıdekora edebilmek için fonksiyon ya da sınıfın üstüne aynı 
+fonksiyonu ya da sınıfı dekora edebilmek için fonksiyon ya da sınıfın üstüne aynı 
 girinti düzeyine sahip olacak biçimde @dekoratör_ismi biçiminde bir sentaksın 
 eklenmesi gerekir. Örneğin:
 
@@ -3427,7 +3427,7 @@ bar()
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
 Sonuç olarak biz bir fonksiyonun dekore edildiğini gördüğümüzde şunu düşünmeliyiz: 
-"Bu fonyksiyonu çağırdığımda aslında ben muhtemelen başka bir fonksiyonu çağırmış 
+"Bu fonksiyonu çağırdığımda aslında ben muhtemelen başka bir fonksiyonu çağırmış 
 olacağım. Ama o fonksiyon da benim fonksiyonumu çağıracak. Fakat bu arada benim 
 faydama bazı şeyler de arka planda yapılmış olacak". Benzer biçimde bir sınıf 
 dekoratörünü gördüğümüzde de şunu düşünmeliyiz: "Bu sınıfa benim eklediklerimden 
